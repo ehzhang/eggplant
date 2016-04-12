@@ -1,0 +1,15 @@
+body,
+html {
+  margin: 0;
+  padding: 0;
+  font-family: "Futura", "Helvetica Neue", sans-serif; }
+
+#global-nav {
+  background: #9b59b6;
+  color: white; }
+  #global-nav .column {
+    padding-bottom: 0 !important; }
+  #global-nav .menu {
+    border-color: transparent; }
+
+/*# sourceMappingURL=site.css.map */
