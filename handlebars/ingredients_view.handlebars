@@ -1,0 +1,30 @@
+<div class="ui grid">
+    <div class="row">
+        <div class="twelve wide column">
+            <h3>Viewing Version: 2.3</h3>
+            <p><strong>Version Summary: </strong>Doubled amount of secret sauce.</p>
+        </div>
+        <div class="four wide column">
+            <img class="ui fluid image" src="http://semantic-ui.com/images/wireframe/image.png">
+        </div>
+    </div>
+    <div class="row">
+        <div class="six wide column">
+            <h3>Ingredients</h3>
+            {{#each recipe.ingredients}}
+                <div>
+                    {{amount}} {{units}} {{name}}
+                </div>
+            {{/each}}
+        </div>
+        <div class="six wide column">
+            {{!-- Instructions --}}
+            <h3>Instructions</h3>
+            <ol>
+                {{#each recipe.instructions}}
+                <li>{{this}}</li>
+                {{/each}}
+            </ol>
+        </div>
+    </div>
+</div>
