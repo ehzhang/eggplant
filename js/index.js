@@ -37,7 +37,7 @@ $(document).ready(function() {
     });
 
     function showUpdateRecipe() {
-        loadElement("#recipe-content", "ingredients_form", {
+        loadElement("#recipe-content", "edit_recipe_view", {
             recipe: recipe
         });
 

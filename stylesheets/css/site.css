@@ -8,6 +8,10 @@ html {
 .ui {
   font-family: "Futura", "Helvetica Neue", sans-serif !important; }
 
+.ui.divider {
+  margin-top: 1.5em !important;
+  margin-bottom: 1.5em !important; }
+
 strong.brand {
   color: #9b59b6; }
 

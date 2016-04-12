@@ -19,6 +19,11 @@ html {
   font-family: $font-stack !important;
 }
 
+.ui.divider {
+  margin-top: 1.5em !important;
+  margin-bottom: 1.5em !important;
+}
+
 strong.brand {
   color: $brand-color;
 }
