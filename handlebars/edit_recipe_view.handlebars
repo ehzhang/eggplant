@@ -6,6 +6,30 @@
     <div class="ui divider"></div>
 
     <div class="small ui header">
+        Recipe Description
+    </div>
+
+    <div class="fields">
+        <div class="twelve wide field">
+            <textarea
+                placeholder="This is a recipe for a delicious..."
+                >{{recipe.description}}</textarea>
+        </div>
+        <div class="four wide field">
+            <div class="ui card">
+                <div class="ui medium image">
+                    <img src="{{recipe.imageUrl}}">
+                </div>
+                <div class="ui bottom attached button">
+                    Upload New Image
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="ui divider"></div>
+
+    <div class="small ui header">
         Ingredients
     </div>
 
@@ -56,6 +80,7 @@
         </div>
     </div>
 
+    <br>
     <br>
 
     <div class="field">
