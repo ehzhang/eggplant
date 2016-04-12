@@ -21,4 +21,7 @@ html {
   .instructions ol li {
     margin-bottom: 1em; }
 
+.ui.form .right.aligned.field {
+  text-align: right; }
+
 /*# sourceMappingURL=site.css.map */

@@ -19,29 +19,22 @@
             </div>
         </div>
     {{/each}}
+
     <div class="ui positive right labeled icon button" id="add-ingr-btn">
         Add New Ingredient
         <i class="plus icon"></i>
     </div>
-    <div class="ui divider"></div>
 
-    {{#each recipe.instructions}}
-    <div class="inline fields">
-        <div class="one wide field">
-            {{!-- TODO(@rswang): Fix index to be one-indexed --}}
-            <label>{{@index}}.</label>
-        </div>
-        <div class="fifteen wide field">
-            <textarea rows="2">{{this}}</textarea>
-        </div>
-    </div>
-    {{/each}}
+    <div class="ui divider"></div>
 
     <div class="field">
         <div class="ui grid">
             <div class="eight wide column">
                 <label>Edit Instructions </label>
-                <textarea id="instructions-edit"></textarea>
+                <textarea
+                    id="instructions-edit"
+                    placeholder="1. Prepare the..."
+                    ></textarea>
             </div>
             <div class="eight wide column">
                 <label>Preview</label>
@@ -54,14 +47,16 @@
     </div>
 
     <div class="field">
-        <label>Summary</label>
-        <textarea rows="2"></textarea>
+        <label>Change Summary</label>
+        <textarea rows="2" placeholder="I removed/added some..."></textarea>
     </div>
 
     <div class="ui divider"></div>
 
-    <div class="ui red button">Cancel</div>
-    <div class="ui submit green button">Save</div>
+    <div class="right aligned field">
+        <div class="ui basic large button">Cancel</div>
+        <div class="ui submit purple large button">Update Recipe</div>
+    </div>
 </div>
 <div class="ui modal small">
 {{> new_ingredient_form}}
