@@ -1,52 +1,68 @@
-<div class="ui two column centered grid">
-    <div class="column">
-        <div class="ui form">
-            {{#each recipe.ingredients}}
-                <div class="inline fields">
-                    <div class="three wide field">
-                        <input type="text" placeholder="{{amount}}" value="{{amount}}">
-                    </div>
-                    <div class="four wide field">
-                        <select class="ui dropdown">
-                        <option value="">tsp</option>
-                        <option value="1">tbsp</option>
-                        <option value="0">cup</option>
-                        </select>
-                    </div>
-                    <div class="eight wide field">
-                        <label>{{name}}</label>
-                    </div>
-                    <div class="one wide field">
-                        <i class="red remove circle icon"></i>
-                    </div>
-                </div>
-            {{/each}}
-            <div class="ui positive right labeled icon button" id="add-ingr-btn">
-                Add New Ingredient
-                <i class="plus icon"></i>
+<div class="ui form">
+    {{#each recipe.ingredients}}
+        <div class="inline fields">
+            <div class="three wide field">
+                <input type="text" placeholder="{{amount}}" value="{{amount}}">
             </div>
-            <div class="ui divider"></div>
-            {{#each recipe.instructions}}
-            <div class="inline fields">
-                <div class="one wide field">
-                    {{!-- TODO(@rswang): Fix index to be one-indexed --}}
-                    <label>{{@index}}.</label>
-                </div>
-                <div class="fifteen wide field">
-                    <textarea rows="2">{{this}}</textarea>
-                </div>
+            <div class="four wide field">
+                <select class="ui dropdown">
+                <option value="">tsp</option>
+                <option value="1">tbsp</option>
+                <option value="0">cup</option>
+                </select>
             </div>
-            {{/each}}
+            <div class="eight wide field">
+                <label>{{name}}</label>
+            </div>
+            <div class="one wide field">
+                <i class="red remove circle icon"></i>
+            </div>
+        </div>
+    {{/each}}
+    <div class="ui positive right labeled icon button" id="add-ingr-btn">
+        Add New Ingredient
+        <i class="plus icon"></i>
+    </div>
+    <div class="ui divider"></div>
 
-            <div class="field">
-                <label>Summary</label>
-                <textarea rows="2"></textarea>
-            </div>
-            <div class="ui red button">Cancel</div>
-            <div class="ui submit green button">Save</div>
+    {{#each recipe.instructions}}
+    <div class="inline fields">
+        <div class="one wide field">
+            {{!-- TODO(@rswang): Fix index to be one-indexed --}}
+            <label>{{@index}}.</label>
+        </div>
+        <div class="fifteen wide field">
+            <textarea rows="2">{{this}}</textarea>
         </div>
     </div>
-    <div class="ui modal small">
-        {{> new_ingredient_form}}
+    {{/each}}
+
+    <div class="field">
+        <div class="ui grid">
+            <div class="eight wide column">
+                <label>Edit Instructions </label>
+                <textarea id="instructions-edit"></textarea>
+            </div>
+            <div class="eight wide column">
+                <label>Preview</label>
+                <div id="instructions-preview">
+                </div>
+                {{!-- <div id="instructions-preview" class="ui segment"> --}}
+                {{!-- </div> --}}
+            </div>
+        </div>
     </div>
+
+    <div class="field">
+        <label>Summary</label>
+        <textarea rows="2"></textarea>
+    </div>
+
+    <div class="ui divider"></div>
+
+    <div class="ui red button">Cancel</div>
+    <div class="ui submit green button">Save</div>
+</div>
+<div class="ui modal small">
+{{> new_ingredient_form}}
 </div>

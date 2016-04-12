@@ -6,7 +6,8 @@ html {
 
 #global-nav {
   background: #9b59b6;
-  color: white; }
+  color: white;
+  margin-bottom: 2em; }
   #global-nav .column {
     padding-bottom: 0 !important; }
   #global-nav .menu {

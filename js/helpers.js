@@ -8,9 +8,15 @@ Handlebars.registerPartial('new_ingredient_form', Handlebars.templates['new_ingr
 var appendToElement = function(selector, template, data) {
     data = data || {};
     $(selector).append(Handlebars.templates[template](data));
-}
+};
 
 // Load template to specified selector
 var loadElement = function(selector, template, data) {
     $(selector).html(Handlebars.templates[template](data));
-}
+};
+
+Handlebars.registerHelper('markdown', function(options) {
+    var converter = new showdown.Converter();
+    var html = converter.makeHtml(options.fn(this));
+    return new Handlebars.SafeString(html);
+});

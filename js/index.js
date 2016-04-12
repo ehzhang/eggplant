@@ -22,12 +22,7 @@ $(document).ready(function() {
             amount: 0.5,
             units: "tbsp",
         }],
-        instructions: [
-            "Slice eggplant.",
-            "Marinate eggplant in secret sauce.",
-            "Cook quinoa.",
-            "Toss eggplant, mixed greens, and quinoa.",
-        ]
+        instructions: "1. Slice the Eggplant \n2. Marinate Eggplant in secret sauce **30 minutes!** \n3. Cook Quinoa \n4. Toss Eggplant, mixed greens, and quinoa",
     };
 
 
@@ -38,10 +33,33 @@ $(document).ready(function() {
         recipe: recipe
     });
 
-    $(document).on("click", "#update-btn", function(e) {
+    function showUpdateRecipe() {
+
         loadElement("#recipe-content", "ingredients_form", {
             recipe: recipe
         });
+
+        // Markdown Converter
+        var converter = new showdown.Converter();
+
+        // Set preview to text
+        $('#instructions-edit')
+          .val(recipe.instructions);
+
+        $('#instructions-preview')
+          .html(converter.makeHtml(recipe.instructions));
+
+        $('#instructions-edit').keyup(function(){
+          $('#instructions-preview')
+            .html(converter.makeHtml($('#instructions-edit').val()));
+        });
+
+    }
+
+    // showUpdateRecipe();
+
+    $(document).on("click", "#update-btn", function(e) {
+      showUpdateRecipe();
     });
 
     $(document).on("click", "#add-ingr-btn", function(e) {

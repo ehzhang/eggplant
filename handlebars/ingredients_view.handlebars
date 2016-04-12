@@ -8,8 +8,11 @@
             <img class="ui fluid image" src="http://semantic-ui.com/images/wireframe/image.png">
         </div>
     </div>
+
+    <div class="ui divider"></div>
+
     <div class="row">
-        <div class="six wide column">
+        <div class="eight wide column">
             <h3>Ingredients</h3>
             {{#each recipe.ingredients}}
                 <div>
@@ -17,14 +20,10 @@
                 </div>
             {{/each}}
         </div>
-        <div class="six wide column">
+        <div class="eight wide column">
             {{!-- Instructions --}}
             <h3>Instructions</h3>
-            <ol>
-                {{#each recipe.instructions}}
-                <li>{{this}}</li>
-                {{/each}}
-            </ol>
+            {{#markdown}}{{recipe.instructions}}{{/markdown}}
         </div>
     </div>
 </div>
