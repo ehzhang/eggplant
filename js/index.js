@@ -1,6 +1,8 @@
 $(document).ready(function() {
     var recipe = {
         name: "Eggplant Quinoa Bowl",
+        imageUrl: "assets/eggplant_quinoa_bowl.jpg",
+        "description": "Man braid fixie farm-to-table pug wayfarers scenester before they sold out ramps tilde, man bun YOLO slow-carb squid shoreditch put a bird on it. Tote bag venmo lo-fi kombucha synth semiotics. Photo booth thundercats hella squid church-key semiotics. Scenester dreamcatcher cornhole, whatever affogato roof party 3 wolf moon kinfolk shabby chic meh twee photo booth irony keffiyeh. Literally chia jean shorts, viral kinfolk pickled bicycle rights flexitarian twee marfa neutra cray. Gluten-free green juice mixtape, stumptown meditation williamsburg poutine hammock godard polaroid schlitz cardigan cold-pressed shabby chic. Dreamcatcher yuccie yr artisan hammock blue bottle, roof party gluten-free tousled mustache lomo kombucha typewriter cray.",
         ingredients: [{
             name: "eggplant",
             amount: 2,

@@ -13,4 +13,12 @@ html {
   #global-nav .menu {
     border-color: transparent; }
 
+.ingredients div {
+  margin-bottom: 1em; }
+
+.instructions {
+  font-size: 1.1em; }
+  .instructions ol li {
+    margin-bottom: 1em; }
+
 /*# sourceMappingURL=site.css.map */
