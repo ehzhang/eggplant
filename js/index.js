@@ -39,4 +39,35 @@ $(document).ready(function() {
             recipe: recipe
         });
     });
+
+    $(document).on("click", "#add-ingr-btn", function(e) {
+        $(".ui.modal").modal("show");
+    });
+
+    $(document).on("click", "#modal-cancel-btn", function(e) {
+        $(".ui.modal").modal("hide");
+    });
+
+    $('.ui.ingredient.form')
+      .form({fields: {
+      name: {
+        identifier: 'name',
+        rules: [
+          {
+            type   : 'empty',
+            prompt : 'Please enter a name for this ingredient'
+          }
+        ]
+      },
+      gender: {
+        identifier: 'description',
+        rules: [
+          {
+            type   : 'empty',
+            prompt : 'Please enter a description'
+          }
+        ]
+      }
+    }
+});
 });

@@ -2,13 +2,13 @@
     Create New Ingredient
 </div>
 <div class="content">
-    <div class="ui form">
+    <div class="ui form ingredient" id="new-ingr-form">
         <div class="inline fields">
             <div class="three wide field">
                 <label>Name</label>
             </div>
             <div class="nine wide field">
-                <input type="text">
+                <input type="text" name="name">
             </div>
         </div>
         <div class="inline fields">
@@ -16,7 +16,7 @@
                 <label>Description</label>
             </div>
             <div class="nine wide field">
-                <textarea rows=5></textarea>
+                <textarea rows=5 name="description"></textarea>
             </div>
         </div>
         <div class="inline fields">
@@ -24,7 +24,7 @@
                 <label>Unit</label>
             </div>
             <div class="nine wide field">
-                <select class="ui dropdown">
+                <select class="ui dropdown" name="unit">
                     <option value="cup">cup</option>
                     <option value="mL">mL</option>
                     <option value="oz">oz</option>
@@ -60,8 +60,8 @@
     </div>
 </div>
 <div class="actions">
-    <div class="ui black cancel button">Cancel</div>
-    <div class="ui positive right labeled icon button">
+    <div class="ui red button" id="modal-cancel-btn">Cancel</div>
+    <div class="ui positive right labeled icon button" id="new-ingr-btn">
     Save
     <i class="checkmark icon"></i>
     </div>
