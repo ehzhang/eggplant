@@ -26,7 +26,8 @@ strong.brand {
     border-color: transparent; }
 
 #recipe-header {
-  cursor: pointer; }
+  cursor: pointer;
+  font-size: 3.5em; }
 
 .version-header h3 {
   display: inline; }
