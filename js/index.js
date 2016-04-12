@@ -30,7 +30,11 @@ $(document).ready(function() {
         ]
     };
 
-    appendToElement("body", "recipe_page", {
+
+    appendToElement("body", "layout");
+
+    // Start off by loading the main content with the recipe page
+    appendToElement("#content", "recipe_page", {
         recipe: recipe
     });
 
