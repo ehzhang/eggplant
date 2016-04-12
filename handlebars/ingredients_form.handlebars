@@ -1,4 +1,14 @@
 <div class="ui form">
+    <div class="ui header">
+        Update to Version <strong class="brand">2.4</strong>
+    </div>
+
+    <div class="ui divider"></div>
+
+    <div class="small ui header">
+        Ingredients
+    </div>
+
     {{#each recipe.ingredients}}
         <div class="inline fields">
             <div class="three wide field">
@@ -25,19 +35,24 @@
         <i class="plus icon"></i>
     </div>
 
+    <br>
+    <br>
+
     <div class="ui divider"></div>
+
+    <br>
 
     <div class="field">
         <div class="ui grid">
             <div class="eight wide column">
-                <label>Edit Instructions </label>
+                <div class="small ui header"> Edit Instructions </div>
                 <textarea
                     id="instructions-edit"
                     placeholder="1. Prepare the..."
                     ></textarea>
             </div>
             <div class="eight wide column">
-                <label>Preview</label>
+                <div class="small ui header"> Preview </div>
                 <div id="instructions-preview" class="instructions">
                 </div>
                 {{!-- <div id="instructions-preview" class="ui segment"> --}}
@@ -46,18 +61,28 @@
         </div>
     </div>
 
+    <br>
+
     <div class="field">
-        <label>Change Summary</label>
+        <div class="small ui header">Change Summary</div>
         <textarea rows="2" placeholder="I removed/added some..."></textarea>
     </div>
+
+
+    <br>
 
     <div class="ui divider"></div>
 
     <div class="right aligned field">
-        <div class="ui basic large button">Cancel</div>
-        <div class="ui submit purple large button">Update Recipe</div>
+        <div
+            id="cancel-recipe-btn"
+            class="ui basic large button">Cancel</div>
+        <div
+            id="update-recipe-btn"
+            class="ui submit purple large button">Update Recipe</div>
     </div>
 </div>
+
 <div class="ui modal small">
 {{> new_ingredient_form}}
 </div>

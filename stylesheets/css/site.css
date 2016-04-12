@@ -2,7 +2,14 @@ body,
 html {
   margin: 0;
   padding: 0;
-  font-family: "Futura", "Helvetica Neue", sans-serif; }
+  font-family: "Futura", "Helvetica Neue", sans-serif;
+  font-size: .95em; }
+
+.ui {
+  font-family: "Futura", "Helvetica Neue", sans-serif !important; }
+
+strong.brand {
+  color: #9b59b6; }
 
 #global-nav {
   background: #9b59b6;
