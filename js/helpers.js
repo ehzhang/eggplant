@@ -1,6 +1,7 @@
 Handlebars.registerPartial('recipe_nav_header', Handlebars.templates['recipe_nav_header']);
 Handlebars.registerPartial('ingredients_form', Handlebars.templates['ingredients_form']);
 Handlebars.registerPartial('ingredients_view', Handlebars.templates['ingredients_view']);
+Handlebars.registerPartial('new_ingredient_form', Handlebars.templates['new_ingredient_form']);
 
 // Append template to specified selector
 var appendToElement = function(selector, template, data) {
