@@ -1,2 +1,3 @@
 #!/bin/bash
 handlebars handlebars/ -f js/handlebars.js
+echo "Compiled handlebars..."

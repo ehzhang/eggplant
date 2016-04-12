@@ -1,0 +1,3 @@
+#!/bin/bash
+echo "Watching for changes in handlebars"
+fswatch handlebars | (while read; do ./build-hbs; done)
