@@ -36,6 +36,12 @@ $(document).ready(function() {
         recipe: recipe
     });
 
+    function showRecipe() {
+        loadElement("#content", "recipe_page", {
+            recipe: recipe
+        });
+    }
+
     function showUpdateRecipe() {
         loadElement("#recipe-content", "edit_recipe_view", {
             recipe: recipe
@@ -59,9 +65,28 @@ $(document).ready(function() {
 
     // showUpdateRecipe();
 
+    function showRecipeStats() {
+        loadElement("#recipe-content", "recipe_stats_view", {
+            recipe: recipe
+        });
+    }
+
+    $(document).on("click", "#recipe-header", function(e) {
+      showRecipe();
+    });
+
+    $(document).on("click", "#nav-history-btn", function(e) {
+      showRecipe();
+    });
+
     $(document).on("click", "#nav-update-btn", function(e) {
       showUpdateRecipe();
     });
+
+    $(document).on("click", "#nav-stats-btn", function(e) {
+      showRecipeStats();
+    });
+
 
     $(document).on("click", "#update-recipe-btn", function(e) {
 
@@ -81,7 +106,6 @@ $(document).ready(function() {
       loadElement("#content", "recipe_page", {
           recipe: recipe
       });
-
     });
 
 

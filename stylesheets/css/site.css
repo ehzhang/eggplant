@@ -24,6 +24,9 @@ strong.brand {
   #global-nav .menu {
     border-color: transparent; }
 
+#recipe-header {
+  cursor: pointer; }
+
 .ingredients div {
   margin-bottom: 1em; }
 
