@@ -5,7 +5,8 @@ html {
   font-family: "Futura", "Helvetica Neue", sans-serif;
   font-size: .95em; }
 
-.ui {
+h1, h2, h3, h4, h5,
+ol, .ui {
   font-family: "Futura", "Helvetica Neue", sans-serif !important; }
 
 .ui.divider {
@@ -26,6 +27,12 @@ strong.brand {
 
 #recipe-header {
   cursor: pointer; }
+
+.version-header h3 {
+  display: inline; }
+.version-header .version-message {
+  font-style: italic;
+  font-size: .9em; }
 
 .ingredients div {
   margin-bottom: 1em; }
