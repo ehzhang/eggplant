@@ -106,6 +106,25 @@ $(document).ready(function() {
         summary: "Add hummus to the recipe.",
     }];
 
+    var ingredients = [{
+        name: "eggplant",
+        description: "A purple vegetable."
+    }, {
+        name: "secret sauce",
+        description: "The recipe is a secret"
+    }, {
+        name: "mayo",
+        description: "A condiment",
+        allergens: "eggs"
+    }, {
+        name: "quinoa",
+        description: "A grain",
+    }, {
+        name: "mixed greens",
+        description: "A vegetable",
+        allergens: "vegetables"
+    }];
+
 
     // Layout is the Master Root Scope upon which all of everything yay
     appendToElement("body", "layout");
@@ -129,7 +148,8 @@ $(document).ready(function() {
 
     function showUpdateRecipe() {
         loadElement("#recipe-content", "edit_recipe_view", {
-            recipe: recipe
+            recipe: recipe,
+            ingredients: ingredients
         });
 
         // Markdown Converter
@@ -145,6 +165,12 @@ $(document).ready(function() {
         $('#instructions-edit').keyup(function(){
           $('#instructions-preview')
             .html(converter.makeHtml($('#instructions-edit').val()));
+        });
+
+        $(".ui.fluid.search.selection.dropdown").dropdown();
+
+        $("#add-ingr").on("click", function(e){
+            $(".ui.modal").modal("show");
         });
     }
 
@@ -248,12 +274,14 @@ $(document).ready(function() {
       });
     });
 
-    $(document).on("click", "#add-ingr-btn", function(e) {
-        $(".ui.modal").modal("show");
-    });
-
     $(document).on("click", "#modal-cancel-btn", function(e) {
         $(".ui.modal").modal("hide");
+    });
+
+    $(document).on("click", "#new-ingr-btn", function(e) {
+        var fields = $("#new-ingr-form").form("get values", ["name", "description", "allergens", "photo"]);
+        ingredients.push(fields);
+        // TODO: reinitialize selection dropdown thing
     });
 
     $('.ui.ingredient.form')
