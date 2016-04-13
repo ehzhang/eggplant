@@ -180,6 +180,15 @@ $(document).ready(function() {
 
     showBrowse();
 
+    $(document).on("keyup", "#browse-filter", function(e) {
+        console.log($(this).val());
+        var regex = new RegExp($(this).val(), 'i');
+        $(".ui.recipe.segment").hide();
+        $(".ui.recipe.segment").filter(function() {
+            return regex.test($(this).text());
+        }).show();
+    })
+
     $(document).on("click", "#recipe-header", function(e) {
       showRecipe();
     });
