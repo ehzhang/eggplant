@@ -28,6 +28,20 @@ $(document).ready(function() {
         instructions: "1. Slice the Eggplant \n2. Marinate Eggplant in secret sauce **30 minutes!** \n3. Cook Quinoa \n4. Toss Eggplant, mixed greens, and quinoa",
     };
 
+    var recipeVersions = [{
+        version: 1,
+        summary: "Reduce amount of mixed greens.",
+    }, {
+        version: 2,
+        summary: "Add mayo to sauce.",
+    }, {
+        version: 3,
+        summary: "Add more eggplant and decrease amount of quinoa.",
+    }, {
+        version: 4,
+        summary: "Add hummus to the recipe.",
+    }];
+
 
     appendToElement("body", "layout");
 
@@ -67,8 +81,24 @@ $(document).ready(function() {
 
     function showRecipeStats() {
         loadElement("#recipe-content", "recipe_stats_view", {
-            recipe: recipe
+            recipe: recipe,
+            versions: recipeVersions,
         });
+        for (var i = 0; i < recipeVersions.length; i++) {
+            var recipeVersion = recipeVersions[i];
+            $('#stats-v' + recipeVersion.version)
+              .popup({
+                inline   : true,
+                hoverable: true,
+                title: "Version " + recipeVersion.version,
+                content: recipeVersion.summary,
+                position : 'bottom left',
+                delay: {
+                  show: 300,
+                  hide: 800
+                }
+            });
+        }
     }
 
     $(document).on("click", "#recipe-header", function(e) {
@@ -96,9 +126,7 @@ $(document).ready(function() {
       loadElement("#content", "recipe_page", {
           recipe: recipe
       });
-
     });
-
 
     $(document).on("click", "#cancel-recipe-btn", function(e) {
 
@@ -107,7 +135,6 @@ $(document).ready(function() {
           recipe: recipe
       });
     });
-
 
     $(document).on("click", "#add-ingr-btn", function(e) {
         $(".ui.modal").modal("show");
