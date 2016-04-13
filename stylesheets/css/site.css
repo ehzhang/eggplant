@@ -46,4 +46,28 @@ strong.brand {
 .ui.form .right.aligned.field {
   text-align: right; }
 
+.recipe.segment {
+  padding: 0;
+  transition-duration: .2s; }
+  .recipe.segment .content {
+    padding-top: 1.5em;
+    padding-bottom: 1.5em;
+    padding-right: 2em; }
+    .recipe.segment .content .recipe-name,
+    .recipe.segment .content .recipe-version {
+      display: inline; }
+    .recipe.segment .content .recipe-name {
+      font-size: 1.5em; }
+    .recipe.segment .content .recipe-version {
+      font-weight: bold;
+      color: #9b59b6; }
+    .recipe.segment .content .divider {
+      width: 33%; }
+    .recipe.segment .content .recipe-last-updated {
+      font-style: italic;
+      font-size: .85em; }
+  .recipe.segment:hover {
+    cursor: pointer;
+    border-color: #9b59b6; }
+
 /*# sourceMappingURL=site.css.map */

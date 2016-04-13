@@ -7,6 +7,8 @@ Handlebars.registerPartial('new_ingredient_form', Handlebars.templates['new_ingr
 
 Handlebars.registerPartial('recipe_stats_view', Handlebars.templates['recipe_stats_view']);
 
+Handlebars.registerPartial('browse_recipes_view', Handlebars.templates['browse_recipes_view']);
+
 // Append template to specified selector
 var appendToElement = function(selector, template, data) {
     data = data || {};
