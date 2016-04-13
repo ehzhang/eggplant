@@ -86,6 +86,22 @@ $(document).ready(function() {
       },
     ];
 
+
+    var recipeVersions = [{
+        version: 1,
+        summary: "Reduced amount of mixed greens.",
+    }, {
+        version: 2,
+        summary: "Add mayo to sauce.",
+    }, {
+        version: 3,
+        summary: "Add more eggplant and decrease amount of quinoa.",
+    }, {
+        version: 4,
+        summary: "Add hummus to the recipe.",
+    }];
+
+
     // Layout is the Master Root Scope upon which all of everything yay
     appendToElement("body", "layout");
 
