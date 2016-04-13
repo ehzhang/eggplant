@@ -56,40 +56,47 @@
     <div class="small ui header">
         Add Ingredient to Recipe
     </div>
-    <div class="inline fields ui form" id="add-ingr-form">
-            <div class="three wide field">
-                <input type="text" placeholder="{{amount}}" value="{{amount}}" name="amount">
-            </div>
-            <div class="four wide field" name="units">
-                <select class="ui dropdown">
-                <option value="">tsp</option>
-                <option value="1">tbsp</option>
-                <option value="0">cup</option>
-                </select>
-            </div>
-            <div>
-                <div class="ui fluid search selection dropdown" id="ingr-dropdown">
-                    <input type="hidden" name="name">
-                    <i class="dropdown icon"></i>
-                    <div class="default text">Select Ingredient</div>
-                    <div class="menu">
-                        {{#each ingredients}}
-                          <div class="item" data-value="{{name}}">{{name}}</div>
-                        {{/each}}
-                        <div class="item" id="add-ingr">
-                            <i class="plus icon"></i>
-                            Create New
+    <div class="ui form" id="add-ingr-form">
+        <div class="inline fields">
+                <div class="three wide field">
+                    <input type="text" placeholder="{{amount}}" value="{{amount}}" name="amount">
+                </div>
+                <div class="four wide field" name="units">
+                    <select class="ui dropdown">
+                    <option value="">tsp</option>
+                    <option value="1">tbsp</option>
+                    <option value="0">cup</option>
+                    </select>
+                </div>
+                <div>
+                    <div class="ui fluid search selection dropdown" id="ingr-dropdown">
+                        <input type="hidden" name="name">
+                        <i class="dropdown icon"></i>
+                        <div class="default text">Select Ingredient</div>
+                        <div class="menu">
+                            {{#each ingredients}}
+                              <div class="item" data-value="{{name}}">{{name}}</div>
+                            {{/each}}
+                            <div class="item" id="add-ingr">
+                                <i class="plus icon"></i>
+                                Create New
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            {{!-- TODO: margin on this button idk how to align this lol--}}
-            <div class="ui right floated">
-                <div
-                    id="add-ingr-btn"
-                    class="ui submit positive button">Add
+                {{!-- TODO: margin on this button idk how to align this lol--}}
+                <div class="ui right floated">
+                    <div
+                        id="add-ingr-btn"
+                        class="ui submit positive button">Add
+                    </div>
                 </div>
-            </div>
+        </div>
+        <div class="ui error message"></div>
+{{!--         <div class="ui error message">
+        <div class="header">Missing Fields</div>
+        <p>Make sure you have specified an amount, unit, and an ingredient!</p>
+      </div> --}}
     </div>
 
     <br>
@@ -143,6 +150,6 @@
 
 </div>
 
-<div class="ui modal small">
+<div class="ui modal new-ingredient small">
 {{> new_ingredient_form}}
 </div>

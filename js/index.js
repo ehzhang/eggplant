@@ -242,9 +242,24 @@ $(document).ready(function() {
         // ingredient isn't found
 
         $(".ui.fluid.search.selection.dropdown").dropdown();
+        triggerAddIngredientValidation();
 
         $("#add-ingr").on("click", function(e){
-            $(".ui.modal").modal("show");
+            $(".ui.new-ingredient.modal").modal("show")
+            triggerNewIngredientValidation();
+            $(".ui.new-ingredient.modal").modal({
+              onApprove: function(){
+                if ($('.ui.ingredient.form').form('is valid')) {
+                    var fields = $("#new-ingr-form").form("get values", ["name", "description", "allergens", "photo"]);
+                    ingredients.push(fields);
+                    showUpdateRecipe();
+                    $('#ingr-dropdown').dropdown('set selected', fields["name"]);
+                  return true;
+                } else {
+                  return false;
+                }
+              }
+            });
         });
     }
 
@@ -276,6 +291,65 @@ $(document).ready(function() {
       loadElement("#content", "browse_recipes_view", {
           recipes: recipes
       });
+    }
+
+    function triggerNewIngredientValidation() {
+        $('.ui.ingredient.form')
+            .form({
+            on: "blur",
+            inline: true,
+            fields: {
+              name: {
+                identifier: 'name',
+                rules: [
+                  {
+                    type   : 'empty',
+                    prompt : 'Please enter a name for this ingredient'
+                  }
+                ]
+              },
+              description: {
+                identifier: 'description',
+                rules: [
+                  {
+                    type   : 'empty',
+                    prompt : 'Please enter a description'
+                  }
+                ]
+              }
+            }
+          });
+    }
+
+    function triggerAddIngredientValidation() {
+      $("#add-ingr-form")
+        .form({
+          on: "blur",
+          fields: {
+            name: {
+              identifier: 'name',
+              rules: [
+                {
+                  type   : 'empty',
+                  prompt : 'Please select an ingredient.'
+                }
+              ]
+            },
+            amount: {
+              identifier: 'amount',
+              rules: [
+                {
+                  type   : 'empty',
+                  prompt : 'Please enter an amount.'
+                },
+                {
+                  type   : 'number',
+                  prompt : 'Please enter a number.'
+                }
+              ]
+            }
+          }
+        });
     }
 
     $(document).on("keyup", "#browse-filter", function(e) {
@@ -345,42 +419,11 @@ $(document).ready(function() {
         $(".ui.modal").modal("hide");
     });
 
-    $(document).on("click", "#new-ingr-btn", function(e) {
-        var fields = $("#new-ingr-form").form("get values", ["name", "description", "allergens", "photo"]);
-        ingredients.push(fields);
-        showUpdateRecipe();
-        $('#ingr-dropdown').dropdown('set selected', fields["name"]);
-    });
-
     $(document).on("click", "#add-ingr-btn", function(e) {
         var fields = $("#add-ingr-form").form("get values", ["amount", "units", "name"]);
-        if (fields["name"] && fields["amount"] && fields["amount"] > 0) {
+        if ($("#add-ingr-form").form("is valid")) {
             currentRecipe.ingredients.push(fields);
+            showUpdateRecipe();
         }
-        showUpdateRecipe();
-        // TODO: ELSE: ERROR HANDLING?
     });
-
-    $('.ui.ingredient.form')
-      .form({fields: {
-      name: {
-        identifier: 'name',
-        rules: [
-          {
-            type   : 'empty',
-            prompt : 'Please enter a name for this ingredient'
-          }
-        ]
-      },
-      gender: {
-        identifier: 'description',
-        rules: [
-          {
-            type   : 'empty',
-            prompt : 'Please enter a description'
-          }
-        ]
-      }
-    }
-});
 });
