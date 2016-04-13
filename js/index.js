@@ -231,7 +231,7 @@ $(document).ready(function() {
           .val(currentRecipe.instructions);
 
         $('#instructions-preview')
-          .html(converter.makeHtml(recipe.instructions));
+          .html(converter.makeHtml(currentRecipe.instructions));
 
         $('#instructions-edit').keyup(function(){
           $('#instructions-preview')
