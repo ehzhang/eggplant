@@ -106,3 +106,45 @@ strong.brand {
 #stats-y {
   width: 515px;
 }
+
+.recipe.segment {
+  padding: 0;
+
+  .content {
+    padding-top: 1.5em;
+    padding-bottom: 1.5em;
+    padding-right: 2em;
+
+    .recipe-name,
+    .recipe-version {
+      display: inline;
+    }
+
+    .recipe-name {
+      font-size: 1.5em;
+    }
+
+    .recipe-version {
+      font-weight: bold;
+      color: $brand-color;
+    }
+
+    .divider {
+      width: 33%;
+    }
+
+    .recipe-last-updated {
+      font-style: italic;
+      font-size: .85em;
+    }
+
+  }
+
+  transition-duration: .2s;
+
+  &:hover {
+    cursor: pointer;
+    border-color: $brand-color;
+  }
+
+}

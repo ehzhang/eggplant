@@ -2,8 +2,9 @@ $(document).ready(function() {
     var recipe = {
         name: "Eggplant Quinoa Bowl",
         latestVersion: "2.3",
+        changeSummary: "Doubled the amount of secret sauce.",
         imageUrl: "assets/eggplant_quinoa_bowl.jpg",
-        "description": "Man braid fixie farm-to-table pug wayfarers scenester before they sold out ramps tilde, man bun YOLO slow-carb squid shoreditch put a bird on it. Tote bag venmo lo-fi kombucha synth semiotics. Photo booth thundercats hella squid church-key semiotics. Scenester dreamcatcher cornhole, whatever affogato roof party 3 wolf moon kinfolk shabby chic meh twee photo booth irony keffiyeh. Literally chia jean shorts, viral kinfolk pickled bicycle rights flexitarian twee marfa neutra cray.",
+        description: "Man braid fixie farm-to-table pug wayfarers scenester before they sold out ramps tilde, man bun YOLO slow-carb squid shoreditch put a bird on it. Tote bag venmo lo-fi kombucha synth semiotics. Photo booth thundercats hella squid church-key semiotics. Scenester dreamcatcher cornhole, whatever affogato roof party 3 wolf moon kinfolk shabby chic meh twee photo booth irony keffiyeh. Literally chia jean shorts, viral kinfolk pickled bicycle rights flexitarian twee marfa neutra cray.",
         ingredients: [{
             name: "eggplant",
             amount: 2,
@@ -42,8 +43,57 @@ $(document).ready(function() {
         summary: "Add hummus to the recipe.",
     }];
 
+    var recipes = [
+      {
+        id: "0",
+        name: "Eggplant Po Boy",
+        changeSummary: "Doubled the amount of secret sauce.",
+        latestVersion: "1.2",
+        imageUrl: "assets/eggplant_poboy.jpg",
+        lastUpdated: 'Jan 1st, 1971',
+      },
+      {
+        id: "1",
+        name: "Eggplant Tacos",
+        changeSummary: "Doubled the amount of secret sauce.",
+        latestVersion: "2.5",
+        imageUrl: "assets/eggplant_taco.jpg",
+        lastUpdated: 'Jan 1st, 1971',
+      },
+      {
+        id: "2",
+        name: "Eggplant Quinoa Bowl",
+        changeSummary: "Doubled the amount of secret sauce.",
+        latestVersion: "2.3",
+        imageUrl: "assets/eggplant_quinoa_bowl.jpg",
+        lastUpdated: 'Jan 1st, 1971',
+      },
+      {
+        id: "3",
+        name: "Eggplant Burrito",
+        changeSummary: "Doubled the amount of secret sauce.",
+        latestVersion: "4.5",
+        imageUrl: "assets/eggplant_burrito.jpg",
+        lastUpdated: 'Jan 1st, 1971',
+      },
+      {
+        id: "4",
+        name: "Eggplant Fritters",
+        changeSummary: "Doubled the amount of secret sauce.",
+        latestVersion: "3.2",
+        imageUrl: "assets/eggplant_fritter.jpg",
+        lastUpdated: 'Jan 1st, 1971',
+      },
+    ];
 
+    // Layout is the Master Root Scope upon which all of everything yay
     appendToElement("body", "layout");
+
+    // #content is the next layer down
+    // Use this to change entire pages
+
+    // #recipe-content exists within the recipe content window.
+    // Use this to change within a recipe
 
     // Start off by loading the main content with the recipe page
     appendToElement("#content", "recipe_page", {
@@ -101,6 +151,14 @@ $(document).ready(function() {
         }
     }
 
+    function showBrowse() {
+      loadElement("#content", "browse_recipes_view", {
+          recipes: recipes
+      });
+    }
+
+    showBrowse();
+
     $(document).on("click", "#recipe-header", function(e) {
       showRecipe();
     });
@@ -117,6 +175,9 @@ $(document).ready(function() {
       showRecipeStats();
     });
 
+    $(document).on("click", "#global-nav-browse", function(e) {
+      showBrowse();
+    });
 
     $(document).on("click", "#update-recipe-btn", function(e) {
 
@@ -129,10 +190,26 @@ $(document).ready(function() {
     });
 
     $(document).on("click", "#cancel-recipe-btn", function(e) {
-
       // Return to Recipe View
       loadElement("#content", "recipe_page", {
           recipe: recipe
+      });
+    });
+
+    $(document).on("click", ".recipe.segment", function(e) {
+
+      var recipeId = this.dataset.recipeId;
+
+      var r = recipes[recipeId];
+
+
+      // TODO: Fill out actual data later
+      if (recipeId == 2) {
+          r = recipe;
+      }
+
+      loadElement("#content", "recipe_page", {
+          recipe: r
       });
     });
 
