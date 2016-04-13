@@ -1,33 +1,4 @@
 $(document).ready(function() {
-    var recipe = {
-        name: "Eggplant Quinoa Bowl",
-        latestVersion: "2.3",
-        changeSummary: "Doubled the amount of secret sauce.",
-        imageUrl: "assets/eggplant_quinoa_bowl.jpg",
-        description: "Man braid fixie farm-to-table pug wayfarers scenester before they sold out ramps tilde, man bun YOLO slow-carb squid shoreditch put a bird on it. Tote bag venmo lo-fi kombucha synth semiotics. Photo booth thundercats hella squid church-key semiotics. Scenester dreamcatcher cornhole, whatever affogato roof party 3 wolf moon kinfolk shabby chic meh twee photo booth irony keffiyeh. Literally chia jean shorts, viral kinfolk pickled bicycle rights flexitarian twee marfa neutra cray.",
-        ingredients: [{
-            name: "eggplant",
-            amount: 2,
-            units: "slices",
-        }, {
-            name: "quinoa",
-            amount: 1,
-            units: "cups",
-        }, {
-            name: "mixed greens",
-            amount: 0.5,
-            units: "cup",
-        }, {
-            name: "mayo",
-            amount: 2,
-            units: "tbsp",
-        }, {
-            name: "secret sauce",
-            amount: 0.5,
-            units: "tbsp",
-        }],
-        instructions: "1. Slice the Eggplant \n2. Marinate Eggplant in secret sauce **30 minutes!** \n3. Cook Quinoa \n4. Toss Eggplant, mixed greens, and quinoa",
-    };
 
     var recipeVersions = [{
         version: 1,
@@ -52,6 +23,28 @@ $(document).ready(function() {
         imageUrl: "assets/eggplant_poboy.jpg",
         lastUpdated: 'Jan 1st, 1971',
         description: "Man braid fixie farm-to-table pug wayfarers scenester before they sold out ramps tilde, man bun YOLO slow-carb squid shoreditch put a bird on it. Tote bag venmo lo-fi kombucha synth semiotics. Photo booth thundercats hella squid church-key semiotics. Scenester dreamcatcher cornhole, whatever affogato roof party 3 wolf moon kinfolk shabby chic meh twee photo booth irony keffiyeh. Literally chia jean shorts, viral kinfolk pickled bicycle rights flexitarian twee marfa neutra cray.",
+        ingredients: [{
+            name: "eggplant",
+            amount: 2,
+            units: "slices",
+        }, {
+            name: "quinoa",
+            amount: 1,
+            units: "cups",
+        }, {
+            name: "mixed greens",
+            amount: 0.5,
+            units: "cup",
+        }, {
+            name: "mayo",
+            amount: 2,
+            units: "tbsp",
+        }, {
+            name: "secret sauce",
+            amount: 0.5,
+            units: "tbsp",
+        }],
+        instructions: "1. Slice Eggplant \n2. Dip eggplant in egg and then dip in panko breadcrumbs \n3. Fry in oil about 5 minutes until golden brown \n4. Put in hoagie roll.",
       },
       {
         id: "1",
@@ -61,6 +54,28 @@ $(document).ready(function() {
         imageUrl: "assets/eggplant_taco.jpg",
         lastUpdated: 'Jan 1st, 1971',
         description: "Man braid fixie farm-to-table pug wayfarers scenester before they sold out ramps tilde, man bun YOLO slow-carb squid shoreditch put a bird on it. Tote bag venmo lo-fi kombucha synth semiotics. Photo booth thundercats hella squid church-key semiotics. Scenester dreamcatcher cornhole, whatever affogato roof party 3 wolf moon kinfolk shabby chic meh twee photo booth irony keffiyeh. Literally chia jean shorts, viral kinfolk pickled bicycle rights flexitarian twee marfa neutra cray.",
+        ingredients: [{
+            name: "eggplant",
+            amount: 2,
+            units: "slices",
+        }, {
+            name: "quinoa",
+            amount: 1,
+            units: "cups",
+        }, {
+            name: "mixed greens",
+            amount: 0.5,
+            units: "cup",
+        }, {
+            name: "mayo",
+            amount: 2,
+            units: "tbsp",
+        }, {
+            name: "secret sauce",
+            amount: 0.5,
+            units: "tbsp",
+        }],
+        instructions: "1. Slice the Eggplant \n2. Marinate Eggplant in secret sauce **30 minutes!** \n3. Cook Quinoa \n4. Toss Eggplant, mixed greens, and quinoa",
       },
       {
         id: "2",
@@ -70,6 +85,29 @@ $(document).ready(function() {
         imageUrl: "assets/eggplant_quinoa_bowl.jpg",
         lastUpdated: 'Jan 1st, 1971',
         description: "Man braid fixie farm-to-table pug wayfarers scenester before they sold out ramps tilde, man bun YOLO slow-carb squid shoreditch put a bird on it. Tote bag venmo lo-fi kombucha synth semiotics. Photo booth thundercats hella squid church-key semiotics. Scenester dreamcatcher cornhole, whatever affogato roof party 3 wolf moon kinfolk shabby chic meh twee photo booth irony keffiyeh. Literally chia jean shorts, viral kinfolk pickled bicycle rights flexitarian twee marfa neutra cray.",
+        ingredients: [{
+            name: "eggplant",
+            amount: 2,
+            units: "slices",
+        }, {
+            name: "quinoa",
+            amount: 1,
+            units: "cups",
+        }, {
+            name: "mixed greens",
+            amount: 0.5,
+            units: "cup",
+        }, {
+            name: "mayo",
+            amount: 2,
+            units: "tbsp",
+        }, {
+            name: "secret sauce",
+            amount: 0.5,
+            units: "tbsp",
+        }],
+        instructions: "1. Slice the Eggplant \n2. Marinate Eggplant in secret sauce **30 minutes!** \n3. Cook Quinoa \n4. Toss Eggplant, mixed greens, and quinoa",
+
       },
       {
         id: "3",
@@ -79,6 +117,29 @@ $(document).ready(function() {
         imageUrl: "assets/eggplant_burrito.jpg",
         lastUpdated: 'Jan 1st, 1971',
         description: "Man braid fixie farm-to-table pug wayfarers scenester before they sold out ramps tilde, man bun YOLO slow-carb squid shoreditch put a bird on it. Tote bag venmo lo-fi kombucha synth semiotics. Photo booth thundercats hella squid church-key semiotics. Scenester dreamcatcher cornhole, whatever affogato roof party 3 wolf moon kinfolk shabby chic meh twee photo booth irony keffiyeh. Literally chia jean shorts, viral kinfolk pickled bicycle rights flexitarian twee marfa neutra cray.",
+        ingredients: [{
+            name: "eggplant",
+            amount: 2,
+            units: "slices",
+        }, {
+            name: "quinoa",
+            amount: 1,
+            units: "cups",
+        }, {
+            name: "mixed greens",
+            amount: 0.5,
+            units: "cup",
+        }, {
+            name: "mayo",
+            amount: 2,
+            units: "tbsp",
+        }, {
+            name: "secret sauce",
+            amount: 0.5,
+            units: "tbsp",
+        }],
+        instructions: "1. Slice the Eggplant \n2. Marinate Eggplant in secret sauce **30 minutes!** \n3. Cook Quinoa \n4. Toss Eggplant, mixed greens, and quinoa",
+
       },
       {
         id: "4",
@@ -88,24 +149,33 @@ $(document).ready(function() {
         imageUrl: "assets/eggplant_fritter.jpg",
         lastUpdated: 'Jan 1st, 1971',
         description: "Man braid fixie farm-to-table pug wayfarers scenester before they sold out ramps tilde, man bun YOLO slow-carb squid shoreditch put a bird on it. Tote bag venmo lo-fi kombucha synth semiotics. Photo booth thundercats hella squid church-key semiotics. Scenester dreamcatcher cornhole, whatever affogato roof party 3 wolf moon kinfolk shabby chic meh twee photo booth irony keffiyeh. Literally chia jean shorts, viral kinfolk pickled bicycle rights flexitarian twee marfa neutra cray.",
+        ingredients: [{
+            name: "eggplant",
+            amount: 2,
+            units: "slices",
+        }, {
+            name: "quinoa",
+            amount: 1,
+            units: "cups",
+        }, {
+            name: "mixed greens",
+            amount: 0.5,
+            units: "cup",
+        }, {
+            name: "mayo",
+            amount: 2,
+            units: "tbsp",
+        }, {
+            name: "secret sauce",
+            amount: 0.5,
+            units: "tbsp",
+        }],
+        instructions: "1. Slice the Eggplant \n2. Marinate Eggplant in secret sauce **30 minutes!** \n3. Cook Quinoa \n4. Toss Eggplant, mixed greens, and quinoa",
+
       },
     ];
 
-
-    var recipeVersions = [{
-        version: 1,
-        summary: "Reduced amount of mixed greens.",
-    }, {
-        version: 2,
-        summary: "Add mayo to sauce.",
-    }, {
-        version: 3,
-        summary: "Add more eggplant and decrease amount of quinoa.",
-    }, {
-        version: 4,
-        summary: "Add hummus to the recipe.",
-    }];
-
+    // TODO: Set a unit specific to each ingredient
     var ingredients = [{
         name: "eggplant",
         description: "A purple vegetable."
@@ -126,6 +196,9 @@ $(document).ready(function() {
     }];
 
 
+    // Data Models
+    var currentRecipe = recipes[2]; // Eggplant Quinoa Bowl
+
     // Layout is the Master Root Scope upon which all of everything yay
     appendToElement("body", "layout");
 
@@ -135,20 +208,18 @@ $(document).ready(function() {
     // #recipe-content exists within the recipe content window.
     // Use this to change within a recipe
 
-    // Start off by loading the main content with the recipe page
-    appendToElement("#content", "recipe_page", {
-        recipe: recipe
-    });
+    // Start with the browse screen
+    showBrowse();
 
     function showRecipe() {
         loadElement("#content", "recipe_page", {
-            recipe: recipe
+            recipe: currentRecipe
         });
     }
 
     function showUpdateRecipe() {
         loadElement("#recipe-content", "edit_recipe_view", {
-            recipe: recipe,
+            recipe: currentRecipe,
             ingredients: ingredients
         });
 
@@ -157,7 +228,7 @@ $(document).ready(function() {
 
         // Set preview to text
         $('#instructions-edit')
-          .val(recipe.instructions);
+          .val(currentRecipe.instructions);
 
         $('#instructions-preview')
           .html(converter.makeHtml(recipe.instructions));
@@ -166,6 +237,9 @@ $(document).ready(function() {
           $('#instructions-preview')
             .html(converter.makeHtml($('#instructions-edit').val()));
         });
+
+        // TODO: Make sure to show the add new ingredient dropdown even if the
+        // ingredient isn't found
 
         $(".ui.fluid.search.selection.dropdown").dropdown();
 
@@ -178,7 +252,7 @@ $(document).ready(function() {
 
     function showRecipeStats() {
         loadElement("#recipe-content", "recipe_stats_view", {
-            recipe: recipe,
+            recipe: currentRecipe,
             versions: recipeVersions,
         });
         for (var i = 0; i < recipeVersions.length; i++) {
@@ -204,8 +278,6 @@ $(document).ready(function() {
       });
     }
 
-    showBrowse();
-
     $(document).on("keyup", "#browse-filter", function(e) {
         console.log($(this).val());
         var regex = new RegExp($(this).val(), 'i');
@@ -213,7 +285,7 @@ $(document).ready(function() {
         $(".ui.recipe.segment").filter(function() {
             return regex.test($(this).text());
         }).show();
-    })
+    });
 
     $(document).on("click", "#recipe-header", function(e) {
       showRecipe();
@@ -246,14 +318,14 @@ $(document).ready(function() {
 
       // Return to Recipe View
       loadElement("#content", "recipe_page", {
-          recipe: recipe
+          recipe: currentRecipe
       });
     });
 
     $(document).on("click", "#cancel-recipe-btn", function(e) {
       // Return to Recipe View
       loadElement("#content", "recipe_page", {
-          recipe: recipe
+          recipe: currentRecipe
       });
     });
 
@@ -261,16 +333,11 @@ $(document).ready(function() {
 
       var recipeId = this.dataset.recipeId;
 
-      var r = recipes[recipeId];
-
-
-      // TODO: Fill out actual data later
-      if (recipeId == 2) {
-          r = recipe;
-      }
+      // Select the current recipe
+      currentRecipe = recipes[recipeId];
 
       loadElement("#content", "recipe_page", {
-          recipe: r
+          recipe: currentRecipe
       });
     });
 
