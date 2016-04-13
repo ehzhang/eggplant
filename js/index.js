@@ -348,7 +348,18 @@ $(document).ready(function() {
     $(document).on("click", "#new-ingr-btn", function(e) {
         var fields = $("#new-ingr-form").form("get values", ["name", "description", "allergens", "photo"]);
         ingredients.push(fields);
-        // TODO: reinitialize selection dropdown thing
+        showUpdateRecipe();
+        $('#ingr-dropdown').dropdown('set selected', fields["name"]);
+    });
+
+    $(document).on("click", "#add-ingr-btn", function(e) {
+        var fields = $("#add-ingr-form").form("get values", ["amount", "unit", "ingredient"]);
+        if (fields["ingredient"] && fields["amount"] && fields["amount"] > 0) {
+          fields["name"] = fields["ingredient"]; // hacky
+          currentRecipe.ingredients.push(fields);
+        }
+        showUpdateRecipe();
+        // TODO: ELSE: ERROR HANDLING?
     });
 
     $('.ui.ingredient.form')
