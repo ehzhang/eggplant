@@ -47,18 +47,20 @@ $(document).ready(function() {
       {
         id: "0",
         name: "Eggplant Po Boy",
-        changeSummary: "Doubled the amount of secret sauce.",
+        changeSummary: "Changed breading to panko.",
         latestVersion: "1.2",
         imageUrl: "assets/eggplant_poboy.jpg",
         lastUpdated: 'Jan 1st, 1971',
+        description: "Man braid fixie farm-to-table pug wayfarers scenester before they sold out ramps tilde, man bun YOLO slow-carb squid shoreditch put a bird on it. Tote bag venmo lo-fi kombucha synth semiotics. Photo booth thundercats hella squid church-key semiotics. Scenester dreamcatcher cornhole, whatever affogato roof party 3 wolf moon kinfolk shabby chic meh twee photo booth irony keffiyeh. Literally chia jean shorts, viral kinfolk pickled bicycle rights flexitarian twee marfa neutra cray.",
       },
       {
         id: "1",
         name: "Eggplant Tacos",
-        changeSummary: "Doubled the amount of secret sauce.",
+        changeSummary: "Used fresher tortillas.",
         latestVersion: "2.5",
         imageUrl: "assets/eggplant_taco.jpg",
         lastUpdated: 'Jan 1st, 1971',
+        description: "Man braid fixie farm-to-table pug wayfarers scenester before they sold out ramps tilde, man bun YOLO slow-carb squid shoreditch put a bird on it. Tote bag venmo lo-fi kombucha synth semiotics. Photo booth thundercats hella squid church-key semiotics. Scenester dreamcatcher cornhole, whatever affogato roof party 3 wolf moon kinfolk shabby chic meh twee photo booth irony keffiyeh. Literally chia jean shorts, viral kinfolk pickled bicycle rights flexitarian twee marfa neutra cray.",
       },
       {
         id: "2",
@@ -67,22 +69,25 @@ $(document).ready(function() {
         latestVersion: "2.3",
         imageUrl: "assets/eggplant_quinoa_bowl.jpg",
         lastUpdated: 'Jan 1st, 1971',
+        description: "Man braid fixie farm-to-table pug wayfarers scenester before they sold out ramps tilde, man bun YOLO slow-carb squid shoreditch put a bird on it. Tote bag venmo lo-fi kombucha synth semiotics. Photo booth thundercats hella squid church-key semiotics. Scenester dreamcatcher cornhole, whatever affogato roof party 3 wolf moon kinfolk shabby chic meh twee photo booth irony keffiyeh. Literally chia jean shorts, viral kinfolk pickled bicycle rights flexitarian twee marfa neutra cray.",
       },
       {
         id: "3",
         name: "Eggplant Burrito",
-        changeSummary: "Doubled the amount of secret sauce.",
+        changeSummary: "Whole wheat tortillas, locally made.",
         latestVersion: "4.5",
         imageUrl: "assets/eggplant_burrito.jpg",
         lastUpdated: 'Jan 1st, 1971',
+        description: "Man braid fixie farm-to-table pug wayfarers scenester before they sold out ramps tilde, man bun YOLO slow-carb squid shoreditch put a bird on it. Tote bag venmo lo-fi kombucha synth semiotics. Photo booth thundercats hella squid church-key semiotics. Scenester dreamcatcher cornhole, whatever affogato roof party 3 wolf moon kinfolk shabby chic meh twee photo booth irony keffiyeh. Literally chia jean shorts, viral kinfolk pickled bicycle rights flexitarian twee marfa neutra cray.",
       },
       {
         id: "4",
         name: "Eggplant Fritters",
-        changeSummary: "Doubled the amount of secret sauce.",
+        changeSummary: "Now using a beer batter.",
         latestVersion: "3.2",
         imageUrl: "assets/eggplant_fritter.jpg",
         lastUpdated: 'Jan 1st, 1971',
+        description: "Man braid fixie farm-to-table pug wayfarers scenester before they sold out ramps tilde, man bun YOLO slow-carb squid shoreditch put a bird on it. Tote bag venmo lo-fi kombucha synth semiotics. Photo booth thundercats hella squid church-key semiotics. Scenester dreamcatcher cornhole, whatever affogato roof party 3 wolf moon kinfolk shabby chic meh twee photo booth irony keffiyeh. Literally chia jean shorts, viral kinfolk pickled bicycle rights flexitarian twee marfa neutra cray.",
       },
     ];
 
@@ -194,6 +199,11 @@ $(document).ready(function() {
     $(document).on("click", "#global-nav-browse", function(e) {
       showBrowse();
     });
+
+    $(document).on("click", "#global-nav-home", function(e) {
+      showBrowse();
+    });
+
 
     $(document).on("click", "#update-recipe-btn", function(e) {
 

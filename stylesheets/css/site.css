@@ -46,28 +46,6 @@ strong.brand {
 .ui.form .right.aligned.field {
   text-align: right; }
 
-.stats-img {
-  height: 150px;
-  margin: -2px;
-  padding: 0;
-  border: 1px black;
-  border-top-style: none;
-  border-right-style: dashed;
-  border-bottom-style: none;
-  border-left-style: none; }
-
-.stats-img:hover {
-  cursor: pointer; }
-
-.stats-axis {
-  margin: -2px; }
-
-#stats-x {
-  height: 150px; }
-
-#stats-y {
-  width: 515px; }
-
 .recipe.segment {
   padding: 0;
   transition-duration: .2s; }
