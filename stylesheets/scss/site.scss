@@ -31,6 +31,9 @@ strong.brand {
 
 #global-nav {
   background: $brand-color;
+
+  border-bottom: 4px solid lighten($brand-color, 15%);
+
   color: white;
 
   .column {
