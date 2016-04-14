@@ -245,7 +245,7 @@ $(document).ready(function() {
         triggerAddIngredientValidation();
 
         $("#add-ingr").on("click", function(e){
-            $(".ui.new-ingredient.modal").modal("show")
+            $(".ui.new-ingredient.modal").modal("show");
             triggerNewIngredientValidation();
             $(".ui.new-ingredient.modal").modal({
               onApprove: function(){
