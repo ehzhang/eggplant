@@ -444,7 +444,8 @@ $(document).ready(function() {
 
         currentRecipe.description = fields.description;
         currentRecipe.instructions = fields.instructions;
-        currentRecipe.summary = fields.summary;
+        currentRecipe.changeSummary = fields.summary;
+        currentRecipe.latestVersion = parseFloat(currentRecipe.latestVersion) + 0.1;
 
         loadElement("#content", "recipe_page", {
             recipe: currentRecipe

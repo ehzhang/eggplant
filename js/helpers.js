@@ -25,3 +25,7 @@ Handlebars.registerHelper('markdown', function(options) {
     var html = converter.makeHtml(options.fn(this));
     return new Handlebars.SafeString(html);
 });
+
+Handlebars.registerHelper('increaseVersion', function(recipe) {
+    return parseFloat(recipe.latestVersion) + 0.1;
+});
