@@ -1,4 +1,4 @@
-<div class="ui form">
+<div id="edit-recipe-form" class="ui form">
     <div style="text-align: right" class="ui header">
         Updating to Version <strong class="brand">2.4</strong>
     </div>
@@ -11,6 +11,7 @@
     <div class="fields">
         <div class="twelve wide field">
             <textarea
+                name="description"
                 placeholder="This is a recipe for a delicious..."
                 >{{recipe.description}}</textarea>
         </div>
@@ -36,13 +37,13 @@
     {{#each recipe.ingredients}}
         <div class="inline fields">
             <div class="three wide field">
-                <input type="text" placeholder="{{amount}}" value="{{amount}}">
+                <input type="number" name="amount" placeholder="{{amount}}" value="{{amount}}">
             </div>
             <div class="four wide field">
-                <select class="ui dropdown">
-                <option value="">tsp</option>
-                <option value="1">tbsp</option>
-                <option value="0">cup</option>
+                <select class="ui dropdown" name="units" value="{{units}}">
+                    <option value="tsp">tsp</option>
+                    <option value="tbsp">tbsp</option>
+                    <option value="cup">cup</option>
                 </select>
             </div>
             <div class="eight wide field">
@@ -111,6 +112,7 @@
                 <div class="small ui header"> Edit Instructions </div>
                 <textarea
                     id="instructions-edit"
+                    name="instructions"
                     placeholder="1. Prepare the..."
                     ></textarea>
             </div>
@@ -129,7 +131,7 @@
 
     <div class="field">
         <div class="small ui header">Change Summary</div>
-        <textarea rows="2" placeholder="I removed/added some..."></textarea>
+        <textarea name="summary" rows="2" placeholder="I removed/added some..."></textarea>
     </div>
 
 
@@ -141,8 +143,9 @@
             class="ui basic large button">Cancel</div>
         <div
             id="update-recipe-btn"
-            class="ui submit purple large button">Update Recipe</div>
+            class="ui purple large submit button">Update Recipe</div>
     </div>
+    <div class="ui error message"></div>
 
     <br>
     <br>

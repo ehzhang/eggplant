@@ -261,9 +261,56 @@ $(document).ready(function() {
               }
             });
         });
-    }
 
-    // showUpdateRecipe();
+        $('#edit-recipe-form').form({
+            on: "submit",
+            inline: true,
+            fields: {
+                description: {
+                    identifier: 'description',
+                    rules: [{
+                        type: 'empty',
+                        prompt : 'Please enter a description'
+                    }]
+                },
+                amount: {
+                    identifier: 'amount',
+                    rules: [{
+                        type   : 'number',
+                        prompt : 'Please enter the amount'
+                    }]
+                },
+                units: {
+                    identifier: 'units',
+                    rules: [{
+                        type   : 'empty',
+                        prompt : 'Please select the unit type'
+                    }]
+                },
+                ingredient: {
+                    identifier: 'ingredient',
+                    rules: [{
+                        type   : 'empty',
+                        prompt : 'Please select an ingredient'
+                    }]
+                },
+                instructions: {
+                    identifier: 'instructions',
+                    rules: [{
+                        type   : 'empty',
+                        prompt : 'Please add instructions'
+                    }]
+                },
+                summary: {
+                    identifier: 'summary',
+                    rules: [{
+                        type   : 'empty',
+                        prompt : 'Please add a summary'
+                    }]
+                },
+            }
+        });
+    }
 
     function showRecipeStats() {
         loadElement("#recipe-content", "recipe_stats_view", {
