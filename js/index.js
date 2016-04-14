@@ -312,6 +312,9 @@ $(document).ready(function() {
         });
     }
 
+
+
+
     function showRecipeStats() {
         loadElement("#recipe-content", "recipe_stats_view", {
             recipe: currentRecipe,
@@ -433,14 +436,19 @@ $(document).ready(function() {
     });
 
 
-    $(document).on("click", "#update-recipe-btn", function(e) {
+    $(document).on("submit", "#edit-recipe-form", function(e) {
+        e.preventDefault();
 
-      // TODO: Update the in memory recipe
+        var fields = $(this).form("get values",
+            ["description", "instructions", "summary"]);
 
-      // Return to Recipe View
-      loadElement("#content", "recipe_page", {
-          recipe: currentRecipe
-      });
+        currentRecipe.description = fields.description;
+        currentRecipe.instructions = fields.instructions;
+        currentRecipe.summary = fields.summary;
+
+        loadElement("#content", "recipe_page", {
+            recipe: currentRecipe
+        });
     });
 
     $(document).on("click", "#cancel-recipe-btn", function(e) {
