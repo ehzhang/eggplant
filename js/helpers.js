@@ -27,5 +27,5 @@ Handlebars.registerHelper('markdown', function(options) {
 });
 
 Handlebars.registerHelper('increaseVersion', function(recipe) {
-    return parseFloat(recipe.latestVersion) + 0.1;
+    return (parseFloat(recipe.latestVersion) + 0.1).toFixed(1);
 });
