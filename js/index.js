@@ -372,18 +372,24 @@ $(document).ready(function() {
     }
 
     function triggerAddIngredientValidation() {
+      var ingredientList = ingredients.map(function(ingredient){
+        return ingredient["name"];
+      });
+      var nameRules = [{ type   : 'empty',
+                         prompt : 'Please select an ingredient.'}];
+      ingredientList.forEach(function(ingredientName){
+          nameRules.push({
+            type: 'doesntContain[' + ingredientName + ']',
+            prompt: 'Recipe already contains this ingredient!'
+          });
+      });
       $("#add-ingr-form")
         .form({
           on: "blur",
           fields: {
             name: {
               identifier: 'name',
-              rules: [
-                {
-                  type   : 'empty',
-                  prompt : 'Please select an ingredient.'
-                }
-              ]
+              rules: nameRules
             },
             amount: {
               identifier: 'amount',
