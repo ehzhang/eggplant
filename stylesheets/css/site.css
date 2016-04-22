@@ -2,11 +2,13 @@ body,
 html {
   margin: 0;
   padding: 0;
-  font-family: "Futura", "Helvetica Neue", sans-serif;
+  font-family: "Avenir Next", "Avenir", "Helvetica Neue", sans-serif;
   font-size: .95em; }
 
 h1, h2, h3, h4, h5,
-ol, .ui {
+.ui.menu .item,
+.ui.header,
+.ui.button {
   font-family: "Futura", "Helvetica Neue", sans-serif !important; }
 
 .ui.divider {
@@ -46,6 +48,9 @@ strong.brand {
 
 .ui.form .right.aligned.field {
   text-align: right; }
+
+#recipe-content .description {
+  font-size: 1.2em; }
 
 .recipe.segment {
   padding: 0;

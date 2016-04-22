@@ -3,21 +3,24 @@ $brand-color: #9b59b6;
 // $brand-color: #2ecc71;
 
 // Change fonts here
-$font-stack: 'Futura', 'Helvetica Neue', sans-serif;
+$header-font-stack: 'Futura', 'Helvetica Neue', sans-serif;
+$body-font-stack: 'Avenir Next', 'Avenir', 'Helvetica Neue', sans-serif;
 
 body,
 html {
   margin: 0;
   padding: 0;
 
-  font-family: $font-stack;
+  font-family: $body-font-stack;
 
   font-size: .95em;
 }
 
 h1, h2, h3, h4, h5,
-ol, .ui {
-  font-family: $font-stack !important;
+.ui.menu .item,
+.ui.header,
+.ui.button {
+  font-family: $header-font-stack !important;
 }
 
 .ui.divider {
@@ -81,6 +84,12 @@ strong.brand {
 
 .ui.form .right.aligned.field {
   text-align: right;
+}
+
+#recipe-content {
+  .description {
+    font-size: 1.2em;
+  }
 }
 
 .recipe.segment {
