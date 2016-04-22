@@ -37,7 +37,7 @@
     {{#each recipe.ingredients}}
         <div class="inline fields">
             <div class="three wide field">
-                <input type="number" name="amount" placeholder="{{amount}}" value="{{amount}}">
+                <input type="number" name="amount" placeholder="{{amount}}" value="{{amount}}" min=0>
             </div>
             <div class="four wide field">
                 <select class="ui dropdown" name="units" value="{{units}}">
@@ -60,7 +60,7 @@
     <div class="ui form" id="add-ingr-form">
         <div class="inline fields">
             <div class="three wide field">
-                <input type="text" placeholder="{{amount}}" value="{{amount}}" name="amount">
+                <input type="number" placeholder="{{amount}}" value="{{amount}}" name="amount" min=0>
             </div>
             <div class="four wide field" name="units">
                 <select name="units" class="ui dropdown">
