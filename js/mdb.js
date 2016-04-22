@@ -18,7 +18,7 @@
  */
 
 function mDB(name) {
-  this.name = '__' + name;
+  this.name = '__db_' + name;
 }
 
 // Generate some kind of unique ID.
