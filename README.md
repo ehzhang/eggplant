@@ -1,10 +1,8 @@
 🍆
 
-build semantic with:
-
+Install Dependencies
 ```
-  cd semantic
-  gulp build
+  bower install
 ```
 
 compile handlebars:
