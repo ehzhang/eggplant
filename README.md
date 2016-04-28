@@ -3,15 +3,15 @@
 Install Dependencies
 ```
   bower install
+  npm install
 ```
 
-compile handlebars:
+Build
 ```
-  handlebars handlebars/ -f js/handlebars.js
+gulp build
 ```
 
-Or: Watch builds of SCSS and Handlebars
+Build with watch (dev)
 ```
-  ./build-hbs-watch
-  ./build-css
+gulp watch
 ```

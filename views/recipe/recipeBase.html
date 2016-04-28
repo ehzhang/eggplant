@@ -1,0 +1,42 @@
+<div>
+    <h1 ui-sref="app.recipe" id="recipe-header" class="ui header">
+      {{recipe.name}}
+    </h1>
+
+    <div class="version-header">
+        <h3 style="display: inline">Latest Version: <strong class="brand">{{recipe.latestVersion}}</strong></h3>
+        <br>
+        <span class="version-message">
+            {{recipe.changeSummary}}
+        </span>
+    </div>
+
+    <br>
+
+    <div id="recipe-content">
+        <div id="recipe-nav" class="ui three item menu">
+            <a
+                ui-sref="app.recipe.history"
+                id="nav-history-btn"
+                class="item">
+                <i class="history icon"></i>
+                View History
+              </a>
+            <a
+                ui-sref="app.recipe.stats"
+                id="nav-stats-btn"
+                class="item">
+                <i class="line chart icon"></i>
+                View Sales
+            </a>
+            <a
+                ui-sref="app.recipe.edit"
+                id="nav-update-btn"
+                class="item">
+                <i class="edit icon"></i>
+                Edit
+            </a>
+        </div>
+        <div ui-view="content"></div>
+    <div>
+</div>

@@ -1,0 +1,25 @@
+{
+  "name": "eggplant",
+  "version": "1.0.0",
+  "description": "🍆",
+  "main": "build/app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ehzhang/eggplant.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ehzhang/eggplant/issues"
+  },
+  "homepage": "https://github.com/ehzhang/eggplant#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.0",
+    "gulp-sass": "^2.3.1"
+  }
+}

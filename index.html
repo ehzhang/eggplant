@@ -2,21 +2,27 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
+        <!-- Plugins -->
         <script src="third_party/jquery-2.2.3.min.js"></script>
         <script src="third_party/showdown.min.js"></script>
-        <script src="third_party/handlebars.runtime-latest.js"></script>
+
+        <!-- Semantic-UI -->
         <link rel="stylesheet" type="text/css" href="bower_components/semantic/dist/semantic.min.css">
-        <link rel="stylesheet" type="text/css" href="stylesheets/css/site.css">
         <script src="bower_components/semantic/dist/semantic.min.js"></script>
 
+        <script src="bower_components/angular/angular.min.js"></script>
+        <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+
+        <!-- Utils -->
         <script src="js/mdb.js"></script>
 
-        <script src="js/handlebars.js"></script>
-        <script src="js/helpers.js"></script>
-        <script src="js/index.js"></script>
+        <!-- Build -->
+        <script src="build/app.js"></script>
+        <link rel="stylesheet" type="text/css" href="build/site.css">
 
         <title>Eggplant</title>
     </head>
-    <body>
+    <body ng-app="app">
+        <div id="root" ui-view></div>
     </body>
 </html>

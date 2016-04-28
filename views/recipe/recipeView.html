@@ -1,0 +1,40 @@
+<div class="ui divider"></div>
+
+<div class="ui grid">
+
+    <div class="row">
+        <div class="twelve wide column">
+            <p class="description">
+                {{recipe.description}}
+            </p>
+        </div>
+        <div class="four wide column">
+            <img class="ui fluid image" src="{{recipe.imageUrl}}">
+        </div>
+    </div>
+</div>
+
+<div class="ui divider"></div>
+
+<div class="ui grid">
+
+    <div class="row">
+        <div class="four wide column">
+            <h3>Ingredients</h3>
+            <div class="ingredients">
+                <!-- {{#each recipe.ingredients}} -->
+                    <div>
+                        <!-- {{amount}} {{units}} {{name}} -->
+                    </div>
+                <!-- {{/each}} -->
+            </div>
+        </div>
+        <div class="twelve wide column">
+            <!-- {{!-- Instructions --}} -->
+            <h3>Instructions</h3>
+            <div class="instructions">
+                <!-- {{#markdown}}{{recipe.instructions}}{{/markdown}} -->
+            </div>
+        </div>
+    </div>
+</div>

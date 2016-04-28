@@ -1,0 +1,47 @@
+<h1 class="ui header">
+    Browse Recipes
+</h1>
+
+<div class="ui divider"></div>
+
+<div class="ui icon fluid input">
+    <input id="browse-filter"
+        placeholder="Search for Recipes..."
+        type="text">
+    <i class="search icon"></i>
+</div>
+
+<div
+    ng-repeat="recipe in recipes"
+    class="ui recipe segment"
+    data-recipe-id="{{recipe._id}}"
+    ng-click="selectRecipe(recipe._id)">
+    <div class="ui grid">
+        <div class="three wide column">
+            <img
+                src="{{recipe.imageUrl}}"
+                class="ui large image">
+        </div>
+
+        <div class="nine wide column">
+            <div class="content">
+                <h3 class="recipe-name">{{recipe.name}}</h3>
+                v<div class="recipe-version">{{recipe.latestVersion}}</div>
+
+                <div class="ui divider"></div>
+
+                <p>
+                {{recipe.changeSummary}}
+                </p>
+            </div>
+        </div>
+
+        <div class="right aligned four wide column">
+            <div class="content">
+                <div class="recipe-last-updated">
+                    Last Updated {{recipe.lastUpdated}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
