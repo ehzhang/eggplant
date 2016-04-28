@@ -133,10 +133,11 @@
             </div>
             <div class="eight wide column">
                 <div class="small ui header"> Preview </div>
-                <div id="instructions-preview" class="instructions">
+                <div
+                    ng-bind-html=UTIL.markdownToHTML(recipe.instructions)
+                    id="instructions-preview"
+                    class="instructions">
                 </div>
-                <!-- {{!-- <div id="instructions-preview" class="ui segment"> --}} -->
-                <!-- {{!-- </div> --}} -->
             </div>
         </div>
     </div>
