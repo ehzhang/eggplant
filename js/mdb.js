@@ -24,7 +24,7 @@ function mDB(name) {
 // Generate some kind of unique ID.
 mDB.prototype.generateId = function() {
   // TODO: Maybe something more unique?
-  return new Date().getTime();
+  return new Date().getTime() + "" + Math.random() * 1000;
 };
 
 
@@ -50,13 +50,23 @@ mDB.prototype.find = function(filter) {
   return [];
 };
 
-
 /**
  * Alternative for easier find all
  * @return {[type]} [description]
  */
 mDB.prototype.findAll = function() {
   return this.find();
+};
+
+/**
+ * Convenience Method for find by id
+ * @param  {Number} id [description]
+ * @return {[type]}    [description]
+ */
+mDB.prototype.findById = function(id) {
+  return this.find(function(r) {
+    return r._id == id;
+  })[0];
 };
 
 /**
