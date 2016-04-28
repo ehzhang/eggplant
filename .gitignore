@@ -2,3 +2,5 @@
 js/handlebars.js
 *.map
 .sass-cache/
+node_modules
+bower_components
