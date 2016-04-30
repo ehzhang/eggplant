@@ -43,26 +43,25 @@
         Ingredients
     </div>
 
-    <!-- {{#each recipe.ingredients}} -->
-        <div class="inline fields">
-            <div class="three wide field">
-                <input type="number" name="amount" placeholder="{{amount}}" value="{{amount}}" min=0>
-            </div>
-            <div class="four wide field">
-                <select class="ui dropdown" name="units" value="{{units}}">
-                    <option value="tsp">tsp</option>
-                    <option value="tbsp">tbsp</option>
-                    <option value="cup">cup</option>
-                </select>
-            </div>
-            <div class="eight wide field">
-                <label>{{name}}</label>
-            </div>
-            <div class="one wide field">
-                <i class="red remove circle icon"></i>
-            </div>
+    <div class="inline fields" ng-repeat="ingredient in recipe.ingredients">
+        <div class="three wide field">
+            <input type="number" name="amount" placeholder=0 value="{{ingredient.amount}}" min=0>
         </div>
-    <!-- {{/each}} -->
+        <div class="four wide field">
+            <select class="ui dropdown" name="units" value="{{ingredient.units}}">
+                <option value="tsp">tsp</option>
+                <option value="tbsp">tbsp</option>
+                <option value="cup">cup</option>
+            </select>
+        </div>
+        <div class="eight wide field">
+            <label>{{ingredient.name}}</label>
+        </div>
+        <div class="one wide field">
+            <i class="red remove circle icon"></i>
+        </div>
+    </div>
+
 
     <div class="small ui header">
         Add Ingredient to Recipe
@@ -85,9 +84,7 @@
                     <i class="dropdown icon"></i>
                     <div class="default text">Select Ingredient</div>
                     <div class="menu">
-                        <!-- {{#each ingredients}} -->
-                          <div class="item" data-value="{{name}}">{{name}}</div>
-                        <!-- {{/each}} -->
+                        <div class="item" ng-repeat="ingr in ingredients" data-value="{{ingr.name}}">{{ingr.name}}</div>
                    </div>
                 </div>
             </div>

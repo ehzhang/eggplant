@@ -1,5 +1,5 @@
 angular.module('app')
-  .run(function(RecipeService) {
+  .run(function(RecipeService, IngredientService) {
     var recipes = [
       {
         id: "0",
@@ -167,4 +167,33 @@ angular.module('app')
       });
     }
 
+    var ingredients = [{
+        id: "0",
+        name: "eggplant",
+        description: "A purple vegetable."
+    }, {
+        id: "1",
+        name: "secret sauce",
+        description: "The recipe is a secret"
+    }, {
+        id: "2",
+        name: "mayo",
+        description: "A condiment",
+        allergens: "eggs"
+    }, {
+        id: "3",
+        name: "quinoa",
+        description: "A grain",
+    }, {
+        id: "4",
+        name: "mixed greens",
+        description: "A vegetable",
+        allergens: "vegetables"
+    }];
+
+    if (IngredientService.getAll().length === 0) {
+        ingredients.forEach(function(i){
+            IngredientService.add(i);
+        });
+    }
   });
