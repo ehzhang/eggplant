@@ -6,13 +6,14 @@
 
 <div class="ui icon fluid input">
     <input id="browse-filter"
+        ng-model="browseSearchText"
         placeholder="Search for Recipes..."
         type="text">
     <i class="search icon"></i>
 </div>
 
 <div
-    ng-repeat="recipe in recipes"
+    ng-repeat="recipe in recipes | filter:browseSearchText"
     class="ui recipe segment"
     data-recipe-id="{{recipe._id}}"
     ng-click="selectRecipe(recipe._id)">
