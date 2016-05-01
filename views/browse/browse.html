@@ -24,10 +24,14 @@
                 class="ui large image">
         </div>
 
-        <div class="nine wide column">
+        <div class="thirteen wide column">
             <div class="content">
                 <h3 class="recipe-name">{{recipe.name}}</h3>
                 v<div class="recipe-version">{{recipe.latestVersion}}</div>
+
+                <div class="recipe-last-updated">
+                    Last updated {{ UTIL.fromNow(recipe.lastUpdated) }}
+                </div>
 
                 <div class="ui divider"></div>
 
@@ -37,12 +41,5 @@
             </div>
         </div>
 
-        <div class="right aligned four wide column">
-            <div class="content">
-                <div class="recipe-last-updated">
-                    Last Updated {{recipe.lastUpdated}}
-                </div>
-            </div>
-        </div>
     </div>
 </div>
