@@ -8,8 +8,17 @@ angular.module('app')
 
       $scope.ingredients = IngredientService.getAll();
 
+      $scope.newIngredient = {};
+
+      $scope.addNewIngredient = function() {
+        // TODO: Validation
+        $scope.recipe.ingredients.push($.extend(true, {}, $scope.newIngredient));
+        $scope.newIngredient = {};
+      };
+
       $scope.save = function() {
         // TODO: Still need to update version
+        // TODO: Validation
         RecipeService.update($scope.recipe._id, $scope.recipe);
         $state.go('app.recipe', {}, {
           reload: true
@@ -19,4 +28,5 @@ angular.module('app')
       $scope.cancel = function() {
         $state.go('app.recipe');
       };
+
     });

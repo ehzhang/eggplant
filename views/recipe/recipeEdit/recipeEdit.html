@@ -45,13 +45,22 @@
 
     <div class="inline fields" ng-repeat="ingredient in recipe.ingredients">
         <div class="three wide field">
-            <input type="number" name="amount" placeholder=0 value="{{ingredient.amount}}" min=0>
+            <input
+                type="number"
+                name="amount"
+                placeholder=0
+                ng-model="ingredient.amount" min=0>
         </div>
         <div class="four wide field">
-            <select class="ui dropdown" name="units" value="{{ingredient.units}}">
+            <select
+                class="ui dropdown"
+                name="units"
+                ng-model="ingredient.units">
                 <option value="tsp">tsp</option>
                 <option value="tbsp">tbsp</option>
                 <option value="cup">cup</option>
+                <option value="cups">cups</option>
+                <option value="slices">slices</option>
             </select>
         </div>
         <div class="eight wide field">
@@ -69,10 +78,16 @@
     <div class="ui form" id="add-ingr-form">
         <div class="inline fields">
             <div class="three wide field">
-                <input type="number" placeholder="{{amount}}" value="{{amount}}" name="amount" min=0>
+                <input
+                    ng-model="newIngredient.amount"
+                    type="number"
+                    name="amount" min=0>
             </div>
             <div class="four wide field" name="units">
-                <select name="units" class="ui dropdown">
+                <select
+                    ng-model="newIngredient.units"
+                    name="units"
+                    class="ui dropdown">
                     <option value="tsp">tsp</option>
                     <option value="tbsp">tbsp</option>
                     <option value="cup">cup</option>
@@ -80,18 +95,26 @@
             </div>
             <div class="field">
                 <div class="ui fluid search selection dropdown" id="ingr-dropdown">
-                    <input type="hidden" name="name">
+                    <input
+                        ng-model=newIngredient.name
+                        type="hidden"
+                        name="name">
                     <i class="dropdown icon"></i>
                     <div class="default text">Select Ingredient</div>
                     <div class="menu">
                         <div class="item" ng-repeat="ingr in ingredients" data-value="{{ingr.name}}">{{ingr.name}}</div>
                    </div>
                 </div>
+                <script>
+                    // hack it
+                    $('.ui.fluid.search.dropdown').dropdown();
+                </script>
             </div>
             <div class="field">
                 <!-- {{!-- TODO: margin on this button idk how to align this lol--}} -->
                 <div
                     id="add-ingr-btn"
+                    ng-click="addNewIngredient()"
                     class="ui submit positive button">
                     Add
                 </div>
