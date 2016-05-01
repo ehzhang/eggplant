@@ -17,6 +17,10 @@ angular.module('app')
       return Recipes.findById(id);
     };
 
+    service.update = function(id, obj) {
+      return Recipes.update(id, obj);
+    }
+
     return service;
 
   });

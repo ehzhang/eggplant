@@ -27,7 +27,7 @@
         <div class="four wide field">
             <div class="ui fluid card">
                 <div class="ui medium fluid image">
-                    <img src="{{recipe.imageUrl}}">
+                    <img ng-src="{{recipe.imageUrl}}">
                 </div>
                 <div class="ui bottom attached button">
                     Upload New Image
@@ -144,7 +144,7 @@
 
     <div class="field">
         <div class="small ui header">Change Summary</div>
-        <textarea name="summary" rows="2" placeholder="I removed/added some..."></textarea>
+        <textarea name="summary" rows="2" placeholder="I removed/added some..." ng-model="recipe.changeSummary"></textarea>
     </div>
 
 
@@ -156,7 +156,8 @@
             class="ui basic large button">Cancel</div>
         <div
             id="update-recipe-btn"
-            class="ui purple large submit button">Update Recipe</div>
+            class="ui purple large submit button"
+            ng-click="save()">Update Recipe</div>
     </div>
     <div class="ui error message"></div>
 

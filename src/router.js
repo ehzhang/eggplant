@@ -69,6 +69,16 @@ angular.module('app')
             templateUrl: 'views/recipe/recipeStats/recipeStats.html'
           }
         }
+      })
+
+      .state('app.recipe.create', {
+        url: '/create',
+        views: {
+          'content@app.recipe': {
+            controller: 'RecipeCreateCtrl',
+            templateUrl: 'views/recipe/recipeCreate/recipeCreate.html'
+          }
+        }
       });
 
   });
