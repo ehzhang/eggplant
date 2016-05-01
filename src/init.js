@@ -1,5 +1,6 @@
 angular.module('app')
   .run(function(RecipeService, IngredientService) {
+    var DAY = 1000 * 60 * 60 * 24;
     var recipes = [
       {
         id: "0",
@@ -7,7 +8,7 @@ angular.module('app')
         changeSummary: "Changed breading to panko.",
         latestVersion: "1.2",
         imageUrl: "assets/eggplant_poboy.jpg",
-        lastUpdated: 'Jan 1st, 1971',
+        lastUpdated: new Date() - DAY,
         description: "Man braid fixie farm-to-table pug wayfarers scenester before they sold out ramps tilde, man bun YOLO slow-carb squid shoreditch put a bird on it. Tote bag venmo lo-fi kombucha synth semiotics. Photo booth thundercats hella squid church-key semiotics. Scenester dreamcatcher cornhole, whatever affogato roof party 3 wolf moon kinfolk shabby chic meh twee photo booth irony keffiyeh. Literally chia jean shorts, viral kinfolk pickled bicycle rights flexitarian twee marfa neutra cray.",
         ingredients: [{
             name: "eggplant",
@@ -38,7 +39,7 @@ angular.module('app')
         changeSummary: "Used fresher tortillas.",
         latestVersion: "2.5",
         imageUrl: "assets/eggplant_taco.jpg",
-        lastUpdated: 'Jan 1st, 1971',
+        lastUpdated: new Date() - 2 * DAY,
         description: "Man braid fixie farm-to-table pug wayfarers scenester before they sold out ramps tilde, man bun YOLO slow-carb squid shoreditch put a bird on it. Tote bag venmo lo-fi kombucha synth semiotics. Photo booth thundercats hella squid church-key semiotics. Scenester dreamcatcher cornhole, whatever affogato roof party 3 wolf moon kinfolk shabby chic meh twee photo booth irony keffiyeh. Literally chia jean shorts, viral kinfolk pickled bicycle rights flexitarian twee marfa neutra cray.",
         ingredients: [{
             name: "eggplant",
@@ -69,7 +70,7 @@ angular.module('app')
         changeSummary: "Doubled the amount of secret sauce.",
         latestVersion: "2.3",
         imageUrl: "assets/eggplant_quinoa_bowl.jpg",
-        lastUpdated: 'Jan 1st, 1971',
+        lastUpdated: new Date() - 3 * DAY,
         description: "Man braid fixie farm-to-table pug wayfarers scenester before they sold out ramps tilde, man bun YOLO slow-carb squid shoreditch put a bird on it. Tote bag venmo lo-fi kombucha synth semiotics. Photo booth thundercats hella squid church-key semiotics. Scenester dreamcatcher cornhole, whatever affogato roof party 3 wolf moon kinfolk shabby chic meh twee photo booth irony keffiyeh. Literally chia jean shorts, viral kinfolk pickled bicycle rights flexitarian twee marfa neutra cray.",
         ingredients: [{
             name: "eggplant",
@@ -101,7 +102,7 @@ angular.module('app')
         changeSummary: "Whole wheat tortillas, locally made.",
         latestVersion: "4.5",
         imageUrl: "assets/eggplant_burrito.jpg",
-        lastUpdated: 'Jan 1st, 1971',
+        lastUpdated: new Date() - 7 * DAY,
         description: "Man braid fixie farm-to-table pug wayfarers scenester before they sold out ramps tilde, man bun YOLO slow-carb squid shoreditch put a bird on it. Tote bag venmo lo-fi kombucha synth semiotics. Photo booth thundercats hella squid church-key semiotics. Scenester dreamcatcher cornhole, whatever affogato roof party 3 wolf moon kinfolk shabby chic meh twee photo booth irony keffiyeh. Literally chia jean shorts, viral kinfolk pickled bicycle rights flexitarian twee marfa neutra cray.",
         ingredients: [{
             name: "eggplant",
@@ -133,7 +134,7 @@ angular.module('app')
         changeSummary: "Now using a beer batter.",
         latestVersion: "3.2",
         imageUrl: "assets/eggplant_fritter.jpg",
-        lastUpdated: 'Jan 1st, 1971',
+        lastUpdated: new Date() - 15 * DAY,
         description: "Man braid fixie farm-to-table pug wayfarers scenester before they sold out ramps tilde, man bun YOLO slow-carb squid shoreditch put a bird on it. Tote bag venmo lo-fi kombucha synth semiotics. Photo booth thundercats hella squid church-key semiotics. Scenester dreamcatcher cornhole, whatever affogato roof party 3 wolf moon kinfolk shabby chic meh twee photo booth irony keffiyeh. Literally chia jean shorts, viral kinfolk pickled bicycle rights flexitarian twee marfa neutra cray.",
         ingredients: [{
             name: "eggplant",
