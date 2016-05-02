@@ -20,6 +20,24 @@ angular.module('app')
         $scope.newIngredient = {};
       };
 
+      $scope.checkIngredientInDescription = function(){
+        var numberIngredients = $scope.ingredients.length;
+        var errors = [];
+        for (var i = 0 ; i < numberIngredients; i++) {
+          ingredient = $scope.ingredients[i].name
+          if ($scope.recipe.instructions.toLowerCase().indexOf(ingredient) == -1){
+            errors.push(ingredient);
+          }
+        }
+        if (errors.lenght > 0){
+          console.log("The following ingredients are not in the instructions: " + errors.join(", "))
+          return false
+        }
+      }
+
+
+
+
       $scope.save = function() {
         // TODO: Still need to update version
         // TODO: Validation
