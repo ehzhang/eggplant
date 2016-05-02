@@ -1,6 +1,9 @@
 angular.module('app')
   .controller('RecipeHistoryCtrl',
-    function($scope, VersionService) {
+    function($state, $scope, VersionService) {
         $scope.versions = VersionService.getAllForRecipe($scope.recipe.id);
-        console.log($scope.versions);
+
+        $scope.selectVersion = function(id) {
+            $state.go('app.recipe.history.version', {versionId: id});
+        }
     });

@@ -51,6 +51,21 @@ angular.module('app')
         },
       })
 
+      .state('app.recipe.history.version', {
+        url: '/version/:versionId',
+        views: {
+          'content@app.recipe': {
+            controller: 'RecipeVersionCtrl',
+            templateUrl: 'views/recipe/recipeVersion/recipeVersion.html'
+          }
+        },
+        resolve: {
+          version: function($stateParams, VersionService){
+            return VersionService.findById($stateParams.versionId);
+          }
+        }
+      })
+
       .state('app.recipe.edit', {
         url: '/edit',
         views: {
