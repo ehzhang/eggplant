@@ -10,6 +10,10 @@ angular.module('app')
 
       $scope.newIngredient = {};
 
+      $scope.deleteIngredient = function (index) {
+        $scope.recipe.ingredients.splice(index, 1);
+      }
+
       $scope.addNewIngredient = function() {
         // TODO: Validation
         $scope.recipe.ingredients.push($.extend(true, {}, $scope.newIngredient));
