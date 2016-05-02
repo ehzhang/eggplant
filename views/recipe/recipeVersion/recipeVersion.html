@@ -1,15 +1,21 @@
+<div class>
+    <h3 style="display: inline">Currently Viewing Version: <strong class="brand">{{version.snapshot.latestVersion}}</strong></h3>
+    <br>
+    <span class="version-message">
+        {{version.snapshot.changeSummary}}
+    </span>
+</div>
 <div class="ui divider"></div>
-
 <div class="ui grid">
 
     <div class="row">
         <div class="twelve wide column">
             <p class="description">
-                {{recipe.description}}
+                {{version.snapshot.description}}
             </p>
         </div>
         <div class="four wide column">
-            <img class="ui fluid image" ng-src="{{recipe.imageUrl}}">
+            <img class="ui fluid image" src="{{version.snapshot.imageUrl}}">
         </div>
     </div>
 </div>
@@ -22,7 +28,7 @@
         <div class="four wide column">
             <h3>Ingredients</h3>
             <div class="ingredients">
-                <div ng-repeat="i in recipe.ingredients">
+                <div ng-repeat="i in version.snapshot.ingredients">
                     {{i.amount}} {{i.units}} {{i.name}}
                 </div>
             </div>
@@ -30,7 +36,7 @@
         <div class="twelve wide column">
             <h3>Instructions</h3>
             <div
-                ng-bind-html=UTIL.markdownToHTML(recipe.instructions)
+                ng-bind-html=UTIL.markdownToHTML(version.snapshot.instructions)
                 class="instructions">
             </div>
         </div>

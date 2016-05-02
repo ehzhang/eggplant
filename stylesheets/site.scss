@@ -144,6 +144,15 @@ strong.brand {
 
 }
 
+#edit-recipe-form {
+  #ingr-dropdown {
+    width: 100%;
+    .button {
+      border-radius: 0px;
+    }
+  }
+}
+
 .stats-img {
   height: 150px;
   margin: -2px;
@@ -169,4 +178,8 @@ strong.brand {
 
 #stats-y {
   width: 515px;
+}
+
+.clickable {
+  cursor: pointer;
 }

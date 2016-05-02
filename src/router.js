@@ -51,6 +51,21 @@ angular.module('app')
         },
       })
 
+      .state('app.recipe.history.version', {
+        url: '/version/:versionId',
+        views: {
+          'content@app.recipe': {
+            controller: 'RecipeVersionCtrl',
+            templateUrl: 'views/recipe/recipeVersion/recipeVersion.html'
+          }
+        },
+        resolve: {
+          version: function($stateParams, VersionService){
+            return VersionService.findById($stateParams.versionId);
+          }
+        }
+      })
+
       .state('app.recipe.edit', {
         url: '/edit',
         views: {
@@ -71,14 +86,10 @@ angular.module('app')
         }
       })
 
-      .state('app.recipe.create', {
+      .state('app.create', {
         url: '/create',
-        views: {
-          'content@app.recipe': {
-            controller: 'RecipeCreateCtrl',
-            templateUrl: 'views/recipe/recipeCreate/recipeCreate.html'
-          }
-        }
+        controller: 'RecipeCreateCtrl',
+        templateUrl: 'views/recipe/recipeCreate/recipeCreate.html'
       });
 
   });

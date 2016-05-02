@@ -1,25 +1,29 @@
-<style>
-    /*Hack*/
-    #recipe-nav {
-        display: none;
-    }
-</style>
-
-<div id="edit-recipe-form" class="ui form">
+<div id="create-recipe-form" class="ui form">
+    
+    <div class="small ui header">
+        Recipe Title
+    </div>
+    <div class="ui header">
+        <input
+            type="text"
+            name="name"
+            ng-model="recipe.name"
+            placeholder="Eggplant Quinoa Bowl"/>
+    </div>
     <div style="text-align: right" class="ui header">
-        <!-- Updating to Version <strong class="brand">{{increaseVersion recipe}}</strong> -->
-        Updating to Version <strong class="brand">{{recipe.latestVersion + 1}}</strong>
+        Creating Version <strong class="brand">{{recipe.latestVersion + 1}}</strong>
     </div>
 
     <div class="ui divider"></div>
 
+    <!-- TODO: The rest of this can be reused between recipeEdit and recipeCreate -->
     <div class="small ui header">
         Recipe Description
     </div>
     <div class="fields">
         <div class="twelve wide field">
             <textarea
-                ng-model=recipe.description
+                ng-model="recipe.description"
                 name="description"
                 placeholder="This is a recipe for a delicious..."
                 ></textarea>
@@ -34,47 +38,36 @@
                 data-html='<div class="ui small header">Link to image</div><input id="img-input" type="text" placeholder="http://myimage.here"/>'>
                     Upload
                 </div>
-            </div>
         </div>
     </div>
 
     <div class="ui divider"></div>
 
     <!-- {{!-- TODO: Make this look less wide and sad --}} -->
-
     <div class="small ui header">
         Ingredients
     </div>
 
-    <div class="inline fields" ng-repeat="ingredient in recipe.ingredients">
-        <div class="three wide field">
-            <input
-                type="number"
-                name="amount"
-                placeholder=0
-                ng-model="ingredient.amount" min=0>
+    <!-- {{#each recipe.ingredients}} -->
+        <div class="inline fields">
+            <div class="three wide field">
+                <input type="number" name="amount" placeholder="{{amount}}" value="{{amount}}" min=0>
+            </div>
+            <div class="four wide field">
+                <select class="ui dropdown" name="units" value="{{units}}">
+                    <option value="tsp">tsp</option>
+                    <option value="tbsp">tbsp</option>
+                    <option value="cup">cup</option>
+                </select>
+            </div>
+            <div class="eight wide field">
+                <label>{{name}}</label>
+            </div>
+            <div class="one wide field">
+                <i class="red remove circle icon"></i>
+            </div>
         </div>
-        <div class="four wide field">
-            <select
-                class="ui dropdown"
-                name="units"
-                ng-model="ingredient.units">
-                <option value="tsp">tsp</option>
-                <option value="tbsp">tbsp</option>
-                <option value="cup">cup</option>
-                <option value="slice">slice</option>
-            </select>
-        </div>
-        <div class="eight wide field">
-            <label>{{ingredient.name}}</label>
-        </div>
-        <div
-            class="one wide field"
-            ng-click="deleteIngredient($index)">
-            <i class="red remove circle icon clickable"></i>
-        </div>
-    </div>
-
+    <!-- {{/each}} -->
 
     <div class="small ui header">
         Add Ingredient to Recipe
@@ -82,51 +75,42 @@
     <div class="ui form" id="add-ingr-form">
         <div class="inline fields">
             <div class="three wide field">
-                <input
-                    ng-model="newIngredient.amount"
-                    type="number"
-                    name="amount" min=0>
+                <input type="number" placeholder="{{amount}}" value="{{amount}}" name="amount" min=0>
             </div>
-
             <div class="four wide field" name="units">
-                <select
-                    ng-model="newIngredient.units"
-                    name="units"
-                    class="ui dropdown">
+                <select name="units" class="ui dropdown">
                     <option value="tsp">tsp</option>
                     <option value="tbsp">tbsp</option>
                     <option value="cup">cup</option>
-                    <option value="slice">slice</option>
                 </select>
             </div>
-
-            <div class="seven wide field">
-                <!-- This component is a piece of garbage to work with. sigh. -->
+            <div class="field">
                 <div class="ui fluid search selection dropdown" id="ingr-dropdown">
-                    <input
-                        type="hidden"
-                        name="name">
+                    <input type="hidden" name="name">
                     <i class="dropdown icon"></i>
                     <div class="default text">Select Ingredient</div>
                     <div class="menu">
-                        <div class="item" ng-repeat="ingr in ingredients" data-value="{{ingr.name}}">{{ingr.name}}</div>
+                        <!-- {{#each ingredients}} -->
+                          <div class="item" data-value="{{name}}">{{name}}</div>
+                        <!-- {{/each}} -->
                    </div>
                 </div>
-                <script>
-                    // hack it
-                    $('#ingr-dropdown').dropdown();
-                </script>
             </div>
-            <div class="two wide field">
+            <div class="field">
                 <!-- {{!-- TODO: margin on this button idk how to align this lol--}} -->
                 <div
                     id="add-ingr-btn"
-                    ng-click="addNewIngredient()"
-                    class="ui fluid submit positive button">
+                    class="ui submit positive button">
                     Add
                 </div>
             </div>
 
+            <div class="field">
+                <div class="ui purple button" id="add-ingr">
+                    <i class="plus icon"></i>
+                    Create New Ingredient
+                </div>
+            </div>
         </div>
         <div class="ui error message"></div>
 <!-- {{!--         <div class="ui error message"> -->
@@ -141,8 +125,7 @@
 
     <br>
 
-
-    <div class="field" >
+    <div class="field">
         <div class="ui grid">
             <div class="eight wide column">
                 <div class="small ui header"> Edit Instructions </div>
@@ -152,24 +135,8 @@
                     name="instructions"
                     placeholder="1. Prepare the..."
                     ></textarea>
-
-                <div class="left ui rail">
-                    <div class="ui yellow message">
-                        <h3 class="ui small header">Tip
-                        <i class="idea icon"></i>
-                        </h3>
-                        <p>You can use Markdown to write the recipe instructions. Here are some quick tips:
-                        </p>
-                        <ul>
-                        <li><b>**bold**</b></li>
-                        <li><i>*italics*</i></li>
-                        </ul>
-                        <p>Click <a href="https://daringfireball.net/projects/markdown/">here</a> to learn more about Markdown! 
-                    </div>
-                </div>
             </div>
             <div class="eight wide column">
-
                 <div class="small ui header"> Preview </div>
                 <div
                     ng-bind-html=UTIL.markdownToHTML(recipe.instructions)
@@ -185,7 +152,7 @@
 
     <div class="field">
         <div class="small ui header">Change Summary</div>
-        <textarea name="summary" rows="2" placeholder="I removed/added some..." ng-model="recipe.changeSummary"></textarea>
+        <textarea name="summary" rows="2" ng-model="recipe.changeSummary" placeholder="Initial recipe..."></textarea>
     </div>
 
 
@@ -194,12 +161,11 @@
     <div class="right aligned field">
         <div
             id="cancel-recipe-btn"
-            class="ui basic large button"
-            ng-click="cancel()">Cancel</div>
+            class="ui basic large button">Cancel</div>
         <div
             id="update-recipe-btn"
-            class="ui purple large submit button"
-            ng-click="save()">Update Recipe</div>
+            ng-click="create()"
+            class="ui purple large submit button">Create</div>
     </div>
     <div class="ui error message"></div>
 
