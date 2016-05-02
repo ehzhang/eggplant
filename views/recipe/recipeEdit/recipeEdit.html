@@ -39,6 +39,7 @@
     <div class="ui divider"></div>
 
     <!-- {{!-- TODO: Make this look less wide and sad --}} -->
+
     <div class="small ui header">
         Ingredients
     </div>
@@ -65,8 +66,9 @@
         <div class="eight wide field">
             <label>{{ingredient.name}}</label>
         </div>
-        <div class="one wide field"
-        ng-click="deleteIngredient($index)">
+        <div
+            class="one wide field"
+            ng-click="deleteIngredient($index)">
             <i class="red remove circle icon clickable"></i>
         </div>
     </div>
@@ -83,6 +85,7 @@
                     type="number"
                     name="amount" min=0>
             </div>
+
             <div class="four wide field" name="units">
                 <select
                     ng-model="newIngredient.units"
@@ -94,10 +97,11 @@
                     <option value="slice">slice</option>
                 </select>
             </div>
-            <div class="field">
+
+            <div class="seven wide field">
+                <!-- This component is a piece of garbage to work with. sigh. -->
                 <div class="ui fluid search selection dropdown" id="ingr-dropdown">
                     <input
-                        ng-model=newIngredient.name
                         type="hidden"
                         name="name">
                     <i class="dropdown icon"></i>
@@ -108,25 +112,19 @@
                 </div>
                 <script>
                     // hack it
-                    $('.ui.fluid.search.dropdown').dropdown();
+                    $('#ingr-dropdown').dropdown();
                 </script>
             </div>
-            <div class="field">
+            <div class="two wide field">
                 <!-- {{!-- TODO: margin on this button idk how to align this lol--}} -->
                 <div
                     id="add-ingr-btn"
                     ng-click="addNewIngredient()"
-                    class="ui submit positive button">
+                    class="ui fluid submit positive button">
                     Add
                 </div>
             </div>
 
-            <div class="field">
-                <div class="ui purple button" id="add-ingr">
-                    <i class="plus icon"></i>
-                    Create New Ingredient
-                </div>
-            </div>
         </div>
         <div class="ui error message"></div>
 <!-- {{!--         <div class="ui error message"> -->
