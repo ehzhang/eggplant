@@ -1,9 +1,8 @@
 angular.module('app')
-  .config(function($stateProvider, $locationProvider, $urlRouterProvider) {
+  .config(function($stateProvider, $urlRouterProvider) {
 
     // Default Route
     $urlRouterProvider.otherwise('browse');
-    $locationProvider.html5Mode(true);
 
     $stateProvider
       .state('app', {
