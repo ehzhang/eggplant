@@ -13,11 +13,11 @@ angular.module('app')
         ingredients: [{
             name: "eggplant",
             amount: 2,
-            units: "slices",
+            units: "slice",
         }, {
             name: "quinoa",
             amount: 1,
-            units: "cups",
+            units: "cup",
         }, {
             name: "mixed greens",
             amount: 0.5,
@@ -44,11 +44,11 @@ angular.module('app')
         ingredients: [{
             name: "eggplant",
             amount: 2,
-            units: "slices",
+            units: "slice",
         }, {
             name: "quinoa",
             amount: 1,
-            units: "cups",
+            units: "cup",
         }, {
             name: "mixed greens",
             amount: 0.5,
@@ -75,11 +75,11 @@ angular.module('app')
         ingredients: [{
             name: "eggplant",
             amount: 2,
-            units: "slices",
+            units: "slice",
         }, {
             name: "quinoa",
             amount: 1,
-            units: "cups",
+            units: "cup",
         }, {
             name: "mixed greens",
             amount: 0.5,
@@ -107,11 +107,11 @@ angular.module('app')
         ingredients: [{
             name: "eggplant",
             amount: 2,
-            units: "slices",
+            units: "slice",
         }, {
             name: "quinoa",
             amount: 1,
-            units: "cups",
+            units: "cup",
         }, {
             name: "mixed greens",
             amount: 0.5,
@@ -139,11 +139,11 @@ angular.module('app')
         ingredients: [{
             name: "eggplant",
             amount: 2,
-            units: "slices",
+            units: "slice",
         }, {
             name: "quinoa",
             amount: 1,
-            units: "cups",
+            units: "cup",
         }, {
             name: "mixed greens",
             amount: 0.5,
