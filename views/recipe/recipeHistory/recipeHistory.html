@@ -1,3 +1,33 @@
 <h1>
  History for {{recipe.name}}
 </h1>
+<div
+    ng-repeat="version in versions "
+    class="ui recipe segment"
+    ng-click="">
+    <div class="ui grid">
+        <div class="three wide column">
+            <img
+                ng-src="{{version.snapshot.imageUrl}}"
+                class="ui large image">
+        </div>
+
+        <div class="thirteen wide column">
+            <div class="content">
+                <h3 class="recipe-name">{{version.snapshot.name}}</h3>
+                v<div class="recipe-version">{{version.snapshot.latestVersion}}</div>
+
+                <div class="recipe-last-updated">
+                    Last updated {{ UTIL.fromNow(version.snapshot.lastUpdated) }}
+                </div>
+
+                <div class="ui divider"></div>
+
+                <p class="recipe-change-summary">
+                {{version.snapshot.changeSummary}}
+                </p>
+            </div>
+        </div>
+
+    </div>
+</div>
