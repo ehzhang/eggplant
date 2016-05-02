@@ -77,4 +77,24 @@ angular.module('app')
         $state.go('app.recipe');
       };
 
+      $('#upload-img')
+        .popup({
+          hoverable: true,
+          position : 'bottom left',
+          delay: {
+            show: 300,
+            hide: 800
+          }
+        });
+
+        $(document).on("keypress", "#img-input", function(e) {
+          if (e.keyCode == 13) {
+            var imageUrl = $(this).val();
+            $scope.recipe.imageUrl = imageUrl;
+            $("#preview-img").attr("src", imageUrl);
+          }
+
+        })
+
+
     });

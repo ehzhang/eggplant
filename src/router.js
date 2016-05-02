@@ -86,14 +86,10 @@ angular.module('app')
         }
       })
 
-      .state('app.recipe.create', {
+      .state('app.create', {
         url: '/create',
-        views: {
-          'content@app.recipe': {
-            controller: 'RecipeCreateCtrl',
-            templateUrl: 'views/recipe/recipeCreate/recipeCreate.html'
-          }
-        }
+        controller: 'RecipeCreateCtrl',
+        templateUrl: 'views/recipe/recipeCreate/recipeCreate.html'
       });
 
   });
