@@ -3,17 +3,57 @@
 </h1>
 
 <div class="ui divider"></div>
+<!-- Sort by A-Z, Most Recent Update, Least Recent Update -->
 
-<div class="ui icon fluid input">
-    <input id="browse-filter"
-        ng-model="browseSearchText"
-        placeholder="Search for Recipes..."
-        type="text">
-    <i class="search icon"></i>
+
+<div class="ui grid">
+    <div class="ui twelve wide column">
+        <div class="ui icon fluid input">
+            <input id="browse-filter"
+            ng-model="browseSearchText"
+            placeholder="Search for Recipes..."
+            type="text">
+            <i class="search icon"></i>
+        </div>
+    </div>
+
+
+<div class="ui four wide column">
+<div class="ui fluid floating dropdown labeled icon button">
+  <span class="text">A-Z</span>
+  <div class="menu">
+    <div class="divider"></div>
+    <div class="header">
+      Sort by...
+    </div>
+    <div class="scrolling menu">
+      <div class="item"
+      ng-click="orderBy('name')">
+        A-Z
+      </div>
+      <div class="item"
+      ng-click="orderBy('-name')">
+        Z-A
+      </div>
+      <div class="item"
+      ng-click="orderBy('-lastUpdated')">
+        Most Recent
+      </div>
+      <div class="item"
+      ng-click="orderBy('lastUpdated')">
+        Least Recent
+      </div>
+    </div>
+  </div>
+    <i class="sort icon"></i>
+</div>
 </div>
 
+
+</div>  
+
 <div
-    ng-repeat="recipe in recipes | filter:browseSearchText"
+    ng-repeat="recipe in recipes | filter:browseSearchText | orderBy:orderByInput"
     class="ui recipe segment"
     data-recipe-id="{{recipe._id}}"
     ng-click="selectRecipe(recipe._id)">
