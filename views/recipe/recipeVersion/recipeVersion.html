@@ -63,6 +63,17 @@
         <div class="twelve wide column">
             <h3>Instructions</h3>
             <div
+                ng-show="showDiff"
+                class="instructions-diffed">
+                <span
+                    ng-repeat="t in diff.instrDiff"
+                    ng-class="t.removed ? 'removed' : t.added ? 'added': ''"
+                    ng-bind-html="t.value"
+                >
+                </span>
+            </div>
+            <div
+                ng-show="!showDiff"
                 ng-bind-html=version.snapshot.instructions
                 class="instructions">
             </div>
