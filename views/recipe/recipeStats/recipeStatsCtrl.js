@@ -1,80 +1,67 @@
 angular.module('app')
   .controller('RecipeStatsCtrl',
-    function($scope) {
+    function($scope, VersionService) {
 
-        Chart.defaults.global.defaultFontFamily = 'Lato';
+        Chart.defaults.global.defaultFontFamily = 'Avenir Next';
 
         var randomScalingFactor = function() {
-            return Math.random() * 100;
+            return Math.round(Math.random() * 100);
         };
-        var randomColor = function(opacity) {
-            return 'rgba(' + Math.round(Math.random() * 255) + ',' + Math.round(Math.random() * 255) + ',' + Math.round(Math.random() * 255) + ',' + (opacity || '.3') + ')';
-        };
+
+        var versions = VersionService.getAllForRecipe($scope.recipe.id);
+
+        versions = versions
+                    .sort(function(a, b){
+                        return a.snapshot.lastUpdated - b.snapshot.lastUpdated;
+                    });
+
+        var pointData = versions.map(function(v){
+
+            // "round" the date to the nearest beginning of day.
+            // Otherwise, it plots at exact time, which can look a little wonky.
+            var d = new Date(v.snapshot.lastUpdated);
+            d.setHours(0);
+            d.setMinutes(0);
+            d.setSeconds(0);
+            d.setMilliseconds(0);
+
+            return {
+                // x: new Date(v.snapshot.lastUpdated), // <- wonky
+                x: d,
+                y: randomScalingFactor()
+            };
+        });
+
         // TODO: put the version data in here
-        var scatterChartData = {
+        var data = {
             datasets: [{
-                label: "My First dataset",
-                data: [{
-                    x: new Date(2016, 4, 20),
-                    y: randomScalingFactor(),
-                }, {
-                    x: new Date(2016, 4, 21),
-                    y: randomScalingFactor(),
-                }, {
-                    x: new Date(2016, 4, 22),
-                    y: randomScalingFactor(),
-                }, {
-                    x: new Date(2016, 4, 23),
-                    y: randomScalingFactor(),
-                }, {
-                    x: new Date(2016, 4, 24),
-                    y: randomScalingFactor(),
-                }, {
-                    x: new Date(2016, 4, 25),
-                    y: randomScalingFactor(),
-                }, {
-                    x: new Date(2016, 4, 26),
-                    y: randomScalingFactor(),
-                }]
-            },
-            //  {
-            //     label: "My Second dataset",
-            //     data: [{
-            //         x: new Date(2016, 4, 20),
-            //         y: randomScalingFactor(),
-            //     }, {
-            //         x: new Date(2016, 4, 21),
-            //         y: randomScalingFactor(),
-            //     }, {
-            //         x: new Date(2016, 4, 22),
-            //         y: randomScalingFactor(),
-            //     }, {
-            //         x: new Date(2016, 4, 23),
-            //         y: randomScalingFactor(),
-            //     }, {
-            //         x: new Date(2016, 4, 24),
-            //         y: randomScalingFactor(),
-            //     }, {
-            //         x: new Date(2016, 4, 25),
-            //         y: randomScalingFactor(),
-            //     }, {
-            //         x: new Date(2016, 4, 26),
-            //         y: randomScalingFactor(),
-            //     }]
-            // }
+                label: $scope.recipe.name + " Sales",
+                data: pointData
+                },
             ]
         };
-        $.each(scatterChartData.datasets, function(i, dataset) {
-            dataset.borderColor = randomColor(0.4);
-            dataset.backgroundColor = randomColor(0.1);
-            dataset.pointBorderColor = randomColor(0.7);
-            dataset.pointBackgroundColor = randomColor(0.5);
-            dataset.pointBorderWidth = 1;
+
+        data.datasets.forEach(function(dataset) {
+            dataset.borderColor = 'rgba(155, 89, 182, .9)';
+            dataset.borderWidth = 6;
+            dataset.backgroundColor = 'rgba(155, 89, 182,.05)';
+            dataset.pointBorderColor = 'rgba(155, 89, 182, 1)';
+            dataset.pointBackgroundColor = 'rgba(155, 89, 182, 1)';
+            dataset.pointHoverRadius = 6;
+            dataset.radius = 6;
+            dataset.hitRadius = 20;
+            dataset.pointBorderWidth = 3;
         });
+
         var ctx = document.getElementById("canvas").getContext("2d");
-        var myScatter = Chart.Scatter(ctx, {
-            data: scatterChartData,
+
+        var chart = new Chart(ctx, {
+            type: 'line',
+            data: data,
             options: {
+                hover: {
+                    mode: 'label'
+                },
                 title: {
                     display: true,
                     text: 'Sales'
@@ -111,8 +98,8 @@ angular.module('app')
                             display: true,
                             labelString: 'Sales'
                         }
-                    }]
-                }
+                    }],
+                },
             }
         });
 

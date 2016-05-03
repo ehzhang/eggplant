@@ -15,7 +15,7 @@ angular.module('app')
 
     service.find = function(filter){
       return Versions.find(filter);
-    }
+    };
 
     service.findById = function(id) {
       return Versions.findById(id);
@@ -23,7 +23,7 @@ angular.module('app')
 
     service.update = function(id, obj) {
       return Versions.update(id, obj);
-    }
+    };
 
     service.getAllForRecipe = function(recipeId) {
       return Versions.find((function(version){
@@ -31,11 +31,11 @@ angular.module('app')
       })).sort(function(a,b){
         return b.index - a.index;
       });
-    }
+    };
 
     service.getLatestVersionForRecipe = function(recipeId) {
       return service.getAllForRecipe(recipeId)[0];
-    }
+    };
 
     function sortByName(a, b) {
       if (a.name > b.name) {
@@ -77,7 +77,7 @@ angular.module('app')
         } else {
           // something got deleted
           diff.ingredients.push({ingredient:ri, status: "removed"});
-          ridx += 1
+          ridx += 1;
         }
       }
 
@@ -97,7 +97,7 @@ angular.module('app')
       diff.instrDiff = JsDiff.diffSentences(recipe.snapshot.instructions, other.snapshot.instructions);
 
       return diff;
-    }
+    };
 
     return service;
 
