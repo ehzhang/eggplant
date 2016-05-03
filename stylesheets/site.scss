@@ -10,13 +10,11 @@ $header-font-stack: 'Futura', 'Helvetica Neue', sans-serif;
 $body-font-stack: 'Avenir Next', 'Avenir', 'Helvetica Neue', sans-serif;
 
 body,
-html,
-input {
+html {
   margin: 0;
   padding: 0;
 
   font-family: $body-font-stack !important;
-
   font-size: .95em;
 }
 
@@ -25,6 +23,10 @@ h1, h2, h3, h4, h5,
 .ui.header,
 .ui.button {
   font-family: $header-font-stack !important;
+}
+
+input {
+  font-family: $body-font-stack !important;
 }
 
 .ui.divider {
@@ -205,14 +207,15 @@ strong.brand {
   cursor: pointer;
 }
 
-.removed {
-  color: $red;
+.removed, .removed * {
+  color: $red !important;
 }
 
-.added {
-  color: $green;
+.added, .added * {
+  color: $green !important;
 }
 
-.changed {
-  color: $yellow;
+.changed, .changed * {
+  color: $yellow !important;
 }
+
