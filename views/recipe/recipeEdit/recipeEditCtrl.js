@@ -1,6 +1,6 @@
 angular.module('app')
   .controller('RecipeEditCtrl',
-    function($filter, $state, $scope, RecipeService, IngredientService) {
+    function($filter, $state, $scope, RecipeService, IngredientService, VersionService) {
       // Set the 'Recipe' in this child scope to a clone of the parent scope's
       // Looks pretty fucky, I know.
       $scope.recipe = $.extend(true, {}, $scope.recipe);
@@ -133,8 +133,18 @@ angular.module('app')
 
 
       $scope.save = function() {
-        // TODO: Still need to update version
         // TODO: Validation
+        var newVersionIndex = VersionService.getLatestVersionForRecipe($scope.recipe.id).index + 1;
+
+        // this only increments the version number by 1
+        $scope.recipe.latestVersion = (parseFloat($scope.recipe.latestVersion) + 1).toFixed(1);
+
+        VersionService.add({
+          recipeId: $scope.recipe.id,
+          index: newVersionIndex,
+          snapshot: $scope.recipe,
+        });
+
         RecipeService.update($scope.recipe._id, $scope.recipe);
         $state.go('app.recipe', {}, {
           reload: true

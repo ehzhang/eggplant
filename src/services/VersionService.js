@@ -33,6 +33,10 @@ angular.module('app')
       });
     }
 
+    service.getLatestVersionForRecipe = function(recipeId) {
+      return service.getAllForRecipe(recipeId)[0];
+    }
+
     function sortByName(a, b) {
       if (a.name > b.name) {
         return 1;

@@ -1,5 +1,8 @@
 // Branding colors/variables here
 $brand-color: #9b59b6;
+$green: #21ba45;
+$red: #db2828;
+$yellow: #f39c12;
 // $brand-color: #2ecc71;
 
 // Change fonts here
@@ -186,13 +189,13 @@ strong.brand {
 }
 
 .removed {
-  color: #db2828;
+  color: $red;
 }
 
 .added {
-  color: #21ba45;
+  color: $green;
 }
 
 .changed {
-  color: #f39c12;
+  color: $yellow;
 }
