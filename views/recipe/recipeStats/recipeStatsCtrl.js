@@ -12,7 +12,7 @@ angular.module('app')
 
         versions = versions
                     .sort(function(a, b){
-                        return a.snapshot.lastUpdated - b.snapshot.lastUpdated;
+                        return b.snapshot.lastUpdated - a.snapshot.lastUpdated;
                     });
 
         var pointData = versions.map(function(v){
