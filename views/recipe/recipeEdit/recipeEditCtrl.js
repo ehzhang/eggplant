@@ -5,8 +5,38 @@ angular.module('app')
       // Looks pretty fucky, I know.
       $scope.recipe = $.extend(true, {}, $scope.recipe);
       $scope.recipe.changeSummary = "";
+      $scope.isValidForm = false;
 
       var allIngredients = IngredientService.getAll();
+
+      $("#edit-recipe-form")
+        .form({
+          fields: {
+            description: {
+              identifier: 'description',
+              rules: [{
+                type    : 'empty',
+                prompt  : 'Please enter a description.'
+              }]
+            },
+            instructions: {
+              identifier: 'instructions',
+              rules: [
+                {
+                  type   : 'empty',
+                  prompt : 'Please include some instructions.'
+                }
+              ]
+            },
+            summary: {
+              identifier: 'summary',
+              rules: [{
+                type    : 'empty',
+                prompt  : 'Please enter a summary of your changes.'
+              }]
+            },
+          }
+        });
 
       // Filter the ingredients selections to those not already in the recipe.
       function filterIngredients(){
@@ -129,40 +159,13 @@ angular.module('app')
         }
       };
 
-      function validateAndSaveRecipe() {
-        $("#edit-recipe-form")
-          .form({
-          onSuccess: saveRecipe,
-          on: "blur",
-            fields: {
-              description: {
-                identifier: 'description',
-                rules: [{
-                  type    : 'empty',
-                  prompt  : 'Please enter a description.'
-                }]
-              },
-              instructions: {
-                identifier: 'instructions',
-                rules: [
-                  {
-                    type   : 'empty',
-                    prompt : 'Please include some instructions.'
-                  }
-                ]
-              },
-              summary: {
-                identifier: 'summary',
-                rules: [{
-                  type    : 'empty',
-                  prompt  : 'Please enter a summary of your changes.'
-                }]
-              },
-            }
-          });
-      }
+      $scope.save = function() {
+        $("#edit-recipe-form").form("validate form")
 
-      function saveRecipe() {
+        if (!$("#edit-recipe-form").form("is valid")){
+          return;
+        }
+
         var newVersionIndex = VersionService.getLatestVersionForRecipe($scope.recipe.id).index + 1;
 
         // this only increments the version number by 1
@@ -180,10 +183,6 @@ angular.module('app')
         $state.go('app.recipe', {}, {
           reload: true
         });
-      }
-
-      $scope.save = function() {
-        validateAndSaveRecipe();
       };
 
       $scope.cancel = function() {
