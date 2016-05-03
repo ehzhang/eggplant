@@ -22,6 +22,8 @@
     "angular-ui-router": "^0.2.18",
     "angular-sanitize": "^1.5.5",
     "Chart.js": "~2.0.2",
-    "jsdiff": "^2.2.2"
+    "jsdiff": "^2.2.2",
+    "textAngular": "^1.5.1",
+    "bootstrap": "^3.3.6"
   }
 }

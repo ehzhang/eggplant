@@ -136,43 +136,9 @@
 
     <br>
 
-
-    <div class="field" >
-        <div class="ui grid">
-            <div class="eight wide column">
-                <div class="small ui header"> Edit Instructions </div>
-                <textarea
-                    ng-model="recipe.instructions"
-                    id="instructions-edit"
-                    name="instructions"
-                    placeholder="1. Prepare the..."
-                    ></textarea>
-
-                <div id="instructions-tip" class="left ui rail">
-                    <div class="ui yellow message">
-                        <h3 class="ui small header">Tip
-                        <i class="idea icon"></i>
-                        </h3>
-                        <p>You can use Markdown to write the recipe instructions. Here are some quick tips:
-                        </p>
-                        <ul>
-                            <li><b>**bold**</b></li>
-                            <li><i>*italics*</i></li>
-                        </ul>
-                        <p>Click <a href="https://daringfireball.net/projects/markdown/">here</a> to learn more about Markdown!
-                    </div>
-                </div>
-            </div>
-            <div class="eight wide column">
-
-                <div class="small ui header"> Preview </div>
-                <div
-                    ng-bind-html=UTIL.markdownToHTML(recipe.instructions)
-                    id="instructions-preview"
-                    class="instructions">
-                </div>
-            </div>
-        </div>
+    <div class="field" id="instructions-edit">
+        <div class="small ui header"> Edit Instructions </div>
+        <text-angular ng-model="recipe.instructions"></text-angular>
     </div>
 
     <br>

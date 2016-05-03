@@ -150,6 +150,19 @@ strong.brand {
 
 #edit-recipe-form {
   #instructions-edit {
+
+    .form-control {
+      border: 1px solid rgba(0,0,0,.15);
+      border-radius: 6px;
+      box-shadow: none;
+    }
+
+    .ui.buttons {
+      margin-right: 8px;
+      margin-bottom: 12px;
+    }
+
+
     & + #instructions-tip {
       opacity: 0;
       transition-duration: .5s;
