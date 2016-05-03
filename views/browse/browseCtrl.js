@@ -8,7 +8,7 @@ angular.module('app')
       };
 
       var allRecipes = RecipeService.getAll().forEach(function(r) {
-        console.log(r.imageUrl);
+        // console.log(r.imageUrl);
       });
 
       $scope.selectRecipe = function(id) {

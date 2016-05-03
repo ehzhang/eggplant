@@ -400,12 +400,6 @@ angular.module('app')
           },
     }];
 
-    if (RecipeService.getAll().length === 0) {
-      recipes.forEach(function(r) {
-        RecipeService.add(r);
-      });
-    }
-
     var ingredients = [{
         id: "0",
         name: "eggplant",
@@ -430,15 +424,31 @@ angular.module('app')
         allergens: "vegetables"
     }];
 
-    if (IngredientService.getAll().length === 0) {
+    function resetCache() {
+        localStorage.clear();
+        recipes.forEach(function(r) {
+            RecipeService.add(r);
+        });
+
         ingredients.forEach(function(i){
             IngredientService.add(i);
         });
-    }
 
-    if (VersionService.getAll().length === 0) {
         versions.forEach(function(i){
             VersionService.add(i);
         });
     }
+
+    // Increment when wanting to force a client change
+    var VERSION = 1;
+    var MDB_V = 'mdb_v';
+
+    var v = localStorage.getItem(MDB_V);
+
+    if (!v || v < VERSION) {
+        resetCache();
+    }
+
+    localStorage.setItem(MDB_V, VERSION);
+
   });
