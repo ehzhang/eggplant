@@ -240,7 +240,7 @@ angular.module('app')
             latestVersion: "0.1",
             imageUrl: "assets/eggplant_quinoa_bowl.jpg",
             lastUpdated: new Date() - DAY*20,
-            description: "Yummy eggplant bowl",
+            description: "This is a yummy eggplant bowl!! Hooray!",
             ingredients: [{
                 name: "eggplant",
                 amount: 2,
@@ -253,6 +253,10 @@ angular.module('app')
                 name: "mixed greens",
                 amount: 0.5,
                 units: "cup",
+            }, {
+                name: "salt",
+                amount: 1,
+                units: "tsp"
             }],
             instructions: "1. Slice the Eggplant \n2. Marinate Eggplant in secret sauce **30 minutes!** \n3. Cook Quinoa \n4. Toss Eggplant, mixed greens, and quinoa",
         }
@@ -266,7 +270,7 @@ angular.module('app')
             latestVersion: "0.2",
             imageUrl: "assets/eggplant_quinoa_bowl.jpg",
             lastUpdated: new Date() - DAY*15,
-            description: "Yummy eggplant bowl",
+            description: "Hello! This is a yummy eggplant bowl!! Hooray!",
             ingredients: [{
                 name: "eggplant",
                 amount: 2,

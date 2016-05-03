@@ -10,7 +10,12 @@
 
     <div class="row">
         <div class="twelve wide column">
-            <p class="description">
+            <p class="description" ng-show="showDiff">
+                <span ng-repeat="t in diff.descDiff" ng-class="t.removed ? 'removed' : t.added ? 'added': ''">
+                    {{t.value}}
+                </span>
+            </p>
+            <p class="description" ng-show="!showDiff">
                 {{version.snapshot.description}}
             </p>
         </div>
@@ -28,8 +33,22 @@
         <div class="four wide column">
             <h3>Ingredients</h3>
             <div class="ingredients">
-                <div ng-repeat="i in version.snapshot.ingredients">
-                    {{i.amount}} {{i.units}} {{i.name}}
+                <div ng-show="showDiff">
+                    <div ng-repeat="i in diff.ingredients">
+                        <i class="plus icon added small" ng-show="i.status == 'added'"></i>
+                        <i class="minus icon removed small" ng-show="i.status == 'removed'"></i>
+                        <span ng-show="i.status == 'changed'" style="text-decoration:line-through">
+                            {{i.prev.amount}} {{i.prev.units}} {{i.prev.name}}
+                        </span>
+                        <span ng-class="{removed:'removed', added:'added', changed:'changed' ,'':'default'}[i.status]">
+                            {{i.ingredient.amount}} {{i.ingredient.units}} {{i.ingredient.name}}
+                        </span>
+                    </div>
+                </div>
+                <div ng-show="!showDiff">
+                    <div ng-repeat="i in version.snapshot.ingredients">
+                        {{i.amount}} {{i.units}} {{i.name}}
+                    </div>
                 </div>
             </div>
         </div>

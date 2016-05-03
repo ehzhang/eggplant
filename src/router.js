@@ -62,7 +62,7 @@ angular.module('app')
         resolve: {
           version: function($stateParams, VersionService){
             return VersionService.findById($stateParams.versionId);
-          }
+          },
         }
       })
 
