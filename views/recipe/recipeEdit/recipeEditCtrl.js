@@ -6,6 +6,7 @@ angular.module('app')
       $scope.recipe = $.extend(true, {}, $scope.recipe);
       $scope.recipe.changeSummary = "";
       $scope.isValidForm = false;
+      $scope.isIdentical = false;
 
       var allIngredients = IngredientService.getAll();
 
@@ -192,20 +193,21 @@ angular.module('app')
       }
 
       $scope.save = function() {
-        $("#edit-recipe-form").form("validate form")
-
-        if (!$("#edit-recipe-form").form("is valid")){
-          return;
-        }
-
         var mostRecentVersion = VersionService.getLatestVersionForRecipe($scope.recipe.id);
 
         var ignoredProperties = ["changeSummary", "lastUpdated", "latestVersion", "_id"];
         // check that things have actually changed
-        if (isIdentical($scope.recipe, mostRecentVersion.snapshot, ignoredProperties)) {
-          // TODO: make some sort of UI feedback
-          alert("Yo you didn't even make any changes")
-          return
+
+        $scope.isIdentical = isIdentical($scope.recipe, mostRecentVersion.snapshot, ignoredProperties)
+
+        if ($scope.isIdentical) {
+          return;
+        }
+
+        $("#edit-recipe-form").form("validate form")
+
+        if (!$("#edit-recipe-form").form("is valid")){
+          return;
         }
 
         var newVersionIndex = mostRecentVersion.index + 1;

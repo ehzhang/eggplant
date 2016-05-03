@@ -198,6 +198,10 @@
             class="ui purple large submit button"
             ng-click="save()">Update Recipe</div>
     </div>
+    <div class="ui negative message" ng-show="isIdentical">
+        <div class="header">You haven't made any changes to your recipe!</div>
+        <p>If you don't want to make any changes, click Cancel.</p>
+    </div>
     <div class="ui error message"></div>
     <br>
     <br>
