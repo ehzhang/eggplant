@@ -24,39 +24,37 @@
     </div>
 
 
-<div class="ui four wide column">
-<div class="ui fluid floating dropdown labeled icon button">
-  <span class="text">A-Z</span>
-  <div class="menu">
-    <div class="divider"></div>
-    <div class="header">
-      Sort by...
+    <div class="ui four wide column">
+        <div class="ui fluid floating dropdown labeled icon button">
+          <i class="sort icon"></i>
+          <span class="text">A-Z</span>
+          <div class="menu">
+            <div class="header">
+              Sort by...
+            </div>
+            <div class="divider"></div>
+              <div class="item"
+              ng-click="orderBy('name')">
+                A-Z
+              </div>
+              <div class="item"
+              ng-click="orderBy('-name')">
+                Z-A
+              </div>
+              <div class="item"
+              ng-click="orderBy('-lastUpdated')">
+                Most Recent
+              </div>
+              <div class="item"
+              ng-click="orderBy('lastUpdated')">
+                Least Recent
+              </div>
+          </div>
+        </div>
     </div>
-    <div class="scrolling menu">
-      <div class="item"
-      ng-click="orderBy('name')">
-        A-Z
-      </div>
-      <div class="item"
-      ng-click="orderBy('-name')">
-        Z-A
-      </div>
-      <div class="item"
-      ng-click="orderBy('-lastUpdated')">
-        Most Recent
-      </div>
-      <div class="item"
-      ng-click="orderBy('lastUpdated')">
-        Least Recent
-      </div>
-    </div>
-  </div>
-    <i class="sort icon"></i>
-</div>
-</div>
 
 
-</div>  
+</div>
 
 <div
     ng-repeat="recipe in recipes | filter:browseSearchText | orderBy:orderByInput"
