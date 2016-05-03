@@ -1,0 +1,65 @@
+<div class="ui modal new-ingredient small">
+    <div class="ui header">
+        Create New Ingredient
+    </div>
+
+    <div class="content">
+        <div class="ui form ingredient" id="new-ingr-form">
+            <div class="inline fields">
+                <div class="three wide field">
+                    <label>Name</label>
+                </div>
+                <div class="nine wide field">
+                    <input
+                        ng-model="ingredient.name"
+                        type="text"
+                        name="name">
+                </div>
+            </div>
+            <div class="inline fields">
+                <div class="three wide field">
+                    <label>Description</label>
+                </div>
+                <div class="nine wide field">
+                    <textarea
+                        ng-model="ingredient.description"
+                        rows=5
+                        name="description"></textarea>
+                </div>
+            </div>
+            <div class="inline fields">
+                <div class="three wide field">
+                    <label>Allergens</label>
+                </div>
+                <div class="nine wide field">
+                    <textarea
+                        ng-model="ingredient.allergens"
+                        rows=5></textarea>
+                </div>
+            </div>
+<!--
+            <div class="inline fields">
+                <div class="three wide field">
+                    <label>Photo</label>
+                </div>
+                <div class="three wide field">
+                    <div class="ui card">
+                        <div class="ui medium image">
+                            <img src="http://semantic-ui.com/images/wireframe/image.png">
+                        </div>
+                        <div class="ui bottom attached button">
+                            Upload
+                        </div>
+                    </div>
+                </div>
+            </div>
+             -->
+        </div>
+    </div>
+    <div class="actions">
+        <div class="ui basic button" ng-click="close()">Cancel</div>
+        <div ng-click="save()" class="ui purple submit button">
+            Save
+        </div>
+    </div>
+</div>

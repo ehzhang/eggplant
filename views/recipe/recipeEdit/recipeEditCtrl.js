@@ -1,23 +1,56 @@
 angular.module('app')
   .controller('RecipeEditCtrl',
-    function($state, $scope, RecipeService, IngredientService) {
+    function($filter, $state, $scope, RecipeService, IngredientService) {
       // Set the 'Recipe' in this child scope to a clone of the parent scope's
       // Looks pretty fucky, I know.
       $scope.recipe = $.extend(true, {}, $scope.recipe);
       $scope.recipe.changeSummary = "";
 
-      $scope.ingredients = IngredientService.getAll();
+      var allIngredients = IngredientService.getAll();
+
+      // Filter the ingredients selections to those not already in the recipe.
+      function filterIngredients(){
+        var ingMap = {};
+        var ingredients = $scope.recipe.ingredients.forEach(function(i){
+          ingMap[i.name] = true;
+        });
+        $scope.ingredients = allIngredients.filter(function(i){
+          // If its in the recipe ingredients already, false
+          return !ingMap[i.name];
+        });
+      }
+
+      $scope.$watch('recipe.ingredients', function(val){
+        filterIngredients();
+      }, true);
 
       $scope.newIngredient = {};
+
+      function checkIngredientExists(name, ingredients) {
+        // If the ingredient already exists,
+        var ingMap = {};
+        ingredients.forEach(function(i){
+          ingMap[i.name] = true;
+        });
+        return ingMap[name];
+      }
 
       // LOOK AWAY, jQUERY DISASTER AHEAD
       // This is because semantic-ui dropdown doesn't have a nice way to
       // deal with a default value that should always appear in the dropdown.
       function dropdownAddCreateNew(value) {
+
+        // Disable the create new dropdown.
+        if (checkIngredientExists(value, allIngredients)){
+          $('#ingr-dropdown .button').addClass('disabled');
+        } else {
+          $('#ingr-dropdown .button').removeClass('disabled');
+        }
+
         var text = "Create New";
 
         if (value && value.length > 0){
-          text += "'" + value + "'";
+          text += " '" + value + "'";
         }
 
         if ($('#ingr-dropdown .button').length > 0) {
@@ -26,9 +59,11 @@ angular.module('app')
         }
 
         var $createNew = $("<div class='ui fluid purple button'>"+ text +"</div>");
-        $createNew.click(function(){
+        $createNew.click(function(e){
           var val = $('#ingr-dropdown input.search').val();
-          alert(val);
+          $('.ui.modal.new-ingredient')
+            .modal('setting', 'closable', false)
+            .modal('show');
         });
 
         $('#ingr-dropdown .menu').append($createNew);
@@ -39,18 +74,27 @@ angular.module('app')
         onChange: function(value, text, choice) {
           $scope.newIngredient.name = value;
         },
-        onNoResults: function(value) {
-          dropdownAddCreateNew(value);
-        }
       });
 
       $('#ingr-dropdown input.search').on('keyup', function(e){
         var value = e.target.value;
+        $scope.newIngredient.name = value;
         dropdownAddCreateNew(value);
       });
 
       // Initialize the create new button
       dropdownAddCreateNew();
+
+      $scope.onCreateNewIngredient = function(ingredient) {
+        IngredientService.add(ingredient);
+        allIngredients = IngredientService.getAll();
+        filterIngredients();
+
+        $scope.newIngredient.name = ingredient.name;
+        $('#ingr-dropdown input.search').val(ingredient.name);
+        $('#ingr-dropdown .default.text').hide();
+      };
+
       // END DISASTER
 
       $scope.deleteIngredient = function (index) {
@@ -59,6 +103,12 @@ angular.module('app')
 
       $scope.addNewIngredient = function() {
         // TODO: Validation
+
+        // Check that ingredient exists
+        if (!checkIngredientExists($scope.newIngredient.name, allIngredients)) {
+          return;
+        }
+
         $scope.recipe.ingredients.push($.extend(true, {}, $scope.newIngredient));
         $scope.newIngredient = {};
         $('#ingr-dropdown').dropdown('clear');

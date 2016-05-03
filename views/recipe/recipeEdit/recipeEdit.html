@@ -46,7 +46,7 @@
         Ingredients
     </div>
 
-    <div class="inline fields" ng-repeat="ingredient in recipe.ingredients">
+    <div class="inline fields" ng-repeat="ingredient in recipe.ingredients track by $index">
         <div class="three wide field">
             <input
                 type="number"
@@ -127,13 +127,15 @@
                 </div>
             </div>
 
+
         </div>
-        <div class="ui error message"></div>
-<!-- {{!--         <div class="ui error message"> -->
-        <!-- <div class="header">Missing Fields</div> -->
-        <!-- <p>Make sure you have specified an amount, unit, and an ingredient!</p> -->
-      <!-- </div> --}} -->
+        <div
+            class="ui error message">
+            <!-- {{errorIngredientMessage}} -->
+            That ingredient is already in the list!
+        </div>
     </div>
+
 
     <br>
 
@@ -209,6 +211,4 @@
 
 </div>
 
-<div class="ui modal new-ingredient small">
-<!-- {{> new_ingredient_form}} -->
-</div>
+<ingredient-form info="newIngredient" on-save="onCreateNewIngredient"></ingredient-form>

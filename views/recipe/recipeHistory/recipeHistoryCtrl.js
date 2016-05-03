@@ -5,5 +5,5 @@ angular.module('app')
 
         $scope.selectVersion = function(id) {
             $state.go('app.recipe.history.version', {versionId: id});
-        }
+        };
     });
