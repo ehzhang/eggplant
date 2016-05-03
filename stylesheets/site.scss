@@ -149,11 +149,13 @@ strong.brand {
 }
 
 #edit-recipe-form {
-  #ingr-dropdown {
-    width: 100%;
-    .button {
-      border-radius: 0px;
-      word-wrap: break-word;
+  #instructions-edit {
+    & + #instructions-tip {
+      opacity: 0;
+      transition-duration: .5s;
+    }
+    &:focus + #instructions-tip {
+      opacity: 1;
     }
   }
 }
