@@ -164,7 +164,7 @@ angular.module('app')
         if (a.length != b.length) return false;
 
         for (var i = 0; i < a.length; i++){
-          if (a[i] != b[i] && !isIdentical(a[i], b[i])) {
+          if (a[i] != b[i] && !isIdentical(a[i], b[i], ["$$hashKey"])) {
             return false;
           }
         }
@@ -200,8 +200,9 @@ angular.module('app')
 
         var mostRecentVersion = VersionService.getLatestVersionForRecipe($scope.recipe.id);
 
+        var ignoredProperties = ["changeSummary", "lastUpdated", "latestVersion", "_id"];
         // check that things have actually changed
-        if (isIdentical($scope.recipe, mostRecentVersion.snapshot, ["changeSummary"])) {
+        if (isIdentical($scope.recipe, mostRecentVersion.snapshot, ignoredProperties)) {
           // TODO: make some sort of UI feedback
           alert("Yo you didn't even make any changes")
           return
