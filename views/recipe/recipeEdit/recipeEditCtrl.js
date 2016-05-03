@@ -10,35 +10,60 @@ angular.module('app')
 
       $scope.allIngredients = IngredientService.getAll();
 
-      $("#edit-recipe-form")
-        .form({
-          keyboardShortcuts: false,
-          fields: {
-            description: {
-              identifier: 'description',
-              rules: [{
-                type    : 'empty',
-                prompt  : 'Please enter a description.'
-              }]
-            },
-            instructions: {
-              identifier: 'instructions',
-              rules: [
-                {
-                  type   : 'empty',
-                  prompt : 'Please include some instructions.'
-                }
-              ]
-            },
-            summary: {
-              identifier: 'summary',
-              rules: [{
-                type    : 'empty',
-                prompt  : 'Please enter a summary of your changes.'
-              }]
-            },
-          }
+      function initForm() {
+        var formSettings = {
+            keyboardShortcuts: false,
+            fields: {
+              description: {
+                identifier: 'description',
+                rules: [{
+                  type    : 'empty',
+                  prompt  : 'Please enter a description.'
+                }]
+              },
+              instructions: {
+                identifier: 'instructions',
+                rules: [
+                  {
+                    type   : 'empty',
+                    prompt : 'Please include some instructions.'
+                  }
+                ]
+              },
+              summary: {
+                identifier: 'summary',
+                rules: [{
+                  type    : 'empty',
+                  prompt  : 'Please enter a summary of your changes.'
+                }]
+              },
+            }
+          };
+        $scope.recipe.ingredients.forEach(function(i){
+          formSettings.fields['amount-'+i.name] = {
+            identifier: 'amount-'+i.name,
+            rules: [{
+              type: "not[0]", // kind of hack
+              prompt: 'Please set a non-zero amount for ' + i.name
+            },{
+              type: "minLength[1]", // kind of hack
+              prompt: 'Please set a non-zero amount for ' + i.name
+            }
+            ]
+          };
+          formSettings.fields['units-'+i.name] = {
+            identifier: 'units-'+i.name,
+            rules: [{
+              type: 'minLength[1]',
+              prompt: 'Please select a unit for ' + i.name
+            },{
+              type: "empty", // kind of hack
+              prompt: 'Please set a non-zero amount for ' + i.name
+            }]
+          };
         });
+        $('#edit-recipe-form').form(formSettings);
+      }
 
       // Filter the ingredients selections to those not already in the recipe.
       function filterIngredients(){
@@ -150,6 +175,8 @@ angular.module('app')
       }
 
       $scope.save = function() {
+        initForm();
+
         var mostRecentVersion = VersionService.getLatestVersionForRecipe($scope.recipe.id);
 
         var ignoredProperties = ["changeSummary", "lastUpdated", "latestVersion", "_id"];

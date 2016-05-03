@@ -50,15 +50,16 @@
         <div class="three wide field">
             <input
                 type="number"
-                name="amount"
+                data-validate="{{'amount-' + ingredient.name}}"
                 placeholder=0
                 ng-model="ingredient.amount" min=0>
         </div>
         <div class="four wide field">
             <select
                 class="ui dropdown"
-                name="units"
+                data-validate="{{'units-' + ingredient.name}}"
                 ng-model="ingredient.units">
+                <option value="">unit</option>
                 <option value="tsp">tsp</option>
                 <option value="tbsp">tbsp</option>
                 <option value="cup">cup</option>
@@ -86,13 +87,12 @@
                     ng-model="newIngredient.amount"
                     type="number"
                     placeholder="0"
-                    name="amount" min=0>
+                    min=0>
             </div>
 
             <div class="four wide field" name="units">
                 <select
                     ng-model="newIngredient.units"
-                    name="units"
                     class="ui dropdown">
                     <option value="">Unit</option>
                     <option value="tsp">tsp</option>
@@ -126,11 +126,7 @@
 
 
         </div>
-        <div
-            class="ui error message">
-            <!-- {{errorIngredientMessage}} -->
-            That ingredient is already in the list!
-        </div>
+
     </div>
 
 
