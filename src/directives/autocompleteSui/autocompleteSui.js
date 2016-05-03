@@ -6,10 +6,12 @@ angular.module('autocompleteSui', [])
       replace: true,
       scope: {
         'placeholder': '@',
+        'alreadyExistsMessage': '@',
         'allOptions': '=',
         'availOptions': '=',
         'selected': '=',
-        'onClickCreate': '&'
+        'onClickCreate': '&',
+        'onEnter': '&'
       },
       templateUrl: 'src/directives/autocompleteSui/autocompleteSui.html',
       link: function(scope, element, attrs) {
@@ -27,11 +29,28 @@ angular.module('autocompleteSui', [])
         }
 
         scope.$watch('selected', function(val){
+
+          if (val) {
+            scope.focused = true;
+          }
+
           scope.optionExists = !!checkOptionExists(val, scope.allOptions);
+
+          if(scope.optionExists && !checkOptionExists(val, scope.availOptions)) {
+            scope.error = attrs.alreadyExistsMessage;
+          } else {
+            scope.error = false;
+          }
+
         });
 
         scope.create = function() {
           scope.onClickCreate({name: scope.selected});
+        };
+
+        scope.enter = function() {
+          scope.onEnter();
+          scope.focused = false;
         };
 
         scope.setSelected = function(val) {
@@ -40,8 +59,12 @@ angular.module('autocompleteSui', [])
         };
 
         scope.checkOption = function() {
-          if (!checkOptionExists(scope.selected, scope.allOptions)) {
-            scope.selected = "";
+
+          if(scope.optionExists) {
+            // If it isn't available
+            if (!checkOptionExists(scope.selected, scope.availOptions)) {
+              scope.selected = "";
+            }
           }
         };
 

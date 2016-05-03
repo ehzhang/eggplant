@@ -12,6 +12,7 @@ angular.module('app')
 
       $("#edit-recipe-form")
         .form({
+          keyboardShortcuts: false,
           fields: {
             description: {
               identifier: 'description',
@@ -88,6 +89,10 @@ angular.module('app')
       $scope.addNewIngredient = function() {
         // TODO: Validation
 
+        if (checkIngredientExists($scope.newIngredient.name, $scope.recipe.ingredients)) {
+          return;
+        }
+
         // Check that ingredient exists
         if (!checkIngredientExists($scope.newIngredient.name, $scope.allIngredients)) {
           return;
@@ -150,7 +155,7 @@ angular.module('app')
         var ignoredProperties = ["changeSummary", "lastUpdated", "latestVersion", "_id"];
         // check that things have actually changed
 
-        $scope.isIdentical = isIdentical($scope.recipe, mostRecentVersion.snapshot, ignoredProperties)
+        $scope.isIdentical = isIdentical($scope.recipe, mostRecentVersion.snapshot, ignoredProperties);
 
         if ($scope.isIdentical) {
           return;

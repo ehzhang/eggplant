@@ -30,6 +30,7 @@
     placeholder="{{placeholder}}"
     ng-class="focused ? 'focused' : ''"
     ng-click="focused = true"
+    ng-keyup="$event.keyCode == 13 && enter()"
     ng-model="selected">
   <div
     class="ui vertical fluid scrolling menu">
@@ -39,6 +40,12 @@
       ng-repeat="opt in availOptions | filter:selected">
       {{opt.name}}
     </a>
+
+    <div
+      ng-show="error"
+      class="item">
+      {{error}}
+    </div>
 
     <div class="item">
       <div

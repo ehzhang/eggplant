@@ -105,10 +105,12 @@
             <div class="seven wide field">
                 <autocomplete-sui-create
                     placeholder="Ingredient"
+                    already-exists-message="That ingredient is already in the recipe."
                     selected=newIngredient.name
                     all-options=allIngredients
                     avail-options=availIngredients
                     on-click-create="createNewIngredient(name)"
+                    on-enter="addNewIngredient()"
                     ></autocomplete-sui-create>
             </div>
 
