@@ -129,8 +129,40 @@ angular.module('app')
         }
       };
 
-      $scope.save = function() {
-        // TODO: Validation
+      function validateAndSaveRecipe() {
+        $("#edit-recipe-form")
+          .form({
+          onSuccess: saveRecipe,
+          on: "blur",
+            fields: {
+              description: {
+                identifier: 'description',
+                rules: [{
+                  type    : 'empty',
+                  prompt  : 'Please enter a description.'
+                }]
+              },
+              instructions: {
+                identifier: 'instructions',
+                rules: [
+                  {
+                    type   : 'empty',
+                    prompt : 'Please include some instructions.'
+                  }
+                ]
+              },
+              summary: {
+                identifier: 'summary',
+                rules: [{
+                  type    : 'empty',
+                  prompt  : 'Please enter a summary of your changes.'
+                }]
+              },
+            }
+          });
+      }
+
+      function saveRecipe() {
         var newVersionIndex = VersionService.getLatestVersionForRecipe($scope.recipe.id).index + 1;
 
         // this only increments the version number by 1
@@ -148,6 +180,10 @@ angular.module('app')
         $state.go('app.recipe', {}, {
           reload: true
         });
+      }
+
+      $scope.save = function() {
+        validateAndSaveRecipe();
       };
 
       $scope.cancel = function() {
@@ -164,13 +200,13 @@ angular.module('app')
           }
         });
 
-        $(document).on("keypress", "#img-input", function(e) {
-          if (e.keyCode == 13) {
-            var imageUrl = $(this).val();
-            $scope.recipe.imageUrl = imageUrl;
-            $("#preview-img").attr("src", imageUrl);
-          }
+      $(document).on("keypress", "#img-input", function(e) {
+        if (e.keyCode == 13) {
+          var imageUrl = $(this).val();
+          $scope.recipe.imageUrl = imageUrl;
+          $("#preview-img").attr("src", imageUrl);
+        }
 
-        });
+      });
 
     });
