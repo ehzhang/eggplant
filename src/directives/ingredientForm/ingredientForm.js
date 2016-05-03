@@ -4,11 +4,12 @@ angular.module('app')
       restrict: 'E',
       replace: true,
       scope: {
-        'ingredient': '=info',
-        'onSave': '=onSave'
+        'name': '=',
+        'onSave': '='
       },
       templateUrl: 'src/directives/ingredientForm/ingredientForm.html',
       link: function(scope, element, attrs) {
+
         $("#new-ingr-form")
           .form({
             inline: true,
@@ -31,8 +32,15 @@ angular.module('app')
               },
             }
           });
+
+        scope.ingredient = {};
+
+        scope.$watch('name', function(val){
+          scope.ingredient.name = val;
+        });
+
         scope.save = function() {
-          $("#new-ingr-form").form("validate form")
+          $("#new-ingr-form").form("validate form");
           if (!$("#new-ingr-form").form("is valid")){
             console.log($("#new-ingr-form").form("errors"));
             return;

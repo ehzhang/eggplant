@@ -8,7 +8,7 @@ angular.module('app')
       $scope.isValidForm = false;
       $scope.isIdentical = false;
 
-      var allIngredients = IngredientService.getAll();
+      $scope.allIngredients = IngredientService.getAll();
 
       $("#edit-recipe-form")
         .form({
@@ -45,7 +45,7 @@ angular.module('app')
         var ingredients = $scope.recipe.ingredients.forEach(function(i){
           ingMap[i.name] = true;
         });
-        $scope.ingredients = allIngredients.filter(function(i){
+        $scope.availIngredients = $scope.allIngredients.filter(function(i){
           // If its in the recipe ingredients already, false
           return !ingMap[i.name];
         });
@@ -66,67 +66,20 @@ angular.module('app')
         return ingMap[name];
       }
 
-      // LOOK AWAY, jQUERY DISASTER AHEAD
-      // This is because semantic-ui dropdown doesn't have a nice way to
-      // deal with a default value that should always appear in the dropdown.
-      function dropdownAddCreateNew(value) {
-
-        // Disable the create new dropdown.
-        if (checkIngredientExists(value, allIngredients)){
-          $('#ingr-dropdown .button').addClass('disabled');
-        } else {
-          $('#ingr-dropdown .button').removeClass('disabled');
-        }
-
-        var text = "Create New";
-
-        if (value && value.length > 0){
-          text += " '" + value + "'";
-        }
-
-        if ($('#ingr-dropdown .button').length > 0) {
-          $('#ingr-dropdown .button').text(text);
-          return;
-        }
-
-        var $createNew = $("<div class='ui fluid purple button'>"+ text +"</div>");
-        $createNew.click(function(e){
-          var val = $('#ingr-dropdown input.search').val();
-          $('.ui.modal.new-ingredient')
-            .modal('setting', 'closable', false)
-            .modal('show');
-        });
-
-        $('#ingr-dropdown .menu').append($createNew);
-      }
-
-      $('#ingr-dropdown').dropdown({
-        duration: 0,
-        onChange: function(value, text, choice) {
-          $scope.newIngredient.name = value;
-        },
-      });
-
-      $('#ingr-dropdown input.search').on('keyup', function(e){
-        var value = e.target.value;
-        $scope.newIngredient.name = value;
-        dropdownAddCreateNew(value);
-      });
-
-      // Initialize the create new button
-      dropdownAddCreateNew();
+      $scope.createNewIngredient = function(name) {
+        $('.ui.modal.new-ingredient')
+          .modal('setting', 'closable', false)
+          .modal('show');
+        $scope.newIngName = name;
+      };
 
       $scope.onCreateNewIngredient = function(ingredient) {
         IngredientService.add(ingredient);
-        allIngredients = IngredientService.getAll();
+        $scope.allIngredients = IngredientService.getAll();
         filterIngredients();
 
         $scope.newIngredient.name = ingredient.name;
-        $('#ingr-dropdown input.search').val(ingredient.name);
-        $('#ingr-dropdown .default.text').hide();
       };
-
-      // END DISASTER
 
       $scope.deleteIngredient = function (index) {
         $scope.recipe.ingredients.splice(index, 1);
@@ -136,13 +89,12 @@ angular.module('app')
         // TODO: Validation
 
         // Check that ingredient exists
-        if (!checkIngredientExists($scope.newIngredient.name, allIngredients)) {
+        if (!checkIngredientExists($scope.newIngredient.name, $scope.allIngredients)) {
           return;
         }
 
         $scope.recipe.ingredients.push($.extend(true, {}, $scope.newIngredient));
         $scope.newIngredient = {};
-        $('#ingr-dropdown').dropdown('clear');
       };
 
       $scope.checkIngredientInDescription = function(){
@@ -204,7 +156,7 @@ angular.module('app')
           return;
         }
 
-        $("#edit-recipe-form").form("validate form")
+        $("#edit-recipe-form").form("validate form");
 
         if (!$("#edit-recipe-form").form("is valid")){
           return;

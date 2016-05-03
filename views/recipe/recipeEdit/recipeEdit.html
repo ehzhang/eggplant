@@ -27,7 +27,7 @@
         <div class="four wide field">
             <div class="ui fluid card">
                 <div class="ui medium fluid image">
-                    <img id="preview-img" ng-src="{{recipe.imageUrl}}" 
+                    <img id="preview-img" ng-src="{{recipe.imageUrl}}"
                     >
                 </div>
                 <div id="upload-img" class="ui bottom attached button"
@@ -79,12 +79,13 @@
     <div class="small ui header">
         Add Ingredient to Recipe
     </div>
-    <div class="ui form" id="add-ingr-form">
+    <div id="add-ingr-form">
         <div class="inline fields">
             <div class="three wide field">
                 <input
                     ng-model="newIngredient.amount"
                     type="number"
+                    placeholder="0"
                     name="amount" min=0>
             </div>
 
@@ -93,6 +94,7 @@
                     ng-model="newIngredient.units"
                     name="units"
                     class="ui dropdown">
+                    <option value="">Unit</option>
                     <option value="tsp">tsp</option>
                     <option value="tbsp">tbsp</option>
                     <option value="cup">cup</option>
@@ -101,33 +103,31 @@
             </div>
 
             <div class="seven wide field">
-                <!-- This component is a piece of garbage to work with. sigh. -->
-                <div class="ui fluid search selection dropdown" id="ingr-dropdown">
-                    <input
-                        type="hidden"
-                        name="name">
-                    <i class="dropdown icon"></i>
-                    <div class="default text">Select Ingredient</div>
-                    <div class="menu">
-                        <div class="item" ng-repeat="ingr in ingredients" data-value="{{ingr.name}}">{{ingr.name}}</div>
-                   </div>
-                </div>
-                <script>
-                    // hack it
-                    $('#ingr-dropdown').dropdown();
-                </script>
+                <autocomplete-sui-create
+                    placeholder="Ingredient"
+                    selected=newIngredient.name
+                    all-options=allIngredients
+                    avail-options=availIngredients
+                    on-click-create="createNewIngredient(name)"
+                    ></autocomplete-sui-create>
             </div>
+
             <div class="two wide field">
                 <!-- {{!-- TODO: margin on this button idk how to align this lol--}} -->
                 <div
                     id="add-ingr-btn"
                     ng-click="addNewIngredient()"
-                    class="ui fluid submit positive button">
+                    class="ui fluid positive button">
                     Add
                 </div>
             </div>
 
 
+        </div>
+        <div
+            class="ui error message">
+            <!-- {{errorIngredientMessage}} -->
+            That ingredient is already in the list!
         </div>
     </div>
 
@@ -161,7 +161,7 @@
                         <li><b>**bold**</b></li>
                         <li><i>*italics*</i></li>
                         </ul>
-                        <p>Click <a href="https://daringfireball.net/projects/markdown/">here</a> to learn more about Markdown! 
+                        <p>Click <a href="https://daringfireball.net/projects/markdown/">here</a> to learn more about Markdown!
                     </div>
                 </div>
             </div>
@@ -187,11 +187,7 @@
 
 
     <div class="ui divider"></div>
-    <div class="ui negative message" ng-show="isIdentical">
-        <div class="header">You haven't made any changes to your recipe!</div>
-        <p>If you don't want to make any changes, click Cancel.</p>
-    </div>
-    <div class="ui error message"></div>
+
     <div class="right aligned field">
         <div
             id="cancel-recipe-btn"
@@ -202,10 +198,12 @@
             class="ui purple large submit button"
             ng-click="save()">Update Recipe</div>
     </div>
+    <div class="ui error message"></div>
+
     <br>
     <br>
     <br>
 
 </div>
 
-<ingredient-form info="newIngredient" on-save="onCreateNewIngredient"></ingredient-form>
+<ingredient-form name="newIngName" on-save="onCreateNewIngredient"></ingredient-form>

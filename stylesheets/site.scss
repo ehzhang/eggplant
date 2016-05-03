@@ -10,11 +10,12 @@ $header-font-stack: 'Futura', 'Helvetica Neue', sans-serif;
 $body-font-stack: 'Avenir Next', 'Avenir', 'Helvetica Neue', sans-serif;
 
 body,
-html {
+html,
+input {
   margin: 0;
   padding: 0;
 
-  font-family: $body-font-stack;
+  font-family: $body-font-stack !important;
 
   font-size: .95em;
 }
