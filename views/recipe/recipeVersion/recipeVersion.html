@@ -1,14 +1,25 @@
+<style>
+    .version-header {
+        display: none;
+    }
+</style>
+
 <div>
     <br>
     <h3 style="display: inline">
-        Currently Viewing Version:
+        Currently viewing Version
         <strong class="brand">{{version.snapshot.latestVersion}}</strong>
     </h3>
     <br>
     <!-- TODO: @ehzhang make prettier -->
-    <span>Last Updated {{ UTIL.fromNow(recipe.lastUpdated) }}</span>
+    <span
+        style="line-height: 3em">
+        Last Updated {{ UTIL.fromNow(recipe.lastUpdated) }}
+    </span>
     <br>
-    <span class="version-message">
+    <span
+        style="font-style: italic"
+        class="version-message">
         {{version.snapshot.changeSummary}}
     </span>
 </div>
