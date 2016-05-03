@@ -159,6 +159,38 @@ angular.module('app')
         }
       };
 
+      function arraysEqual(a, b) {
+        if (a === b) return true;
+        if (a.length != b.length) return false;
+
+        for (var i = 0; i < a.length; i++){
+          if (a[i] != b[i] && !isIdentical(a[i], b[i])) {
+            return false;
+          }
+        }
+        return true;
+      }
+
+      function isIdentical(a, b, ignoredProperties) {
+        var keys = Object.getOwnPropertyNames(a);
+        for (var i = 0; i < keys.length; i++){
+          var key = keys[i];
+          if (ignoredProperties && ignoredProperties.indexOf(key) != -1) {
+            continue;
+          }
+          if (a[key] != b[key]){
+            if (a[key] instanceof Array){
+              if (!arraysEqual(a[key], b[key])) {
+                return false;
+              }
+            } else {
+              return false;
+            }
+          }
+        }
+        return true;
+      }
+
       $scope.save = function() {
         $("#edit-recipe-form").form("validate form")
 
@@ -166,7 +198,16 @@ angular.module('app')
           return;
         }
 
-        var newVersionIndex = VersionService.getLatestVersionForRecipe($scope.recipe.id).index + 1;
+        var mostRecentVersion = VersionService.getLatestVersionForRecipe($scope.recipe.id);
+
+        // check that things have actually changed
+        if (isIdentical($scope.recipe, mostRecentVersion.snapshot, ["changeSummary"])) {
+          // TODO: make some sort of UI feedback
+          alert("Yo you didn't even make any changes")
+          return
+        }
+
+        var newVersionIndex = mostRecentVersion.index + 1;
 
         // this only increments the version number by 1
         $scope.recipe.latestVersion = $scope.recipe.latestVersion + 1;
