@@ -118,26 +118,25 @@ angular.module('app')
         var numberIngredients = $scope.ingredients.length;
         var errors = [];
         for (var i = 0 ; i < numberIngredients; i++) {
-          ingredient = $scope.ingredients[i].name
+          ingredient = $scope.ingredients[i].name;
           if ($scope.recipe.instructions.toLowerCase().indexOf(ingredient) == -1){
             errors.push(ingredient);
           }
         }
         if (errors.lenght > 0){
-          console.log("The following ingredients are not in the instructions: " + errors.join(", "))
-          return false
+          // console.log("The following ingredients are not in the instructions: " + errors.join(", "))
+          return false;
         }
-      }
-
-
-
+      };
 
       $scope.save = function() {
         // TODO: Validation
         var newVersionIndex = VersionService.getLatestVersionForRecipe($scope.recipe.id).index + 1;
 
         // this only increments the version number by 1
-        $scope.recipe.latestVersion = (parseFloat($scope.recipe.latestVersion) + 1).toFixed(1);
+        $scope.recipe.latestVersion = $scope.recipe.latestVersion + 1;
+
+        $scope.recipe.lastUpdated = new Date();
 
         VersionService.add({
           recipeId: $scope.recipe.id,
@@ -172,7 +171,6 @@ angular.module('app')
             $("#preview-img").attr("src", imageUrl);
           }
 
-        })
-
+        });
 
     });

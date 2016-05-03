@@ -1,5 +1,12 @@
-<div class>
-    <h3 style="display: inline">Currently Viewing Version: <strong class="brand">{{version.snapshot.latestVersion}}</strong></h3>
+<div>
+    <br>
+    <h3 style="display: inline">
+        Currently Viewing Version:
+        <strong class="brand">{{version.snapshot.latestVersion}}</strong>
+    </h3>
+    <br>
+    <!-- TODO: @ehzhang make prettier -->
+    <span>Last Updated {{ UTIL.fromNow(recipe.lastUpdated) }}</span>
     <br>
     <span class="version-message">
         {{version.snapshot.changeSummary}}
@@ -39,6 +46,7 @@
                         <i class="minus icon removed small" ng-show="i.status == 'removed'"></i>
                         <span ng-show="i.status == 'changed'" style="text-decoration:line-through">
                             {{i.prev.amount}} {{i.prev.units}} {{i.prev.name}}
+                            <br>
                         </span>
                         <span ng-class="{removed:'removed', added:'added', changed:'changed' ,'':'default'}[i.status]">
                             {{i.ingredient.amount}} {{i.ingredient.units}} {{i.ingredient.name}}
