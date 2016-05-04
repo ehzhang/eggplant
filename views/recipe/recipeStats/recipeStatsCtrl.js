@@ -141,7 +141,6 @@ angular.module('app')
                         borderColor: 'rgba(155, 89, 182, .3)',
                         pointBorderColor: 'rgba(155, 89, 182, .3)',
                         pointBackgroundColor: 'rgba(155, 89, 182, .3)',
-                        borderDash: [10,5],
                     }
                 ]
             };
