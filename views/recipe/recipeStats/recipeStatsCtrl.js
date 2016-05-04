@@ -2,7 +2,7 @@ angular.module('app')
   .controller('RecipeStatsCtrl',
     function($scope, $state, VersionService) {
         Chart.defaults.global.defaultFontFamily = 'Avenir Next';
-
+        Chart.defaults.global.legend.display = false;
 
         if ($('#ingr-dropdown .button').length > 0) {
           $('#ingr-dropdown .button').text(text);
@@ -68,7 +68,7 @@ angular.module('app')
         $scope.diffs = $scope.versions.map(getDiff);
 
         var salesData = [];
-        versionData = [];
+        var versionData = [];
 
         for (var i = 0; i < $scope.versions.length; i++) {
             var currentDate = new Date($scope.versions[i].snapshot.lastUpdated);
@@ -130,12 +130,14 @@ angular.module('app')
                     {
                         label: "Versions",
                         data: filteredVersionData,
-                        borderColor: 'rgba(155, 89, 182, .9)',
-                        pointBorderColor: 'rgba(155, 89, 182, 1)',
-                        pointBackgroundColor: 'rgba(155, 89, 182, 1)',
+                        backgroundColor: 'rgba(255,255,255,0)',
+                        borderColor: 'rgba(155, 89, 182, 0)',
+                        pointBorderColor: 'rgba(155, 89, 182, 0)',
+                        pointBackgroundColor: 'rgba(155, 89, 182, 0)',
                     }, {
                         label: "Sales",
                         data: filteredSalesData,
+                        backgroundColor: 'rgba(155, 89, 182,.05)',
                         borderColor: 'rgba(155, 89, 182, .3)',
                         pointBorderColor: 'rgba(155, 89, 182, .3)',
                         pointBackgroundColor: 'rgba(155, 89, 182, .3)',
@@ -146,7 +148,6 @@ angular.module('app')
 
             data.datasets.forEach(function(dataset) {
                 dataset.borderWidth = 6;
-                dataset.backgroundColor = 'rgba(155, 89, 182,.05)';
                 dataset.pointHoverRadius = 6;
                 dataset.radius = 6;
                 dataset.hitRadius = 20;
