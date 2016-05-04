@@ -33,8 +33,9 @@ angular.module('app')
         var versions = VersionService.getAllForRecipe($scope.recipe.id);
 
         $scope.versions = versions.sort(function(a, b){
-            return a.snapshot.lastUpdated - b.snapshot.lastUpdated;
+            return a.snapshot.latestVersion - b.snapshot.latestVersion;
         });
+
         var minDate = $scope.versions[0].snapshot.lastUpdated;
         var maxDate = new Date();
         maxDate.setHours(0);
