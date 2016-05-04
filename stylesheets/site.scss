@@ -210,6 +210,7 @@ strong.brand {
 
 .stats.popup {
   overflow:auto;
+  min-width: 300px;
   .recipe-name,
   .recipe-version {
     display: inline;
