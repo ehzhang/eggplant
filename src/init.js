@@ -31,7 +31,7 @@ angular.module('app')
             amount: 0.5,
             units: "tbsp",
         }],
-        instructions: "1. Slice Eggplant \n2. Dip eggplant in egg and then dip in panko breadcrumbs \n3. Fry in oil about 5 minutes until golden brown \n4. Put in hoagie roll.",
+        instructions: "<p>1. Slice Eggplant</p><p>2. Dip eggplant in egg and then dip in panko breadcrumbs</p><p>3. Fry in oil about 5 minutes until golden brown</p><p>4. Put in hoagie roll.</p>",
       },
       {
         id: "1",
@@ -62,7 +62,8 @@ angular.module('app')
             amount: 0.5,
             units: "tbsp",
         }],
-        instructions: "1. Slice the Eggplant \n2. Marinate Eggplant in secret sauce **30 minutes!** \n3. Cook Quinoa \n4. Toss Eggplant, mixed greens, and quinoa",
+        instructions: "<p>1. Slice the Eggplant </p><p>2. Marinate Eggplant in secret sauce<b> 30 minutes!</b></p><p>3. Cook Quinoa </p><p>4. Toss Eggplant, mixed greens, and quinoa.</p>",
+
       },
       {
         id: "2",
@@ -93,7 +94,7 @@ angular.module('app')
             amount: 0.5,
             units: "tbsp",
         }],
-        instructions: "1. Slice the Eggplant \n2. Marinate Eggplant in secret sauce **30 minutes!** \n3. Cook Quinoa \n4. Toss Eggplant, mixed greens, and quinoa",
+        instructions: "<p>1. Slice the Eggplant </p><p>2. Marinate Eggplant in secret sauce<b> 30 minutes!</b></p><p>3. Cook Quinoa </p><p>4. Toss Eggplant, mixed greens, and quinoa.</p>",
 
       },
       {
@@ -125,7 +126,7 @@ angular.module('app')
             amount: 0.5,
             units: "tbsp",
         }],
-        instructions: "1. Slice the Eggplant \n2. Marinate Eggplant in secret sauce **30 minutes!** \n3. Cook Quinoa \n4. Toss Eggplant, mixed greens, and quinoa",
+        instructions: "<p>1. Slice the Eggplant </p><p>2. Marinate Eggplant in secret sauce<b> 30 minutes!</b></p><p>3. Cook Quinoa </p><p>4. Toss Eggplant, mixed greens, and quinoa.</p>",
 
       },
       {
@@ -157,7 +158,7 @@ angular.module('app')
             amount: 0.5,
             units: "tbsp",
         }],
-        instructions: "1. Slice the Eggplant \n2. Marinate Eggplant in secret sauce **30 minutes!** \n3. Cook Quinoa \n4. Toss Eggplant, mixed greens, and quinoa",
+        instructions: "<p>1. Slice the Eggplant </p><p>2. Marinate Eggplant in secret sauce<b> 30 minutes!</b></p><p>3. Cook Quinoa </p><p>4. Toss Eggplant, mixed greens, and quinoa.</p>",
 
       },
     ];
@@ -228,7 +229,7 @@ angular.module('app')
                 amount: 0.5,
                 units: "tbsp",
             }],
-            instructions: "1. Slice the Eggplant \n2. Marinate Eggplant in secret sauce **30 minutes!** \n3. Cook Quinoa \n4. Toss Eggplant, mixed greens, and quinoa",
+            instructions: "<p>1. Slice the Eggplant </p><p>2. Marinate Eggplant in secret sauce<b> 30 minutes!</b></p><p>3. Cook Quinoa </p><p>4. Toss Eggplant, mixed greens, and quinoa.</p>",
           },
     }, {
         recipeId: "2",
@@ -258,7 +259,7 @@ angular.module('app')
                 amount: 1,
                 units: "tsp"
             }],
-            instructions: "1. Slice the Eggplant \n2. Marinate Eggplant in secret sauce **30 minutes!** \n3. Cook Quinoa \n4. Toss Eggplant, mixed greens, and quinoa",
+            instructions: "<p>1. Slice the Eggplant</p><p>2. Cook Quinoa</p><p>3. Toss Eggplant, mixed greens, and quinoa</p>",
         }
     }, {
         recipeId: "2",
@@ -292,7 +293,7 @@ angular.module('app')
                 amount: 0.25,
                 units: "tbsp",
             }],
-            instructions: "1. Slice the Eggplant \n2. Marinate Eggplant in secret sauce **30 minutes!** \n3. Cook Quinoa \n4. Toss Eggplant, mixed greens, and quinoa",
+            instructions: "<p>1. Slice the Eggplant </p><p>2. Marinate Eggplant in secret sauce<b> 30 minutes!</b></p><p>3. Cook Quinoa </p><p>4. Toss Eggplant, mixed greens, and quinoa.</p>",
         }
     }, {
         recipeId: "2",
@@ -326,7 +327,7 @@ angular.module('app')
                 amount: 0.5,
                 units: "tbsp",
             }],
-            instructions: "1. Slice the Eggplant \n2. Marinate Eggplant in secret sauce **30 minutes!** \n3. Cook Quinoa \n4. Toss Eggplant, mixed greens, and quinoa",
+            instructions: "<p>1. Slice the Eggplant </p><p>2. Marinate Eggplant in secret sauce<b> 30 minutes!</b></p><p>3. Cook Quinoa </p><p>4. Toss Eggplant, mixed greens, and quinoa.</p>",
         }
     }, {
         recipeId: "3",
@@ -360,7 +361,7 @@ angular.module('app')
                 amount: 0.5,
                 units: "tbsp",
             }],
-            instructions: "1. Slice the Eggplant \n2. Marinate Eggplant in secret sauce **30 minutes!** \n3. Cook Quinoa \n4. Toss Eggplant, mixed greens, and quinoa",
+            instructions: "<p>1. Slice the Eggplant </p><p>2. Marinate Eggplant in secret sauce<b> 30 minutes!</b></p><p>3. Cook Quinoa </p><p>4. Toss Eggplant, mixed greens, and quinoa.</p>",
           },
     }, {
         recipeId: "4",
@@ -394,16 +395,10 @@ angular.module('app')
                 amount: 0.5,
                 units: "tbsp",
             }],
-            instructions: "1. Slice the Eggplant \n2. Marinate Eggplant in secret sauce **30 minutes!** \n3. Cook Quinoa \n4. Toss Eggplant, mixed greens, and quinoa",
+            instructions: "<p>1. Slice the Eggplant </p><p>2. Marinate Eggplant in secret sauce<b> 30 minutes!</b></p><p>3. Cook Quinoa </p><p>4. Toss Eggplant, mixed greens, and quinoa.</p>",
 
           },
     }];
-
-    if (RecipeService.getAll().length === 0) {
-      recipes.forEach(function(r) {
-        RecipeService.add(r);
-      });
-    }
 
     var ingredients = [{
         id: "0",
@@ -429,15 +424,31 @@ angular.module('app')
         allergens: "vegetables"
     }];
 
-    if (IngredientService.getAll().length === 0) {
+    function resetCache() {
+        localStorage.clear();
+        recipes.forEach(function(r) {
+            RecipeService.add(r);
+        });
+
         ingredients.forEach(function(i){
             IngredientService.add(i);
         });
-    }
 
-    if (VersionService.getAll().length === 0) {
         versions.forEach(function(i){
             VersionService.add(i);
         });
     }
+
+    // Increment when wanting to force a client change
+    var VERSION = 1;
+    var MDB_V = 'mdb_v';
+
+    var v = localStorage.getItem(MDB_V);
+
+    if (!v || v < VERSION) {
+        resetCache();
+    }
+
+    localStorage.setItem(MDB_V, VERSION);
+
   });

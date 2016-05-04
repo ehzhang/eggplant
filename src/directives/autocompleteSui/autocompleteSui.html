@@ -1,0 +1,63 @@
+<div class="autocomplete-sui">
+
+  <!-- lol this shouldn't really be here -->
+  <style>
+    .autocomplete-sui {
+      position: relative;
+      width: 100%;
+    }
+
+    .autocomplete-sui > input ~ .menu {
+      max-width: 100%;
+      opacity: 0;
+      position: absolute;
+      z-index: -99;
+      transition-duration: .3s;
+      margin-top: 3rem;
+    }
+
+    .autocomplete-sui > input.focused ~ .menu {
+      z-index: 99;
+      display: block !important;
+      opacity: 1;
+      margin-top: 1rem;
+    }
+
+  </style>
+
+  <input
+    class="ui fluid input"
+    type="text"
+    autocomplete="off"
+    placeholder="{{placeholder}}"
+    ng-class="focused ? 'focused' : ''"
+    ng-click="focused = true"
+    ng-keyup="$event.keyCode == 13 && enter()"
+    ng-model="selected">
+  <div
+    class="ui vertical fluid scrolling menu">
+    <a
+      class="item"
+      ng-click=setSelected(opt.name)
+      ng-repeat="opt in availOptions | filter:selected">
+      {{opt.name}}
+    </a>
+
+    <div
+      ng-show="error"
+      class="item">
+      {{error}}
+    </div>
+
+    <div class="item">
+      <div
+        class="ui purple fluid button"
+        ng-class="optionExists ? 'disabled' : ''"
+        ng-click=create()
+        >
+        Create New {{"'" + selected +"'"}}
+      </div>
+    </div>
+  </div>
+
+</div>

@@ -14,8 +14,7 @@ html {
   margin: 0;
   padding: 0;
 
-  font-family: $body-font-stack;
-
+  font-family: $body-font-stack !important;
   font-size: .95em;
 }
 
@@ -24,6 +23,10 @@ h1, h2, h3, h4, h5,
 .ui.header,
 .ui.button {
   font-family: $header-font-stack !important;
+}
+
+input {
+  font-family: $body-font-stack !important;
 }
 
 .ui.divider {
@@ -63,6 +66,7 @@ strong.brand {
 #recipe-header {
   cursor: pointer;
   font-size: 3.5em;
+  margin-top: .5em;
 }
 
 .version-header {
@@ -148,11 +152,26 @@ strong.brand {
 }
 
 #edit-recipe-form {
-  #ingr-dropdown {
-    width: 100%;
-    .button {
-      border-radius: 0px;
-      word-wrap: break-word;
+  #instructions-edit {
+
+    .form-control {
+      border: 1px solid rgba(0,0,0,.15);
+      border-radius: 6px;
+      box-shadow: none;
+    }
+
+    .ui.buttons {
+      margin-right: 8px;
+      margin-bottom: 12px;
+    }
+
+
+    & + #instructions-tip {
+      opacity: 0;
+      transition-duration: .5s;
+    }
+    &:focus + #instructions-tip {
+      opacity: 1;
     }
   }
 }
@@ -188,14 +207,15 @@ strong.brand {
   cursor: pointer;
 }
 
-.removed {
-  color: $red;
+.removed, .removed * {
+  color: $red !important;
 }
 
-.added {
-  color: $green;
+.added, .added * {
+  color: $green !important;
 }
 
-.changed {
-  color: $yellow;
+.changed, .changed * {
+  color: $yellow !important;
 }
+

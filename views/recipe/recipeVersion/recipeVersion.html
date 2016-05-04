@@ -1,14 +1,25 @@
+<style>
+    .version-header {
+        display: none;
+    }
+</style>
+
 <div>
     <br>
     <h3 style="display: inline">
-        Currently Viewing Version:
+        Currently viewing Version
         <strong class="brand">{{version.snapshot.latestVersion}}</strong>
     </h3>
     <br>
     <!-- TODO: @ehzhang make prettier -->
-    <span>Last Updated {{ UTIL.fromNow(recipe.lastUpdated) }}</span>
+    <span
+        style="line-height: 3em">
+        Last Updated {{ UTIL.fromNow(recipe.lastUpdated) }}
+    </span>
     <br>
-    <span class="version-message">
+    <span
+        style="font-style: italic"
+        class="version-message">
         {{version.snapshot.changeSummary}}
     </span>
 </div>
@@ -63,7 +74,18 @@
         <div class="twelve wide column">
             <h3>Instructions</h3>
             <div
-                ng-bind-html=UTIL.markdownToHTML(version.snapshot.instructions)
+                ng-show="showDiff"
+                class="instructions-diffed">
+                <span
+                    ng-repeat="t in diff.instrDiff"
+                    ng-class="t.removed ? 'removed' : t.added ? 'added': ''"
+                    ng-bind-html="t.value"
+                >
+                </span>
+            </div>
+            <div
+                ng-show="!showDiff"
+                ng-bind-html=version.snapshot.instructions
                 class="instructions">
             </div>
         </div>

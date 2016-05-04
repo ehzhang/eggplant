@@ -1,33 +1,90 @@
-<h1>
+<p>
+<h1 class="ui header">
  History for {{recipe.name}}
 </h1>
+</p>
+
+<div class="ui divider"></div>
+
 <div
     ng-repeat="version in versions "
-    class="ui recipe segment"
-    ng-click="selectVersion(version._id)">
+    style="cursor: auto"
+    class="ui recipe basic segment">
     <div class="ui grid">
         <div class="three wide column">
             <img
                 ng-src="{{version.snapshot.imageUrl}}"
-                class="ui large image">
+                ng-click="selectVersion(version._id)"
+                class="ui large image clickable">
         </div>
 
         <div class="thirteen wide column">
             <div class="content">
-                <h3 class="recipe-name">{{version.snapshot.name}}</h3>
-                v<div class="recipe-version">{{version.snapshot.latestVersion}}</div>
+
+                <style>
+                    .lel {
+                        transition-duration: .3s;
+                    }
+                    .lel:hover {
+                        opacity: .7;
+                    }
+                </style>
+                <span
+                    class="lel clickable"
+                    ng-click="selectVersion(version._id)">
+                    <h3 class="recipe-name">{{version.snapshot.name}}</h3>
+                    v<div class="recipe-version">{{version.snapshot.latestVersion}}</div>
+                </span>
 
                 <div class="recipe-last-updated">
                     Last updated {{ UTIL.fromNow(version.snapshot.lastUpdated) }}
                 </div>
 
-                <div class="ui divider"></div>
+                <br>
+                <br>
 
                 <p class="recipe-change-summary">
                 {{version.snapshot.changeSummary}}
                 </p>
+
+                <div
+                    ng-show="diffs[$index]"
+                    class="ui divider"></div>
+
+                <p ng-repeat="i in diffs[$index].ingredients">
+                    <span ng-show="i.status">
+                        <i
+                            class="plus icon added small"
+                            ng-show="i.status == 'added'"></i>
+                        <i
+                            class="minus icon removed small"
+                            ng-show="i.status == 'removed'"></i>
+                        <span
+                            ng-show="i.status == 'changed'"
+                            style="text-decoration:line-through">
+                            {{i.prev.amount}} {{i.prev.units}} {{i.prev.name}}
+                            <br>
+                        </span>
+                        <span
+                            ng-class="{removed:'removed', added:'added', changed:'changed' ,'':'default'}[i.status]">
+                            {{i.ingredient.amount}} {{i.ingredient.units}} {{i.ingredient.name}}
+                        </span>
+                    </span>
+                </p>
+
+
+                <p
+                    ng-show="diffs[$index].descDiff.length > 1">
+                    Description has been modified.
+                </p>
+
+                <p
+                    ng-show="diffs[$index].instrDiff.length > 1">
+                    Instructions have been modified.
+                </p>
+
             </div>
         </div>
-
     </div>
+    <div class="ui divider"></div>
 </div>

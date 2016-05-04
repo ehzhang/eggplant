@@ -5,135 +5,14 @@ angular.module('app')
       // Looks pretty fucky, I know.
       $scope.recipe = $.extend(true, {}, $scope.recipe);
       $scope.recipe.changeSummary = "";
+      $scope.isValidForm = false;
+      $scope.isIdentical = false;
 
-      var allIngredients = IngredientService.getAll();
+      $scope.allIngredients = IngredientService.getAll();
 
-      // Filter the ingredients selections to those not already in the recipe.
-      function filterIngredients(){
-        var ingMap = {};
-        var ingredients = $scope.recipe.ingredients.forEach(function(i){
-          ingMap[i.name] = true;
-        });
-        $scope.ingredients = allIngredients.filter(function(i){
-          // If its in the recipe ingredients already, false
-          return !ingMap[i.name];
-        });
-      }
-
-      $scope.$watch('recipe.ingredients', function(val){
-        filterIngredients();
-      }, true);
-
-      $scope.newIngredient = {};
-
-      function checkIngredientExists(name, ingredients) {
-        // If the ingredient already exists,
-        var ingMap = {};
-        ingredients.forEach(function(i){
-          ingMap[i.name] = true;
-        });
-        return ingMap[name];
-      }
-
-      // LOOK AWAY, jQUERY DISASTER AHEAD
-      // This is because semantic-ui dropdown doesn't have a nice way to
-      // deal with a default value that should always appear in the dropdown.
-      function dropdownAddCreateNew(value) {
-
-        // Disable the create new dropdown.
-        if (checkIngredientExists(value, allIngredients)){
-          $('#ingr-dropdown .button').addClass('disabled');
-        } else {
-          $('#ingr-dropdown .button').removeClass('disabled');
-        }
-
-        var text = "Create New";
-
-        if (value && value.length > 0){
-          text += " '" + value + "'";
-        }
-
-        if ($('#ingr-dropdown .button').length > 0) {
-          $('#ingr-dropdown .button').text(text);
-          return;
-        }
-
-        var $createNew = $("<div class='ui fluid purple button'>"+ text +"</div>");
-        $createNew.click(function(e){
-          var val = $('#ingr-dropdown input.search').val();
-          $('.ui.modal.new-ingredient')
-            .modal('setting', 'closable', false)
-            .modal('show');
-        });
-
-        $('#ingr-dropdown .menu').append($createNew);
-      }
-
-      $('#ingr-dropdown').dropdown({
-        duration: 0,
-        onChange: function(value, text, choice) {
-          $scope.newIngredient.name = value;
-        },
-      });
-
-      $('#ingr-dropdown input.search').on('keyup', function(e){
-        var value = e.target.value;
-        $scope.newIngredient.name = value;
-        dropdownAddCreateNew(value);
-      });
-
-      // Initialize the create new button
-      dropdownAddCreateNew();
-
-      $scope.onCreateNewIngredient = function(ingredient) {
-        IngredientService.add(ingredient);
-        allIngredients = IngredientService.getAll();
-        filterIngredients();
-
-        $scope.newIngredient.name = ingredient.name;
-        $('#ingr-dropdown input.search').val(ingredient.name);
-        $('#ingr-dropdown .default.text').hide();
-      };
-
-      // END DISASTER
-
-      $scope.deleteIngredient = function (index) {
-        $scope.recipe.ingredients.splice(index, 1);
-      };
-
-      $scope.addNewIngredient = function() {
-        // TODO: Validation
-
-        // Check that ingredient exists
-        if (!checkIngredientExists($scope.newIngredient.name, allIngredients)) {
-          return;
-        }
-
-        $scope.recipe.ingredients.push($.extend(true, {}, $scope.newIngredient));
-        $scope.newIngredient = {};
-        $('#ingr-dropdown').dropdown('clear');
-      };
-
-      $scope.checkIngredientInDescription = function(){
-        var numberIngredients = $scope.ingredients.length;
-        var errors = [];
-        for (var i = 0 ; i < numberIngredients; i++) {
-          ingredient = $scope.ingredients[i].name;
-          if ($scope.recipe.instructions.toLowerCase().indexOf(ingredient) == -1){
-            errors.push(ingredient);
-          }
-        }
-        if (errors.lenght > 0){
-          // console.log("The following ingredients are not in the instructions: " + errors.join(", "))
-          return false;
-        }
-      };
-
-      function validateAndSaveRecipe() {
-        $("#edit-recipe-form")
-          .form({
-          onSuccess: saveRecipe,
-          on: "blur",
+      function initForm() {
+        var formSettings = {
+            keyboardShortcuts: false,
             fields: {
               description: {
                 identifier: 'description',
@@ -159,11 +38,163 @@ angular.module('app')
                 }]
               },
             }
-          });
+          };
+        $scope.recipe.ingredients.forEach(function(i){
+          formSettings.fields['amount-'+i.name] = {
+            identifier: 'amount-'+i.name,
+            rules: [{
+              type: "not[0]", // kind of hack
+              prompt: 'Please set a non-zero amount for ' + i.name
+            },{
+              type: "minLength[1]", // kind of hack
+              prompt: 'Please set a non-zero amount for ' + i.name
+            }
+            ]
+          };
+          formSettings.fields['units-'+i.name] = {
+            identifier: 'units-'+i.name,
+            rules: [{
+              type: 'minLength[1]',
+              prompt: 'Please select a unit for ' + i.name
+            },{
+              type: "empty", // kind of hack
+              prompt: 'Please set a non-zero amount for ' + i.name
+            }]
+          };
+        });
+        $('#edit-recipe-form').form(formSettings);
       }
 
-      function saveRecipe() {
-        var newVersionIndex = VersionService.getLatestVersionForRecipe($scope.recipe.id).index + 1;
+      // Filter the ingredients selections to those not already in the recipe.
+      function filterIngredients(){
+        var ingMap = {};
+        var ingredients = $scope.recipe.ingredients.forEach(function(i){
+          ingMap[i.name] = true;
+        });
+        $scope.availIngredients = $scope.allIngredients.filter(function(i){
+          // If its in the recipe ingredients already, false
+          return !ingMap[i.name];
+        });
+      }
+
+      $scope.$watch('recipe.ingredients', function(val){
+        filterIngredients();
+      }, true);
+
+      $scope.newIngredient = {};
+
+      function checkIngredientExists(name, ingredients) {
+        // If the ingredient already exists,
+        var ingMap = {};
+        ingredients.forEach(function(i){
+          ingMap[i.name] = true;
+        });
+        return ingMap[name];
+      }
+
+      $scope.createNewIngredient = function(name) {
+        $('.ui.modal.new-ingredient')
+          .modal('setting', 'closable', false)
+          .modal('show');
+        $scope.newIngName = name;
+      };
+
+      $scope.onCreateNewIngredient = function(ingredient) {
+        IngredientService.add(ingredient);
+        $scope.allIngredients = IngredientService.getAll();
+        filterIngredients();
+
+        $scope.newIngredient.name = ingredient.name;
+      };
+
+      $scope.deleteIngredient = function (index) {
+        $scope.recipe.ingredients.splice(index, 1);
+      };
+
+      $scope.addNewIngredient = function() {
+        // TODO: Validation
+
+        if (checkIngredientExists($scope.newIngredient.name, $scope.recipe.ingredients)) {
+          return;
+        }
+
+        // Check that ingredient exists
+        if (!checkIngredientExists($scope.newIngredient.name, $scope.allIngredients)) {
+          return;
+        }
+
+        $scope.recipe.ingredients.push($.extend(true, {}, $scope.newIngredient));
+        $scope.newIngredient = {};
+      };
+
+      $scope.checkIngredientInDescription = function(){
+        var numberIngredients = $scope.ingredients.length;
+        var errors = [];
+        for (var i = 0 ; i < numberIngredients; i++) {
+          ingredient = $scope.ingredients[i].name;
+          if ($scope.recipe.instructions.toLowerCase().indexOf(ingredient) == -1){
+            errors.push(ingredient);
+          }
+        }
+        if (errors.lenght > 0){
+          // console.log("The following ingredients are not in the instructions: " + errors.join(", "))
+          return false;
+        }
+      };
+
+      function arraysEqual(a, b) {
+        if (a === b) return true;
+        if (a.length != b.length) return false;
+
+        for (var i = 0; i < a.length; i++){
+          if (a[i] != b[i] && !isIdentical(a[i], b[i], ["$$hashKey"])) {
+            return false;
+          }
+        }
+        return true;
+      }
+
+      function isIdentical(a, b, ignoredProperties) {
+        var keys = Object.getOwnPropertyNames(a);
+        for (var i = 0; i < keys.length; i++){
+          var key = keys[i];
+          if (ignoredProperties && ignoredProperties.indexOf(key) != -1) {
+            continue;
+          }
+          if (a[key] != b[key]){
+            if (a[key] instanceof Array){
+              if (!arraysEqual(a[key], b[key])) {
+                return false;
+              }
+            } else {
+              return false;
+            }
+          }
+        }
+        return true;
+      }
+
+      $scope.save = function() {
+        initForm();
+
+        var mostRecentVersion = VersionService.getLatestVersionForRecipe($scope.recipe.id);
+
+        var ignoredProperties = ["changeSummary", "lastUpdated", "latestVersion", "_id"];
+        // check that things have actually changed
+
+        $scope.isIdentical = isIdentical($scope.recipe, mostRecentVersion.snapshot, ignoredProperties);
+
+        if ($scope.isIdentical) {
+          return;
+        }
+
+        $("#edit-recipe-form").form("validate form");
+
+        if (!$("#edit-recipe-form").form("is valid")){
+          return;
+        }
+
+        var newVersionIndex = mostRecentVersion.index + 1;
 
         // this only increments the version number by 1
         $scope.recipe.latestVersion = $scope.recipe.latestVersion + 1;
@@ -180,10 +211,6 @@ angular.module('app')
         $state.go('app.recipe', {}, {
           reload: true
         });
-      }
-
-      $scope.save = function() {
-        validateAndSaveRecipe();
       };
 
       $scope.cancel = function() {
