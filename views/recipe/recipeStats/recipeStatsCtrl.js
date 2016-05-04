@@ -43,16 +43,6 @@ angular.module('app')
         maxDate.setSeconds(0);
         maxDate.setMilliseconds(0);
 
-        $('#daterange').daterangepicker({
-            format: 'MM/DD/YY',
-            startDate: formatDate(minDate),
-            endDate: formatDate(maxDate),
-            minDate: formatDate(minDate),
-            maxDate: formatDate(maxDate),
-        }, function(start, end, label) {
-            drawChart(zeroDate(start), zeroDate(end));
-        });
-
 
         function getDiff(version) {
           if (version.index > 0) {
@@ -282,8 +272,23 @@ angular.module('app')
             });
     }
 
-        
-    drawChart(minDate, maxDate);
+    if ($scope.versions.length < 2) {
+        $("#daterange-container").hide();
+        $("#canvas-container").html("No sales data recorded yet.")
+    } else {
+
+        $('#daterange').daterangepicker({
+            format: 'MM/DD/YY',
+            startDate: formatDate(minDate),
+            endDate: formatDate(maxDate),
+            minDate: formatDate(minDate),
+            maxDate: formatDate(maxDate),
+        }, function(start, end, label) {
+            drawChart(zeroDate(start), zeroDate(end));
+        });
+
+        drawChart(minDate, maxDate);
+    }
 
 
     $scope.selectVersion = function(id) {
