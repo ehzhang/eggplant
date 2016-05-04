@@ -4,6 +4,24 @@ angular.module('app')
 
         Chart.defaults.global.defaultFontFamily = 'Avenir Next';
 
+        if ($('#ingr-dropdown .button').length > 0) {
+          $('#ingr-dropdown .button').text(text);
+          return;
+        }
+
+              $('#ingr-dropdown').dropdown({
+        duration: 0,
+        onChange: function(value, text, choice) {
+          $scope.newIngredient.name = value;
+        },
+        onNoResults: function(value) {
+          dropdownAddCreateNew(value);
+        }
+      });
+
+
+        Chart.defaults.global.defaultFontFamily = 'Lato';
+
         var randomScalingFactor = function() {
             return Math.round(Math.random() * 100);
         };
