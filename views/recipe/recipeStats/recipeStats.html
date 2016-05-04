@@ -22,7 +22,7 @@
         <canvas id="canvas"></canvas>
     </div>
     <div ng-repeat="version in versions">
-        <div id="{{'popup-' + version.index}}" class="ui stats flowing popup">
+        <div id="{{'popup-' + version.index}}" class="ui stats flowing popup" data-variation="wide">
             <h5 class="ui header recipe-name">
                 Version <div class="recipe-version">{{version.snapshot.latestVersion}}</div>
             </h5>
