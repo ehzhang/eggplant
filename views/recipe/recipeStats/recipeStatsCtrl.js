@@ -1,7 +1,6 @@
 angular.module('app')
   .controller('RecipeStatsCtrl',
-    function($scope, VersionService) {
-
+    function($scope, $state, VersionService) {
         Chart.defaults.global.defaultFontFamily = 'Avenir Next';
 
         if ($('#ingr-dropdown .button').length > 0) {
@@ -9,62 +8,95 @@ angular.module('app')
           return;
         }
 
-              $('#ingr-dropdown').dropdown({
-        duration: 0,
-        onChange: function(value, text, choice) {
-          $scope.newIngredient.name = value;
-        },
-        onNoResults: function(value) {
-          dropdownAddCreateNew(value);
-        }
-      });
-
-
-        Chart.defaults.global.defaultFontFamily = 'Lato';
+      // $('#ingr-dropdown').dropdown({
+      //   duration: 0,
+      //   onChange: function(value, text, choice) {
+      //     $scope.newIngredient.name = value;
+      //   },
+      //   onNoResults: function(value) {
+      //     dropdownAddCreateNew(value);
+      //   }
+      // });
 
         var randomScalingFactor = function() {
-            return Math.round(Math.random() * 100);
+            return 500 + Math.round(Math.random() * 100);
         };
 
         var versions = VersionService.getAllForRecipe($scope.recipe.id);
-
-        versions = versions
-                    .sort(function(a, b){
-                        return b.snapshot.lastUpdated - a.snapshot.lastUpdated;
-                    });
-
-        var pointData = versions.map(function(v){
-
-            // "round" the date to the nearest beginning of day.
-            // Otherwise, it plots at exact time, which can look a little wonky.
-            var d = new Date(v.snapshot.lastUpdated);
-            d.setHours(0);
-            d.setMinutes(0);
-            d.setSeconds(0);
-            d.setMilliseconds(0);
-
-            return {
-                // x: new Date(v.snapshot.lastUpdated), // <- wonky
-                x: d,
-                y: randomScalingFactor()
-            };
+        $scope.versions = versions.sort(function(a, b){
+            return a.snapshot.lastUpdated - b.snapshot.lastUpdated;
         });
 
-        // TODO: put the version data in here
+
+
+        function getDiff(version) {
+          if (version.index > 0) {
+            var prev = VersionService.find(function(v){
+              return v.recipeId == version.recipeId && v.index == version.index - 1;
+            })[0];
+            if (prev) {
+              return VersionService.getDiff(prev, version);
+            }
+          }
+        }
+
+        $scope.diffs = $scope.versions.map(getDiff);
+
+        var salesData = [];
+        versionData = [];
+
+        for (var i = 0; i < $scope.versions.length; i++) {
+            var currentDate = new Date($scope.versions[i].snapshot.lastUpdated);
+            var nextDate = new Date();
+            if (i < $scope.versions.length - 1) {
+                var nextDate = new Date($scope.versions[i+1].snapshot.lastUpdated);
+            }
+            var randomData = randomScalingFactor();
+            versionData.push({
+                x: new Date(currentDate),
+                y: randomData,
+            }); 
+            salesData.push({
+                x: new Date(currentDate),
+                y: randomData,
+            }); 
+            currentDate.setDate(currentDate.getDate() + 1);
+
+            while (currentDate < nextDate) {
+                salesData.push({
+                    x: new Date(currentDate),
+                    y: randomScalingFactor(),
+                }); 
+                currentDate.setDate(currentDate.getDate() + 1);
+            }
+        }
+        versionData.push({
+            x: new Date(),
+            y: versionData[versionData.length - 1].y,
+        }); 
+
         var data = {
-            datasets: [{
-                label: $scope.recipe.name + " Sales",
-                data: pointData
-                },
+            datasets: [
+                {
+                    label: "Versions",
+                    data: versionData,
+                    borderColor: 'rgba(155, 89, 182, .9)',
+                    pointBorderColor: 'rgba(155, 89, 182, 1)',
+                    pointBackgroundColor: 'rgba(155, 89, 182, 1)',
+                }, {
+                    label: "Sales",
+                    data: salesData,
+                    borderColor: 'rgba(155, 89, 182, .3)',
+                    pointBorderColor: 'rgba(155, 89, 182, .3)',
+                    pointBackgroundColor: 'rgba(155, 89, 182, .3)',
+                    borderDash: [10,5],
+                }
             ]
         };
 
         data.datasets.forEach(function(dataset) {
-            dataset.borderColor = 'rgba(155, 89, 182, .9)';
             dataset.borderWidth = 6;
             dataset.backgroundColor = 'rgba(155, 89, 182,.05)';
-            dataset.pointBorderColor = 'rgba(155, 89, 182, 1)';
-            dataset.pointBackgroundColor = 'rgba(155, 89, 182, 1)';
             dataset.pointHoverRadius = 6;
             dataset.radius = 6;
             dataset.hitRadius = 20;
@@ -81,8 +113,8 @@ angular.module('app')
                     mode: 'label'
                 },
                 title: {
-                    display: true,
-                    text: 'Sales'
+                    display: false,
+                    text: $scope.recipe.name + ' Sales'
                 },
                 scales: {
                     xAxes: [{
@@ -118,7 +150,70 @@ angular.module('app')
                         }
                     }],
                 },
+                tooltips: {
+                    callbacks: {
+                        label: function(tooltipItem, data) {
+                            if (tooltipItem.datasetIndex == 0) {
+                                return "Updated to Version " + parseInt(tooltipItem.datasetIndex + 1);
+                            } else {
+                                return "Sales: " + tooltipItem.yLabel;
+                            }
+                        }
+                    }
+                },
             }
         });
 
-    });
+        var xBins = chart.config.data.datasets[0].metaData.map(function(e) {
+            return e._view.x;
+        });
+
+        function findBin(x) {
+            if (x < xBins[0]) {
+                return -1;
+            } else {
+                var i = 0;
+                while (i < xBins.length) {
+                    if (x >= xBins[i] && x < xBins[i+1]) {
+                        return i;
+                    }
+                    i++;
+                }
+                return xBins.length;
+            }
+        }
+
+        var resizePopup = function(){$('.ui.popup').css('max-height', $(window).height());};
+
+        $(window).resize(function(e){
+            resizePopup();
+        });
+
+        $("#canvas").on("mouseover", function(e) {
+            var bin = findBin(e.offsetX);
+            if (bin < 0 || bin >= xBins.length) {
+                return;
+            }
+            var rectWidth = xBins[bin+1] - xBins[bin];
+            var rectHeight = chart.chartArea.bottom - chart.chartArea.top;
+            $("#stats-highlighter").remove();
+            $("#canvas-container").append("<div id='stats-highlighter'></div>")
+            $("#stats-highlighter").css({
+                left: xBins[bin],
+                top: chart.chartArea.top,
+                width: rectWidth,
+                height: rectHeight,
+            });
+            $("#stats-highlighter").popup({
+                position : 'right center',
+                hoverable: true,
+                popup : $('#popup-' + bin),
+            });
+        });
+
+
+    $scope.selectVersion = function(id) {
+        $state.go('app.recipe.history.version', {versionId: id});
+    }
+
+});        

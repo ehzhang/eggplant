@@ -203,6 +203,53 @@ strong.brand {
   width: 515px;
 }
 
+.stats.popup {
+  overflow:auto;
+  .recipe-name,
+  .recipe-version {
+    display: inline;
+  }
+
+  .recipe-name {
+    font-size: 1.5em;
+  }
+
+  .recipe-version {
+    font-weight: bold;
+    color: $brand-color;
+  }
+
+  .recipe-change-summary {
+    word-wrap: break-word;
+  }
+
+  .recipe-last-updated {
+    font-style: italic;
+    font-size: .85em;
+  }
+
+  .recipe-details {
+    font-size: 0.85em;
+    font-style: italic;
+    cursor: pointer;
+  }
+}
+#canvas-container {
+
+  cursor: pointer;
+
+  #canvas {
+    position: absolute;
+  }
+
+  #stats-highlighter {
+    position: relative;
+    z-index: 10;
+    background-color: rgba(255,165,0,0.1);
+  }
+}
+
+
 .clickable {
   cursor: pointer;
 }

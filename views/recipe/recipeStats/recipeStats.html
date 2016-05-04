@@ -2,10 +2,11 @@
 
 <h3 class="ui header">Overall Sales for {{recipe.name}}</h3>
 
-    <div class="ui icon input">
-      <input type="text" placeholder="Search...">
-      <i class="search icon"></i>
-
+<!--     <div class="ui icon input">
+        <input type="text" placeholder="Search...">
+        <i class="search icon"></i>
+    </div> -->
+<!-- 
     <div class="ui fluid search selection dropdown" id="ingr-dropdown">
         <input
             type="hidden"
@@ -15,16 +16,63 @@
         <div class="menu">
             <div class="item" data-value="search">Search for all sales of {{recipe.name}}</div>
        </div>
-    </div>
-</div>
-    
+    </div> -->
 
- 
- <!-- {{!-- TODO: Include more information (like diffs) in tooltip --}} -->
-    <div style="width:100%">
+    <div id="canvas-container" style="width:100%">
         <canvas id="canvas"></canvas>
     </div>
+    <div ng-repeat="version in versions">
+        <div id="{{'popup-' + version.index}}" class="ui stats flowing popup">
+            <h5 class="ui header recipe-name">
+                Version <div class="recipe-version">{{version.snapshot.latestVersion}}</div>
+            </h5>
 
-    <!-- {{#each versions}} -->
-    <!-- {{/each}} -->
+            <div class="recipe-last-updated">
+                Last updated {{ UTIL.fromNow(version.snapshot.lastUpdated) }}
+            </div>
 
+            <br>
+
+            <p class="recipe-change-summary">
+            {{version.snapshot.changeSummary}}
+            </p>
+
+            <div
+                ng-show="diffs[$index]"
+                class="ui divider"></div>
+
+            <p ng-repeat="i in diffs[$index].ingredients">
+                <span ng-show="i.status">
+                    <i
+                        class="plus icon added small"
+                        ng-show="i.status == 'added'"></i>
+                    <i
+                        class="minus icon removed small"
+                        ng-show="i.status == 'removed'"></i>
+                    <span
+                        ng-show="i.status == 'changed'"
+                        style="text-decoration:line-through">
+                        {{i.prev.amount}} {{i.prev.units}} {{i.prev.name}}
+                        <br>
+                    </span>
+                    <span
+                        ng-class="{removed:'removed', added:'added', changed:'changed' ,'':'default'}[i.status]">
+                        {{i.ingredient.amount}} {{i.ingredient.units}} {{i.ingredient.name}}
+                    </span>
+                </span>
+            </p>
+
+
+            <p ng-show="diffs[$index].descDiff.length > 1">
+                Description has been modified.
+            </p>
+
+            <p ng-show="diffs[$index].instrDiff.length > 1">
+                Instructions have been modified.
+            </p>
+            <p class="recipe-details" ng-if="version.snapshot.latestVersion > 1">
+                <a ng-click="selectVersion(version._id)">Compare to Version {{version.snapshot.latestVersion - 1}}</a>
+            </p>
+        </div>
+
+    </div>

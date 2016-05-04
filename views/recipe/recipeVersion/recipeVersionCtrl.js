@@ -9,6 +9,7 @@ angular.module('app')
             })[0];
             if (prev) {
                 $scope.diff = VersionService.getDiff(prev, $scope.version);
+                console.log($scope.diff);
                 $scope.showDiff = true;
             }
         } 
