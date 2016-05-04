@@ -204,7 +204,7 @@ angular.module('app')
             id: "1",
             name: "Eggplant Tacos",
             changeSummary: "Used fresher tortillas.",
-            latestVersion: 2,
+            latestVersion: 1,
             imageUrl: "assets/eggplant_taco.jpg",
             lastUpdated: new Date() - 2 * DAY,
             description: "Man braid fixie farm-to-table pug wayfarers scenester before they sold out ramps tilde, man bun YOLO slow-carb squid shoreditch put a bird on it. Tote bag venmo lo-fi kombucha synth semiotics. Photo booth thundercats hella squid church-key semiotics. Scenester dreamcatcher cornhole, whatever affogato roof party 3 wolf moon kinfolk shabby chic meh twee photo booth irony keffiyeh. Literally chia jean shorts, viral kinfolk pickled bicycle rights flexitarian twee marfa neutra cray.",
@@ -336,7 +336,7 @@ angular.module('app')
             id: "3",
             name: "Eggplant Burrito",
             changeSummary: "Whole wheat tortillas, locally made.",
-            latestVersion: 3,
+            latestVersion: 1,
             imageUrl: "assets/eggplant_burrito.jpg",
             lastUpdated: new Date() - 7 * DAY,
             description: "Man braid fixie farm-to-table pug wayfarers scenester before they sold out ramps tilde, man bun YOLO slow-carb squid shoreditch put a bird on it. Tote bag venmo lo-fi kombucha synth semiotics. Photo booth thundercats hella squid church-key semiotics. Scenester dreamcatcher cornhole, whatever affogato roof party 3 wolf moon kinfolk shabby chic meh twee photo booth irony keffiyeh. Literally chia jean shorts, viral kinfolk pickled bicycle rights flexitarian twee marfa neutra cray.",
@@ -370,7 +370,7 @@ angular.module('app')
             id: "4",
             name: "Eggplant Fritters",
             changeSummary: "Now using a beer batter.",
-            latestVersion: 2,
+            latestVersion: 1,
             imageUrl: "assets/eggplant_fritter.jpg",
             lastUpdated: new Date() - 15 * DAY,
             description: "Man braid fixie farm-to-table pug wayfarers scenester before they sold out ramps tilde, man bun YOLO slow-carb squid shoreditch put a bird on it. Tote bag venmo lo-fi kombucha synth semiotics. Photo booth thundercats hella squid church-key semiotics. Scenester dreamcatcher cornhole, whatever affogato roof party 3 wolf moon kinfolk shabby chic meh twee photo booth irony keffiyeh. Literally chia jean shorts, viral kinfolk pickled bicycle rights flexitarian twee marfa neutra cray.",
@@ -440,7 +440,7 @@ angular.module('app')
     }
 
     // Increment when wanting to force a client change
-    var VERSION = 1;
+    var VERSION = 2;
     var MDB_V = 'mdb_v';
 
     var v = localStorage.getItem(MDB_V);
